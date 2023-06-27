@@ -1,6 +1,6 @@
 .react-calendar {
     width: 80%;
-    height: 1000px;
+    height: 950px;
     margin: 0 auto;
     background: white;
     border: 1px solid #a0a096;
@@ -70,7 +70,7 @@
   }
   
   .react-calendar__month-view__weekdays__weekday {
-    padding: 5.5em;
+    padding: 5em;
   }
   
   .react-calendar__month-view__weekNumbers .react-calendar__tile {
