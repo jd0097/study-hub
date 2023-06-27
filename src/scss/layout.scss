@@ -1,6 +1,6 @@
 @import "bg";
 @import "header";
-
+@import "main";
 .wrap {
   margin: 0 auto;
   width: 100%;
@@ -11,6 +11,5 @@
     width: 100%;
     max-width: 1400px;
     height: 100%;
-    background: skyblue;
   }
 }
