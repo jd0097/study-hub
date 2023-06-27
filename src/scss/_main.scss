@@ -15,6 +15,19 @@
     height: 100%;
     background: rgb(0, 0, 0);
   }
+  .main_intro {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100px;
+    .logo {
+      margin-right: 30px;
+      width: 200px;
+      height: 100%;
+      background: #5283c4;
+    }
+  }
   .banner_box {
     display: flex;
     justify-content: space-between;
@@ -52,22 +65,46 @@
       overflow: hidden;
       border-radius: 25px;
       padding: 30px;
-      background: #cce6f0;
+      background: #8aabd6;
       cursor: pointer;
       transition-duration: 0.1s;
-
+      border: none;
       background-repeat: no-repeat;
-      span {
+      a {
         display: block;
-        padding: 20px;
         width: 100%;
-        height: auto;
-        font-size: 18px;
-        font-weight: 500;
+        height: 100%;
+        color: #fff;
+        span {
+          display: block;
+          padding: 20px;
+          width: 100%;
+          height: auto;
+          font-size: 18px;
+          font-weight: 500;
+        }
       }
     }
     .banner:hover {
-      background: #8aabd6;
+      background: #5283c4;
+      a {
+        color: #fff;
+      }
+    }
+  }
+  .recently {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    border-radius: 25px;
+    background: #deecff;
+    padding: 30px;
+    .recently_list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #000000;
     }
   }
 }
