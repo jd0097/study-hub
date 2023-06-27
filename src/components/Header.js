@@ -9,7 +9,7 @@ const Header = () => {
           <ul className="account_list">
             <div className="account_img"></div>
             <li>
-              <Link to="/mypages">MYPAGE</Link>
+              <Link to="/mypages">MYPAGE  </Link>
             </li>
           </ul>
         </div>
