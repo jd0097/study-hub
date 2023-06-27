@@ -1,7 +1,6 @@
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Bg from "./components/Bg";
 import Diary from "./pages/Diary";
 import Intro from "./pages/Intro";
 import Main from "./pages/Main";
@@ -15,20 +14,22 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <Bg />
+    <div className="wrap">
       <Header />
-      <Routes>
-        <Route path="/" element={<Intro />}></Route>
-        <Route path="/main" element={<Main />}></Route>
-        <Route path="/note" element={<Note />}></Route>
-        <Route path="/noteWrite" element={<NoteWrite />}></Route>
-        <Route path="/mypages" element={<Mypages />}></Route>
-        <Route path="/Diary" element={<Diary />}></Route>
-        <Route path="/write" element={<Write />}></Route>
-        <Route path="/dayList" element={<DayList />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Intro />}></Route>
+          <Route path="/main" element={<Main />}></Route>
+          <Route path="/note" element={<Note />}></Route>
+          <Route path="/noteWrite" element={<NoteWrite />}></Route>
+          <Route path="/mypages" element={<Mypages />}></Route>
+          <Route path="/diary" element={<Diary />}></Route>
+          <Route path="/write" element={<Write />}></Route>
+          <Route path="/dayList" element={<DayList />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </div>
+
       <Footer />
     </div>
   );
