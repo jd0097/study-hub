@@ -1,4 +1,3 @@
-import { Route, Routes } from "react-router-dom";
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,8 +8,9 @@ import Mypages from "./pages/Mypages";
 import Note from "./pages/Note";
 import NoteWrite from "./pages/NoteWrite";
 import NotFound from "./pages/NotFound";
-import StudyWrite from "./pages/StudyWrite";
-import StudyList from "./pages/StudyList";
+// import Write from "./pages/Write";
+import DayList from "./pages/DayList";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
           <Route path="/notewrite" element={<NoteWrite />}></Route>
           <Route path="/mypages" element={<Mypages />}></Route>
           <Route path="/caledar" element={<CalendarPage />}></Route>
-          <Route path="/studywrite" element={<StudyWrite />}></Route>
-          <Route path="/studylist" element={<StudyList />}></Route>
+          {/* <Route path="/write" element={<Write />}></Route> */}
+          <Route path="/daylist" element={<DayList />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
