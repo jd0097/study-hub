@@ -18,13 +18,10 @@ const Header = () => {
             <div className="logo"></div>
             <ul className="nav_list">
               <li>
-                <Link to="/main">HOME</Link>
+                <Link to="/">HOME</Link>
               </li>
               <li>
-                <Link to="/caledar">STUDY-CALENDAR</Link>
-              </li>
-              <li>
-                <Link to="/daylist">DAY-LIST</Link>
+                <Link to="/calendarpage">STUDY-PLAN</Link>
               </li>
               <li>
                 <Link to="/note">NOTE</Link>
