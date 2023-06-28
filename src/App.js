@@ -8,7 +8,7 @@ import Mypages from "./pages/Mypages";
 import Note from "./pages/Note";
 import NoteWrite from "./pages/NoteWrite";
 import NotFound from "./pages/NotFound";
-import Write from "./pages/Write";
+// import Write from "./pages/Write";
 import DayList from "./pages/DayList";
 import { Route, Routes } from "react-router-dom";
 
@@ -16,15 +16,15 @@ function App() {
   return (
     <div className="wrap">
       <Header />
+      <Intro />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Intro />}></Route>
           <Route path="/main" element={<Main />}></Route>
           <Route path="/note" element={<Note />}></Route>
           <Route path="/notewrite" element={<NoteWrite />}></Route>
           <Route path="/mypages" element={<Mypages />}></Route>
           <Route path="/caledar" element={<CalendarPage />}></Route>
-          <Route path="/write" element={<Write />}></Route>
+          {/* <Route path="/write" element={<Write />}></Route> */}
           <Route path="/daylist" element={<DayList />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
