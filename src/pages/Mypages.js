@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react'
 
 const Mypages = () => {
   return (
-    <div className="mypage_wrap">
-      <div className="mypage_inner"></div>
-    </div>
-  );
-};
+    <div>Mypages</div>
+  )
+}
 
-export default Mypages;
+export default Mypages
