@@ -1,0 +1,110 @@
+.home_wrap {
+  width: 100%;
+  height: auto;
+  .title {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 18px;
+  }
+  .title::after {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+    width: 5px;
+    height: 100%;
+    background: rgb(0, 0, 0);
+  }
+  .main_intro {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100px;
+    .logo {
+      margin-right: 30px;
+      width: 200px;
+      height: 100%;
+      background: #5283c4;
+    }
+  }
+  .banner_box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 285px;
+    gap: 2%;
+    .banner:nth-child(1)::after {
+      position: absolute;
+      left: 25px;
+      bottom: 10px;
+      width: 200px;
+      height: 150px;
+      content: "";
+      background-image: url(../../public/source/noteimg.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.3;
+    }
+    .banner:nth-child(2)::after {
+      position: absolute;
+      left: 25px;
+      bottom: 10px;
+      width: 200px;
+      height: 150px;
+      content: "";
+      background-image: url(../../public/source/plan.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.3;
+    }
+    .banner {
+      position: relative;
+      width: 48%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 25px;
+      padding: 30px;
+      background: #8aabd6;
+      cursor: pointer;
+      transition-duration: 0.1s;
+      border: none;
+      background-repeat: no-repeat;
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        span {
+          display: block;
+          padding: 20px;
+          width: 100%;
+          height: auto;
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
+    }
+    .banner:hover {
+      background: #5283c4;
+      a {
+        color: #fff;
+      }
+    }
+  }
+  .recently {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    border-radius: 25px;
+    background: #deecff;
+    padding: 30px;
+    .recently_list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #000000;
+    }
+  }
+}
