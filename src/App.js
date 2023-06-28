@@ -11,11 +11,12 @@ import NotFound from "./pages/NotFound";
 import DayList from "./pages/DayList";
 import Wpage from "./pages/Wpage";
 import { Route, Routes } from "react-router-dom";
+import Calendar from "react-calendar";
 
 function App() {
   return (
     <div className="wrap">
-      {/* <Intro /> */}
+      <Intro />
       <Header />
       <div className="container">
         <Routes>

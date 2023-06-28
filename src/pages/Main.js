@@ -27,7 +27,7 @@ const Main = () => {
           </Link>
         </div>
         <div className="banner">
-          <Link to="/calendarPage">
+          <Link to="/diary">
             <span className="banner_title">
               <FontAwesomeIcon icon={faClipboardList} />
               <h1>STUDY-PLAN</h1>
