@@ -1,0 +1,67 @@
+.mypage_wrap {
+  position: relative;
+  width: 100%;
+  height: 850px;
+  border-radius: 30px;
+  background: #d9d9d9;
+  .account_box {
+    margin: 0 auto;
+    max-width: 500px;
+    width: 100%;
+    height: 600px;
+    padding-top: 30px;
+  }
+
+  .account_img {
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    background: skyblue;
+    overflow: hidden;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+    }
+    .img_change {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      height: 35px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+  .user_name {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .account_change {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    .name_change {
+      margin: 0 auto;
+      width: 150px;
+      height: 35px;
+      border-radius: 50px;
+      border: none;
+    }
+    .name_input {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 200px;
+      border: none;
+    }
+  }
+}

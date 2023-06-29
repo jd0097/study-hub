@@ -1,0 +1,37 @@
+.note_write {
+  height: 70%;
+  .note_inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: #d9d9d9;
+    .note_form {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      .title_input {
+        margin-bottom: 20px;
+        width: 100%;
+        height: 50px;
+        border-radius: 50px;
+        padding-left: 30px;
+        font-size: 19px;
+      }
+      .note_text {
+        width: 100%;
+        height: 500px;
+        resize: none;
+        border-radius: 15px;
+        padding: 30px;
+      }
+      .confirm {
+        margin: 0 auto;
+        margin-top: 10px;
+        width: 150px;
+        height: 43px;
+        border-radius: 50px;
+        font-size: 18px;
+      }
+    }
+  }
+}
