@@ -24,7 +24,7 @@ const Header = () => {
                 <Link to="/caledar">STUDY-CALENDAR</Link>
               </li>
               <li>
-                <Link to="/daylist">DAY-LIST</Link>
+                <Link to="/studylist">STUDY-PLAN</Link>
               </li>
               <li>
                 <Link to="/note">NOTE</Link>

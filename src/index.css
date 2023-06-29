@@ -32,7 +32,9 @@ input {
   border: none;
 }
 button {
+  font-family: "Inter", "Gothic A1", sans-serif;
   border: none;
+  cursor: pointer;
 }
 
 /* --------------공통 CSS */
