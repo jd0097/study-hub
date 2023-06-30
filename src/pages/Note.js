@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { deleteAllTodo, deleteMemo } from "../api/axios/axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteAllTodo, deleteMemo } from "../api/fetch";
 import NoteWrite from "./NoteWrite";
 
-const Note = ({ memoData, setMemoData }) => {
-  const [log, setLog] = useState(null);
+const Note = ({
+  memoData,
+  setMemoData,
+  memoLog,
+  setMemoLog,
+  memoIndex,
+  setMemoIndex,
+}) => {
   const navigate = useNavigate();
 
   const handleRemoveClick = () => {
@@ -14,27 +20,32 @@ const Note = ({ memoData, setMemoData }) => {
 
   const handleClick = () => {
     navigate("/notewrite");
+    setMemoLog("");
   };
 
   const handleDeleteClick = _id => {
-    const newMomoData = memoData.filter(item => item.id !== _id);
+    const newMomoData = memoData.filter(item => item.iuser !== _id);
     setMemoData(newMomoData);
     deleteMemo(_id);
   };
 
-  const handlesome = _id => {
-    const log = memoData.find(item => item.id === _id);
+  const handlesome = (_id, index) => {
+    const log = memoData.find(item => item.iuser === _id);
+    setMemoLog(_id);
+    const mindex = index;
+    console.log(mindex);
+    setMemoIndex(memoIndex);
     if (log) {
-      console.log(log.id);
-      console.log(_id);
-      setLog(log);
-      handleExternalId(_id);
+      setMemoIndex(index);
     }
+    navigate("/notewrite");
   };
 
-  const handleExternalId = _id => {
-    console.log(_id);
-  };
+  useEffect(() => {}, [memoIndex]);
+
+  // const handleListItemClick = (index, _id) => {
+  //   handleThisIndex(index);
+  // };
 
   return (
     <div className="note_wrap">
@@ -47,13 +58,15 @@ const Note = ({ memoData, setMemoData }) => {
         {memoData.length ? (
           <ul className="note_list">
             {memoData.map((item, index) => (
-              <li key={index} onClick={() => handlesome(item.id)}>
+              <li key={index}>
                 <span className="note_list_title">{item.title}</span>
                 <span className="note_list_text">
-                  <p>{item.text}</p>
+                  <p>{item.ctnt}</p>
                   <div className="list_func">
-                    <button>수정</button>
-                    <button onClick={() => handleDeleteClick(item.id)}>
+                    <button onClick={() => handlesome(item.iuser, index)}>
+                      수정
+                    </button>
+                    <button onClick={() => handleDeleteClick(item.iuser)}>
                       삭제
                     </button>
                   </div>
