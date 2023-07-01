@@ -1,5 +1,6 @@
-import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
+import { getMemo } from "./api/fetch";
+import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CalendarPage from "./pages/CalendarPage";
@@ -11,7 +12,6 @@ import NoteWrite from "./pages/NoteWrite";
 import StudyWrite from "./pages/StudyWrite";
 import NotFound from "./pages/NotFound";
 import { useEffect, useState } from "react";
-import { getMemo } from "./api/fetch";
 import StudyPlan from "./pages/StudyPlan";
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
       {/* <Intro /> */}
       <div className="container">
         <Routes>
-          <Route path="/" element={<Main />}></Route>
+          <Route path="/main" element={<Main memoData={memoData} />}></Route>
           <Route
             path="/note"
             element={

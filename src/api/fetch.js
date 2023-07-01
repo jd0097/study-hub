@@ -12,6 +12,7 @@ const axiosInstance = axios.create({
 const getMemo = async () => {
   try {
     const res = await axiosInstance.get("/memo");
+    axiosInstance;
     const result = res.data;
     console.log(result);
     return result;

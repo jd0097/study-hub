@@ -37,12 +37,12 @@ const MemoItem = ({
         type="text"
         className="title_input"
         name="value"
-        value={memoIndex !== null ? memoData[memoIndex].title : ""}
+        value={editTitle}
         onChange={e => setEditTitle(e.target.value)}
       ></input>
       <textarea
         className="note_text"
-        value={memoIndex !== null ? memoData[memoIndex].ctnt : ""}
+        value={editctnt}
         onChange={e => setEditCtnt(e.target.value)}
       ></textarea>
       <button

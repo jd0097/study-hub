@@ -74,6 +74,9 @@
         width: 20%;
         background: #899cce;
         border-radius: 100px;
+        p {
+          width: 100%;
+        }
       }
       .note_list_text {
         display: flex;
@@ -81,6 +84,13 @@
         width: 80%;
         background: #899cce;
         border-radius: 100px;
+        p {
+          width: 60%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          word-break: break-all;
+        }
         .list_func {
           display: flex;
           gap: 10px;

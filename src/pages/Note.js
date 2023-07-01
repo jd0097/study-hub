@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { deleteAllTodo, deleteMemo } from "../api/fetch";
 import NoteWrite from "./NoteWrite";
 
+
 const Note = ({
   memoData,
   setMemoData,
@@ -59,7 +60,9 @@ const Note = ({
           <ul className="note_list">
             {memoData.map((item, index) => (
               <li key={index}>
-                <span className="note_list_title">{item.title}</span>
+                <span className="note_list_title">
+                  <p>{item.title}</p>
+                </span>
                 <span className="note_list_text">
                   <p>{item.ctnt}</p>
                   <div className="list_func">

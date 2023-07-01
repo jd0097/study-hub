@@ -2,6 +2,7 @@ import { getMemo, postMemo, patchMemo } from "../api/fetch";
 import React, { memo, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import MemoItem from "../components/MemoItem";
+import NewMemoItem from "../components/NewMemoItem";
 
 const NoteWrite = ({
   memoData,
@@ -56,32 +57,28 @@ const NoteWrite = ({
   // };
 
   // Post 기능입니다.
-  const handleSubmit = e => {
-    const newMemo = {
-      iuser: Date.now(),
-      title: value,
-      ctnt: text,
-    };
+  // const handleSubmit = e => {
+  //   const newMemo = {
+  //     iuser: Date.now(),
+  //     title: value,
+  //     ctnt: text,
+  //   };
 
-    setMemoData([...memoData, newMemo]);
-    postMemo(newMemo);
-    setValue("");
-    setText("");
-    console.log("post");
+  //   setMemoData([...memoData, newMemo]);
+  //   postMemo(newMemo);
+  //   setValue("");
+  //   setText("");
+  //   console.log("post");
 
-    // navigate(`/note/${newMemo.id}`);
-    navigate("/note");
+  //   // navigate(`/note/${newMemo.id}`);
+  //   navigate("/note");
 
-    e.preventDefault();
-  };
+  //   e.preventDefault();
+  // };
 
-  const handleTextChange = e => {
-    setText(e.target.value);
-  };
-
-  if (log === log) {
-    console.log(value);
-  }
+  // const handleTextChange = e => {
+  //   setText(e.target.value);
+  // };
 
   return (
     <div className="note_write">
@@ -99,24 +96,32 @@ const NoteWrite = ({
               item={memoData[memoIndex]}
             />
           ) : (
-            <>
-              <input
-                type="text"
-                className="title_input"
-                placeholder="제목을 입력해주세요"
-                name="value"
-                value={value}
-                onChange={e => setValue(e.target.value)}
-              />
-              <textarea
-                className="note_text"
-                value={text}
-                onChange={handleTextChange}
-              />
-              <button type="button" className="confirm" onClick={handleSubmit}>
-                완료
-              </button>
-            </>
+            <NewMemoItem
+              memoData={memoData}
+              setMemoData={setMemoData}
+              value={value}
+              setValue={setValue}
+              text={text}
+              setText={setText}
+            />
+            // <>
+            //   <input
+            //     type="text"
+            //     className="title_input"
+            //     placeholder="제목을 입력해주세요"
+            //     name="value"
+            //     value={value}
+            //     onChange={e => setValue(e.target.value)}
+            //   />
+            //   <textarea
+            //     className="note_text"
+            //     value={text}
+            //     onChange={handleTextChange}
+            //   />
+            //   <button type="button" className="confirm" onClick={handleSubmit}>
+            //     완료
+            //   </button>
+            // </>
           )}
         </form>
       </div>
