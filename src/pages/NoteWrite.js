@@ -1,4 +1,4 @@
-import { postMemo } from "../api/axios/axios";
+import { postMemo } from "../api/axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 

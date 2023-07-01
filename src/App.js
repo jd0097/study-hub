@@ -10,9 +10,8 @@ import Note from "./pages/Note";
 import NoteWrite from "./pages/NoteWrite";
 import StudyWrite from "./pages/StudyWrite";
 import NotFound from "./pages/NotFound";
-import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getMemo } from "./api/axios/axios";
+import { getMemo } from "./api/axios";
 import StudyPlan from "./pages/StudyPlan";
 
 function App() {

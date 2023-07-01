@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:400",
+  baseURL: "http://192.168.0.144:5008/api",
   timeout: 1000,
   headers: {
     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -62,4 +62,23 @@ const deleteMemo = async _id => {
   }
 };
 
-export { axiosInstance, getMemo, deleteAllTodo, postMemo , deleteMemo };
+// 타이머 기능 (정다혜)
+// 분 추가 기능 ===================================
+const postMinute = async timeMin => {
+  try {
+    const res = await axiosInstance.post("/timer", timeMin);
+    const result = res.data;
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  axiosInstance,
+  getMemo,
+  deleteAllTodo,
+  postMemo,
+  deleteMemo,
+  postMinute,
+};
