@@ -1,7 +1,9 @@
 import React from "react";
 
 const StudyWrite = () => {
-  return <div>StudyWrite</div>;
+  return <div>
+    
+  </div>;
 };
 
 export default StudyWrite;

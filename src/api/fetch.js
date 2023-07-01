@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:400",
+  baseURL: "/api",
   timeout: 1000,
   headers: {
     "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -9,22 +9,24 @@ const axiosInstance = axios.create({
 });
 
 // 데이터 불러오기 기능
-const getMemo = async setMemoData => {
+const getMemo = async () => {
   try {
-    const res = await axiosInstance.get("/test");
+    const res = await axiosInstance.get("/memo");
+    axiosInstance;
     const result = res.data;
-    setMemoData(result);
     console.log(result);
+    return result;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 
-// 수정기능
+// 작성/전송/기능
 // ===================================
 const postMemo = async newTodo => {
   try {
-    const res = await axiosInstance.post("/test", newTodo);
+    const res = await axiosInstance.post("/memo", newTodo);
     const result = res.data;
     console.log(result);
   } catch (error) {
@@ -33,12 +35,27 @@ const postMemo = async newTodo => {
 };
 
 // ===================================
+
+// 수정 기능
+// ===================================
+const patchMemo = async (_iuser, editTitle, editctnt) => {
+  try {
+    const res = await axiosInstance.patch(`/memo/${_iuser}`, {
+      title: editTitle,
+      ctnt: editctnt,
+    });
+    const result = res.data;
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // 전체삭제기능;
 // ====================================
 const deleteAllTodo = async () => {
   try {
-    const res = await axiosInstance.get("/test");
+    const res = await axiosInstance.get("/memo");
     const result = res.data;
     // 문제가 무엇인가? true false 가 문자열로 들어옴
     result.forEach(item => {
@@ -52,9 +69,9 @@ const deleteAllTodo = async () => {
 // 삭제기능;
 // ===================================
 
-const deleteMemo = async _id => {
+const deleteMemo = async _iuser => {
   try {
-    const res = await axiosInstance.delete(`/test/${_id}`);
+    const res = await axiosInstance.delete(`/memo/${_iuser}`);
     const result = res.data;
     console.log(result);
   } catch (error) {
@@ -62,4 +79,11 @@ const deleteMemo = async _id => {
   }
 };
 
-export { axiosInstance, getMemo, deleteAllTodo, postMemo , deleteMemo };
+export {
+  axiosInstance,
+  getMemo,
+  deleteAllTodo,
+  postMemo,
+  patchMemo,
+  deleteMemo,
+};
