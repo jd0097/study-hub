@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { deleteAllTodo, deleteMemo } from "../api/axios/axios";
+import { deleteAllTodo, deleteMemo } from "../api/axios";
 import NoteWrite from "./NoteWrite";
 
 const Note = ({ memoData, setMemoData }) => {
@@ -38,7 +38,7 @@ const Note = ({ memoData, setMemoData }) => {
 
   return (
     <div className="note_wrap">
-      <h1 className="title">메모</h1>
+      <h1 className="title">MEMO</h1>
       <div className="note_wrap_inner">
         <div className="button_form">
           <button onClick={handleRemoveClick}>전체삭제</button>
