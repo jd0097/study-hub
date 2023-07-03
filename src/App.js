@@ -1,5 +1,7 @@
 import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
+import { getMemo } from "./api/fetch";
+import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CalendarPage from "./pages/CalendarPage";
@@ -11,16 +13,25 @@ import NoteWrite from "./pages/NoteWrite";
 import StudyWrite from "./pages/StudyWrite";
 import NotFound from "./pages/NotFound";
 import { useEffect, useState } from "react";
-import { getMemo } from "./api/axios";
 import StudyPlan from "./pages/StudyPlan";
 
 function App() {
-  const [memoData, setMemoData] = useState("");
+  const [memoData, setMemoData] = useState([]);
   const [memoTitle, setMemoTitle] = useState("");
   const [memoText, setMemoText] = useState("");
+  const [memoLog, setMemoLog] = useState(null);
+  const [memoIndex, setMemoIndex] = useState("");
+  const [memoId, setMemoId] = useState("");
+
+  const getMomoFetch = async () => {
+    const memoJson = await getMemo();
+    if (!memoJson) {
+      setMemoData("memmmono", memoJson);
+    }
+  };
 
   useEffect(() => {
-    getMemo(setMemoData);
+    getMomoFetch();
   }, []);
 
   return (
@@ -29,21 +40,34 @@ function App() {
       {/* <Intro /> */}
       <div className="container">
         <Routes>
-          <Route path="/main" element={<Main />}></Route>
+          <Route path="/main" element={<Main memoData={memoData} />}></Route>
           <Route
             path="/note"
-            element={<Note memoData={memoData} setMemoData={setMemoData} />}
+            element={
+              <Note
+                setMemoLog={setMemoLog}
+                memoLog={memoLog}
+                memoData={memoData}
+                setMemoData={setMemoData}
+                memoIndex={memoIndex}
+                setMemoIndex={setMemoIndex}
+              />
+            }
           ></Route>
           <Route
             path="/notewrite"
             element={
               <NoteWrite
+                setMemoLog={setMemoLog}
+                memoLog={memoLog}
                 memoData={memoData}
                 setMemoData={setMemoData}
                 memoText={memoText}
                 setMemoText={setMemoText}
                 memoTitle={memoTitle}
                 setMemoTitle={setMemoTitle}
+                memoIndex={memoIndex}
+                setMemoIndex={setMemoIndex}
               />
             }
           ></Route>
