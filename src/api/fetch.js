@@ -79,6 +79,20 @@ const deleteMemo = async _iuser => {
   }
 };
 
+
+
+// 타이머 기능 (정다혜)
+// 분 추가 기능 ===================================
+const postMinute = async timeMin => {
+  try {
+    const res = await axiosInstance.post("/timer", timeMin);
+    const result = res.data;
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   axiosInstance,
   getMemo,
@@ -86,4 +100,5 @@ export {
   postMemo,
   patchMemo,
   deleteMemo,
+  postMinute,
 };
