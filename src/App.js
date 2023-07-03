@@ -1,6 +1,6 @@
 import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
-import { getMemo } from "./api/fetch";
+import { getMemo, getProfile } from "./api/fetch";
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -21,17 +21,31 @@ function App() {
   const [memoText, setMemoText] = useState("");
   const [memoLog, setMemoLog] = useState(null);
   const [memoIndex, setMemoIndex] = useState("");
-  const [memoId, setMemoId] = useState("");
+  const [profile, setProfile] = useState([]);
+
+  const getProfileName = async () => {
+    const profileJson = await getProfile();
+    if (!profileJson) {
+      setProfile("name", profileJson);
+    }
+  };
 
   const getMomoFetch = async () => {
-    const memoJson = await getMemo();
-    if (!memoJson) {
-      setMemoData("memmmono", memoJson);
+    try {
+      const memoJson = await getMemo();
+      setMemoData(memoJson);
+    } catch (error) {
+      console.log(error);
     }
+    // const memoJson = await getMemo();
+    // if (!memoJson) {
+    //   setMemoData("memmmono", memoJson);
+    // }
   };
 
   useEffect(() => {
     getMomoFetch();
+    getProfileName();
   }, []);
 
   return (
@@ -71,7 +85,10 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/mypages" element={<Mypages />}></Route>
+          <Route
+            path="/mypages"
+            element={<Mypages profile={profile} setProfile={setProfile} />}
+          ></Route>
           <Route path="/caledar" element={<CalendarPage />}></Route>
           <Route path="/studyWrite" element={<StudyWrite />}></Route>
           <Route path="/studyplan" element={<StudyPlan />}></Route>
