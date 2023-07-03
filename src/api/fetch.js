@@ -1,11 +1,11 @@
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "/api",
+  // baseURL: "/api",
   timeout: 1000,
-  headers: {
-    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-    Accept: "*/*",
-  },
+  // headers: {
+  //   "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+  //   Accept: "*/*",
+  // },
 });
 
 // 데이터 불러오기 기능

@@ -15,20 +15,20 @@ const StudyPlan = () => {
         <div className="timer_date">
           <div className="today">
             {/* 날자 데이터가 들어갑니다. */}
-            <Input placeholder="0523" style={{ textAlign: "center" }} />
+            <Input placeholder="0523" style={{ textAlign: "center" ,  borderStyle: "unset",  borderRadius:"unset"}} />
           </div>
           {/* 타이머출력 위치 */}
           <StudyTimer />
         </div>
-        <Row justify="center" style={{ margin: "30px 0" }}>
+        <Row justify="center" style={{ margin: "30px 0", textAlign:"center" }}>
           <span className="empty_notice">
             작성하신 스터디 플랜이 없습니다.
             <br />
-            플랜을 작성해보세요
+            플랜을 작성해보세요.
           </span>
         </Row>
         <Row justify="center" style={{ margin: "30px 0" }}>
-          <Button onClick={handleClick}>작성하기</Button>
+          <Button onClick={handleClick} style={{borderRadius:"25px"}}>작성하기</Button>
         </Row>
       </div>
     </div>

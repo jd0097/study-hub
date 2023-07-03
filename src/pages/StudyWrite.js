@@ -37,6 +37,7 @@ const StudyWrite = () => {
               type="text"
               value={title}
               onChange={handleTitleChange}
+              
             />
           </Row>
           <Row justify="center" style={{ margin: "30px 0" }}>
@@ -46,6 +47,7 @@ const StudyWrite = () => {
                   key={subject}
                   onClick={() => handleClick(subject)}
                   className={selectedSubject === subject ? "selected" : ""}
+                  style={{borderRadius:"25px"}}
                 >
                   {subject}
                 </Button>
@@ -64,7 +66,7 @@ const StudyWrite = () => {
             ></TextArea>
           </Row>
           <Row justify="end" style={{ margin: "30px 0" }}>
-            <Button onClick={handleSubmit}>게시물 생성</Button>
+            <Button onClick={handleSubmit} style={{borderRadius:"25px"}}>게시물 생성</Button>
           </Row>
         </div>
       </div>
