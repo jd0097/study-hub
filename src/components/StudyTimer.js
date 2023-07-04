@@ -1,81 +1,184 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Space, Row } from "antd";
-import { postMinute } from "../api/planFetch";
+import { Button, Input } from "antd";
+import { postSeconds } from "../api/planFetch";
+
 
 const StudyTimer = () => {
-  // =============== 타이머 만들기(정다혜)
-  // 시간 출력을 위한 State
+  // 시간 문자열
   const [studyTime, setStudyTime] = useState("");
-  // 타이머를 만들고 지우기위한 State
-  const [studyTimer, setStudyTimer] = useState(null);
-  // 시간을 제기 위한 변수
-  let timeSec = 0;
-  let timeMin = 0;
-  let timeHour = 0;
-  // 공부시작
-  const startStudy = () => {
-    timeSec = 0;
-    timeMin = 0;
-    timeHour = 0;
-    // 타이머는 중첩되면 안되므로 지우고 생성함.
-    clearInterval(studyTimer);
-    // setInterval 웹브라우저 함수를 통해서 타이머를 생성함.
-    const timer = setInterval(() => {
-      timeSec += 1;
-      if (timeSec >= 60) {
-        timeSec = 0;
-        timeMin += 1;
-      }
-      if (timeMin >= 60) {
-        timeMin = 0;
-        timeHour += 1;
-      }
-      // 출력할 글자 만들기
-      setStudyTime(
-        timeHour.toString().padStart(2, "0") +
-          ":" +
-          timeMin.toString().padStart(2, "0") +
-          ":" +
-          timeSec.toString().padStart(2, "0"),
-      );
-    }, 1000);
-    setStudyTimer(timer);
+
+  // 초
+  const [seconds, setSeconds] = useState(0);
+  // 분
+  const [minutes, setMinutes] = useState(0);
+  // 시간
+  const [hours, setHours] = useState(0);
+  // 타이머 작동
+  const [isRunning, setIsRunning] = useState(false);
+  // 타이머 일시멈춤
+  const [isPaused, setIsPaused] = useState(false);
+  // 타이머 정지
+  const [isStopped, setIsStopped] = useState(false);
+
+  // 타이머 시작
+  useEffect(() => {
+    let interval = null;
+    if (isRunning) {
+      interval = setInterval(() => {
+        setSeconds(prevSeconds => prevSeconds + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isRunning]);
+
+  // 문자열 계산 출력
+  useEffect(() => {
+    if (seconds === 60) {
+      setSeconds(0);
+      setMinutes(prevMinutes => prevMinutes + 1);
+    }
+    if (minutes === 60) {
+      setMinutes(0);
+      setHours(prevHours => prevHours + 1);
+    }
+    setStudyTime(
+      hours.toString().padStart(2, "0") +
+        ":" +
+        minutes.toString().padStart(2, "0") +
+        ":" +
+        seconds.toString().padStart(2, "0"),
+    );
+  }, [seconds, minutes]);
+
+  // 타이머 초기화
+  const handleReset = () => {
+    setIsRunning(false);
+    setIsPaused(false);
+    setIsStopped(false);
+    setSeconds(0);
+    setMinutes(0);
+    setHours(0);
   };
 
-  // 공부멈춤;
-  const stopStudy = () => {
-    clearInterval(studyTimer);
-    // 서버로 분으로 보내기
-    // studyTime 에는 "00:03:01"
-    const timeArr = studyTime.split(":");
-    // timeArr = ["00", "03", "01"]
-    const totalMinutes =
-      parseInt(timeArr[0]) * 60 +
-      parseInt(timeArr[1]) +
-      Math.floor(parseInt(timeArr[2]) / 60);
-    // axios 로 공부한 시간(분)의 정보를 전달함.
-    postMinute(totalMinutes);
+  // 시작버튼
+  const handleStart = () => {
+    handleReset();
+    // 타이머 작동
+    setIsRunning(true);
+    setIsPaused(false);
+    setIsStopped(false);
   };
-  useEffect(() => {
-    return () => {
-      // cleanup 함수: 컴포넌트가 화면에서 사라질때 실행되는 함수
-      clearInterval(studyTimer);
-    };
-  }, [studyTimer]);
-  // ===============// 타이머 만들기
+  // 일시멈춤
+  const handlePause = () => {
+    setIsRunning(false);
+    setIsPaused(true);
+    setIsStopped(false);
+  };
+
+  // 타이머 정지
+  const handleStop = () => {
+    setIsRunning(false);
+    setIsPaused(false);
+    setIsStopped(true);
+    const timeArr = studyTime.split(":");
+    const totalSeconds =
+      parseInt(timeArr[0]) * 3600 +
+      parseInt(timeArr[1]) * 60 +
+      parseInt(timeArr[2]);
+    // console.log(totalSeconds);
+    // axios 로 공부한 시간(초)의 정보를 전달함.
+    postSeconds({
+      studyLine: totalSeconds,
+      iuser: 2,
+    });
+  };
+
+  // 타이머 멈췄다가 계속 진행
+  const handleResume = () => {
+    setIsRunning(true);
+    setIsPaused(false);
+    setIsStopped(false);
+  };
+
+
+ // Load timer state from local storage
+ useEffect(() => {
+  const timerState = JSON.parse(localStorage.getItem("studyTimerState"));
+  if (timerState) {
+    setSeconds(timerState.seconds);
+    setMinutes(timerState.minutes);
+    setHours(timerState.hours);
+    setIsRunning(timerState.isRunning);
+    setIsPaused(timerState.isPaused);
+    setIsStopped(timerState.isStopped);
+  }
+}, []);
+
+// Save timer state to local storage
+useEffect(() => {
+  const timerState = {
+    seconds,
+    minutes,
+    hours,
+    isRunning,
+    isPaused,
+    isStopped,
+  };
+  localStorage.setItem("studyTimerState", JSON.stringify(timerState));
+}, [seconds, minutes, hours, isRunning, isPaused, isStopped]);
+
+
+
+  
+
   return (
     <div className="timer">
-      {/* 타이머가 들어갑니다. */}
       <div className="time_box">
         <Input
           value={studyTime}
           placeholder="00:00:00"
-          style={{ textAlign: "center" }}
+          style={{
+            textAlign: "center",
+            borderRadius: "unset",
+            borderStyle: "unset",
+          }}
         />
       </div>
       <div className="time_select">
-        <Button onClick={startStudy}>시작</Button>
-        <Button onClick={stopStudy}>정지</Button>
+        {!isRunning && !isStopped && !isPaused && (
+          <div>
+            <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
+              시작
+            </Button>
+          </div>
+        )}
+        {isRunning && !isStopped && !isPaused && (
+          <div>
+            <Button onClick={handlePause} style={{ borderRadius: "25px" }}>
+              일시정지
+            </Button>
+            <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
+              정지
+            </Button>
+          </div>
+        )}
+        {!isRunning && !isStopped && isPaused && (
+          <div>
+            <Button onClick={handleResume} style={{ borderRadius: "25px" }}>
+              재실행
+            </Button>
+            <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
+              정지
+            </Button>
+          </div>
+        )}
+        {!isRunning && isStopped && !isPaused && (
+          <div>
+            <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
+              시작
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

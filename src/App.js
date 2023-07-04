@@ -1,6 +1,8 @@
 import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
+
 import { getMemo, getProfile } from "./api/memoFetch";
+
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -49,6 +51,7 @@ function App() {
     getMomoFetch();
     getProfile();
   }, []);
+
 
   return (
     <div className="wrap">

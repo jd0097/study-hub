@@ -1,6 +1,8 @@
+
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteMemo } from "../api/memoFetch";
+
 
 const Note = ({
   memoLog,
@@ -71,11 +73,13 @@ const Note = ({
                       <button onClick={() => handlesome(item.imemo)}>
                         수정
                       </button>
+
                       <button
                         onClick={() =>
                           handleDeleteClick(item.iuser, item.imemo)
                         }
                       >
+
                         삭제
                       </button>
                     </div>
