@@ -1,6 +1,8 @@
 import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
-import { getMemo } from "./api/memoFetch";
+
+import { getMemo, getProfile } from "./api/memoFetch";
+
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -21,17 +23,33 @@ function App() {
   const [memoText, setMemoText] = useState("");
   const [memoLog, setMemoLog] = useState(null);
   const [memoIndex, setMemoIndex] = useState("");
-  const [memoId, setMemoId] = useState("");
+  const [profile, setProfile] = useState([]);
+
+  const getProfile = async () => {
+    try {
+      const profileJson = await getMemo();
+      setProfile(profileJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getMomoFetch = async () => {
-    const memoJson = await getMemo();
-    if (!memoJson) {
-      setMemoData("memmmono", memoJson);
+    try {
+      const memoJson = await getMemo();
+      setMemoData(memoJson);
+    } catch (error) {
+      console.log(error);
     }
+    // const memoJson = await getMemo();
+    // if (!memoJson) {
+    //   setMemoData("memmmono", memoJson);
+    // }
   };
 
   useEffect(() => {
     getMomoFetch();
+    getProfile();
   }, []);
 
 
@@ -52,6 +70,7 @@ function App() {
                 setMemoData={setMemoData}
                 memoIndex={memoIndex}
                 setMemoIndex={setMemoIndex}
+                profile={profile}
               />
             }
           ></Route>
@@ -69,10 +88,14 @@ function App() {
                 setMemoTitle={setMemoTitle}
                 memoIndex={memoIndex}
                 setMemoIndex={setMemoIndex}
+                profile={profile}
               />
             }
           ></Route>
-          <Route path="/mypages" element={<Mypages />}></Route>
+          <Route
+            path="/mypages"
+            element={<Mypages profile={profile} setProfile={setProfile} />}
+          ></Route>
           <Route path="/caledar" element={<CalendarPage />}></Route>
           <Route path="/studyWrite" element={<StudyWrite />}></Route>
           <Route path="/studyplan" element={<StudyPlan />}></Route>

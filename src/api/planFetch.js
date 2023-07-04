@@ -2,6 +2,7 @@ import axios from "axios";
 
 // 타이머 기능 (정다혜)
 // 분 추가 기능 ===================================
+
 export const postSeconds = async () => {
   console.log("초 단위 시간을 보내줍니다. ========");
   try {

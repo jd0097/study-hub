@@ -1,67 +1,199 @@
 .mypage_wrap {
-  position: relative;
-  width: 100%;
-  height: 850px;
-  border-radius: 30px;
-  background: #d9d9d9;
-  .account_box {
-    margin: 0 auto;
-    max-width: 500px;
-    width: 100%;
-    height: 600px;
-    padding-top: 30px;
-  }
-
-  .account_img {
+  height: 700px;
+  .mypage_inner {
     position: relative;
-    margin: 0 auto;
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    background: skyblue;
-    overflow: hidden;
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: #e9e9e9;
+    padding-top: 50px;
+    .account_img {
+      position: relative;
+      margin: 0 auto;
       width: 200px;
       height: 200px;
+      border-radius: 100%;
+      background: skyblue;
+      overflow: hidden;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+      }
+      .img_change {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 35px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
     }
-    .img_change {
-      position: absolute;
-      bottom: 0px;
-      width: 100%;
-      height: 35px;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  }
-  .user_name {
-    display: block;
-    width: 100%;
-    padding: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-  }
-  .account_change {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    .name_change {
+    .user_profile_form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       margin: 0 auto;
-      width: 150px;
-      height: 35px;
-      border-radius: 50px;
-      border: none;
+      margin-top: 20px;
+      width: 100%;
+      height: 200px;
+      p {
+        margin: 5px 0px;
+      }
+      .user_name {
+        position: relative;
+        margin-top: 5px;
+        display: block;
+        width: 300px;
+        min-width: 300px;
+        height: 45px;
+        padding: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 50px;
+        text-align: center;
+        background: rgb(215, 215, 215);
+        p {
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+        .user_name_change {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translate(0%, -50%);
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          background-image: url(../../public/source/edit.png);
+          background-repeat: no-repeat;
+          background-size: 50%;
+          background-position: center;
+          background-color: inherit;
+          border: none;
+        }
+      }
+      .set_user_name_box {
+        position: relative;
+        margin-top: 5px;
+        display: none;
+        width: 300px;
+        min-width: 300px;
+        height: 45px;
+        padding: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 50px;
+        text-align: center;
+        background: rgb(215, 215, 215);
+        .set_user_name {
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          border: none;
+          background: none;
+        }
+        .name_change_summit {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translate(0%, -50%);
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          border: none;
+        }
+      }
+
+      .user_objective {
+        position: relative;
+        margin-top: 5px;
+        display: block;
+        width: 300px;
+        min-width: 300px;
+        height: 45px;
+        padding: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 50px;
+        text-align: center;
+        background: rgb(215, 215, 215);
+        p {
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+        .user_objective_change {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translate(0%, -50%);
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          background-image: url(../../public/source/edit.png);
+          background-repeat: no-repeat;
+          background-size: 50%;
+          background-position: center;
+          background-color: inherit;
+          border: none;
+        }
+      }
+      .set_user_objective_box {
+        display: none;
+        position: relative;
+        margin-top: 5px;
+        width: 300px;
+        min-width: 300px;
+        height: 45px;
+        padding: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 50px;
+        text-align: center;
+        background: rgb(215, 215, 215);
+        .set_objective {
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          border: none;
+          background: none;
+        }
+        .objective_change_summit {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translate(0%, -50%);
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          border: none;
+        }
+      }
     }
-    .name_input {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 200px;
-      border: none;
+
+    .account_change {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      .name_change {
+        margin: 0 auto;
+        width: 150px;
+        height: 35px;
+        border-radius: 50px;
+        border: none;
+      }
+      .name_input {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 200px;
+        border: none;
+      }
     }
   }
 }

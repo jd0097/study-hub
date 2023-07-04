@@ -15,7 +15,7 @@ const NewMemoItem = ({
   const handleSubmit = e => {
     e.preventDefault();
     const newMemo = {
-      iuser: Date.now(),
+      iuser: 2,
       title: value,
       ctnt: text,
     };

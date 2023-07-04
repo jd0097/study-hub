@@ -1,35 +1,64 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
+
 import { patchMemo } from "../api/memoFetch";
 import { useNavigate } from "react-router-dom";
 
-const MemoItem = ({
-  memoIndex,
-  memoData,
-  setMemoData,
-  setValue,
-  text,
-  setText,
-  item,
-}) => {
+const MemoItem = ({ memoData, setMemoData, item, memoLog }) => {
   const navigate = useNavigate();
-  const [editTitle, setEditTitle] = useState(item.title);
-  const [editctnt, setEditCtnt] = useState(item.ctnt);
 
-  const handlePatchSubmit = _iuser => {
-    const newMemoData = memoData.map((item, index) => {
-      if (index === memoIndex) {
-        return {
-          ...item,
-          title: editTitle,
-          ctnt: editctnt,
-        };
+  const [editTitle, setEditTitle] = useState("");
+  const [editctnt, setEditCtnt] = useState("");
+
+  console.log(editTitle);
+  console.log(editctnt);
+  console.log(memoLog);
+
+  const title = memoData.find(
+    item => (item.imemo === memoLog) & (item.iuser === 2),
+  ).title;
+  console.log("타이틀" + title);
+
+  const ctnt = memoData.find(
+    item => (item.imemo === memoLog) & (item.iuser === 2),
+  ).ctnt;
+  console.log("ctnt 는" + ctnt);
+
+  useEffect(() => {
+    setEditCtnt(ctnt);
+    setEditTitle(title);
+  }, [title, ctnt]);
+
+  const handlePatchSubmit = memoLog => {
+    console.log("아이유저" + item.iuser);
+    const newMemoData = memoData.map(item => {
+      if (item.iuser === 2 && item.imemo === memoLog) {
+        item.title = editTitle;
+        item.ctnt = editctnt;
       }
       return item;
     });
     setMemoData(newMemoData);
-    patchMemo(_iuser, editTitle);
+    patchMemo(memoLog, editTitle, editctnt, 2);
     navigate("/note");
   };
+
+  // const iuser = memoData.find(
+  //   item => (item.imemo === memoLog) & (item.iuser === 2),
+  // ).title;
+
+  // const handlePatchSubmit = _iuser => {
+  //   const newMemoData = memoData.map((item, index) => {
+  //     if (index === memoIndex) {
+  //       item.title = editTitle;
+  //       item.ctcn = editctnt;
+  //     }
+  //     return item;
+  //   });
+  //   setMemoData(newMemoData);
+  //   patchMemo(editTitle, editctnt);
+  //   navigate("/note");
+  // };
 
   return (
     <>
@@ -48,7 +77,7 @@ const MemoItem = ({
       <button
         type="button"
         className="confirm"
-        onClick={() => handlePatchSubmit(item.iuser)}
+        onClick={() => handlePatchSubmit(memoLog, item.iuser)}
       >
         수정완료
       </button>
