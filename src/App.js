@@ -1,6 +1,6 @@
 import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
-import { getMemo, getProfile } from "./api/fetch";
+import { getMemo, getProfile } from "./api/memoFetch";
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -23,10 +23,12 @@ function App() {
   const [memoIndex, setMemoIndex] = useState("");
   const [profile, setProfile] = useState([]);
 
-  const getProfileName = async () => {
-    const profileJson = await getProfile();
-    if (!profileJson) {
-      setProfile("name", profileJson);
+  const getProfile = async () => {
+    try {
+      const profileJson = await getMemo();
+      setProfile(profileJson);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -45,7 +47,7 @@ function App() {
 
   useEffect(() => {
     getMomoFetch();
-    getProfileName();
+    getProfile();
   }, []);
 
   return (
@@ -65,6 +67,7 @@ function App() {
                 setMemoData={setMemoData}
                 memoIndex={memoIndex}
                 setMemoIndex={setMemoIndex}
+                profile={profile}
               />
             }
           ></Route>
@@ -82,6 +85,7 @@ function App() {
                 setMemoTitle={setMemoTitle}
                 memoIndex={memoIndex}
                 setMemoIndex={setMemoIndex}
+                profile={profile}
               />
             }
           ></Route>

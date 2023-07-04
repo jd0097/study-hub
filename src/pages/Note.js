@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { deleteAllTodo, deleteMemo } from "../api/fetch";
-import NoteWrite from "./NoteWrite";
-
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { deleteMemo } from "../api/memoFetch";
 
 const Note = ({
+  memoLog,
+  memoUser,
+  setMemoUser,
   memoData,
   setMemoData,
-  memoLog,
   setMemoLog,
   memoIndex,
   setMemoIndex,
+  profile,
 }) => {
   const navigate = useNavigate();
 
-  const handleRemoveClick = () => {
-    setMemoData([]);
-    deleteAllTodo();
+  // 이거 누르지맙시다 지금은
+  const handleRemoveClick = e => {
+    e.preventDefault();
+    // setMemoData([]);
+    // deleteAllTodo();
   };
 
   const handleClick = () => {
@@ -24,29 +27,26 @@ const Note = ({
     setMemoLog("");
   };
 
-  const handleDeleteClick = _id => {
-    const newMomoData = memoData.filter(item => item.iuser !== _id);
-    setMemoData(newMomoData);
-    deleteMemo(_id);
+  const handleDeleteClick = (_iuser, _imemo) => {
+    console.log(_iuser);
+    console.log(_imemo);
+    // const deleteMemoData = memoData.map(item => {
+    //   if (item.iuser === _iuser && item.imemo === _imemo) {
+    //     item.imemo = _imemo;
+    //   }
+    // });
+    deleteMemo(_imemo);
+    // const newMomoData = memoData.filter(item => item.iuser !== _id);
+    // setMemoData(newMomoData);
+    // deleteMemo(_id);
   };
 
-  const handlesome = (_id, index) => {
-    const log = memoData.find(item => item.iuser === _id);
-    setMemoLog(_id);
-    const mindex = index;
-    console.log(mindex);
-    setMemoIndex(memoIndex);
-    if (log) {
-      setMemoIndex(index);
-    }
+  const handlesome = _imemo => {
+    setMemoLog(_imemo);
     navigate("/notewrite");
   };
 
   useEffect(() => {}, [memoIndex]);
-
-  // const handleListItemClick = (index, _id) => {
-  //   handleThisIndex(index);
-  // };
 
   return (
     <div className="note_wrap">
@@ -58,24 +58,30 @@ const Note = ({
         </div>
         {memoData.length ? (
           <ul className="note_list">
-            {memoData.map((item, index) => (
-              <li key={index}>
-                <span className="note_list_title">
-                  <p>{item.title}</p>
-                </span>
-                <span className="note_list_text">
-                  <p>{item.ctnt}</p>
-                  <div className="list_func">
-                    <button onClick={() => handlesome(item.iuser, index)}>
-                      수정
-                    </button>
-                    <button onClick={() => handleDeleteClick(item.iuser)}>
-                      삭제
-                    </button>
-                  </div>
-                </span>
-              </li>
-            ))}
+            {memoData
+              .filter(item => item.iuser === 2)
+              .map((item, index) => (
+                <li key={index}>
+                  <span className="note_list_title">
+                    <p>{item.title}</p>
+                  </span>
+                  <span className="note_list_text">
+                    <p>{item.ctnt}</p>
+                    <div className="list_func">
+                      <button onClick={() => handlesome(item.imemo)}>
+                        수정
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleDeleteClick(item.iuser, item.imemo)
+                        }
+                      >
+                        삭제
+                      </button>
+                    </div>
+                  </span>
+                </li>
+              ))}
           </ul>
         ) : (
           <div className="title_box">

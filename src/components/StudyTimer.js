@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Space, Row } from "antd";
-import { postMinute } from "../api/fetch";
+import { postMinute } from "../api/planFetch";
 
 const StudyTimer = () => {
   // =============== 타이머 만들기(정다혜)
