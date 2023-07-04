@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { patchMemo } from "../api/fetch";
+import { patchMemo } from "../api/memoFetch";
 import { useNavigate } from "react-router-dom";
 
 const MemoItem = ({

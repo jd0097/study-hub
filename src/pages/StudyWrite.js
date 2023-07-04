@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Button, Input, Space, Row } from "antd";
+// import { useNavigate } from "react-router-dom";
+// import StudyListEmpty from "../components/StudyListEmpty";
+// import StudyListForm from "../components/StudyListForm";
+
+
 const { TextArea } = Input;
 const StudyWrite = () => {
   const [title, setTitle] = useState("");
@@ -18,10 +23,34 @@ const StudyWrite = () => {
     setSelectedSubject(subject);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    // setTitle;
+    // setContent;
+    // setSelectedSubject;
 
-  // subjects 배열
+  //   // // axios 전달 
+  //   getAllCategory({
+  //     iuser: 2,
+  //   });
+  };
+
+ 
+  
+    // // 게시물 생성 클릭시 
+    // const navigate = useNavigate();
+    // const handleClick = () => {
+    //   navigate("/studyplan");
+    // };
+  
+
+
+
+
+  //  subjects 배열
   const subjects = ["국어", "영어", "수학", "과학", "사회"];
+
+
+
 
   return (
     <div className="study_plan_warp">
@@ -37,6 +66,7 @@ const StudyWrite = () => {
               type="text"
               value={title}
               onChange={handleTitleChange}
+              
             />
           </Row>
           <Row justify="center" style={{ margin: "30px 0" }}>
@@ -46,6 +76,7 @@ const StudyWrite = () => {
                   key={subject}
                   onClick={() => handleClick(subject)}
                   className={selectedSubject === subject ? "selected" : ""}
+                  style={{borderRadius:"25px"}}
                 >
                   {subject}
                 </Button>
@@ -64,7 +95,7 @@ const StudyWrite = () => {
             ></TextArea>
           </Row>
           <Row justify="end" style={{ margin: "30px 0" }}>
-            <Button onClick={handleSubmit}>게시물 생성</Button>
+            <Button onClick={handleSubmit} style={{borderRadius:"25px"}}>게시물 생성</Button>
           </Row>
         </div>
       </div>
