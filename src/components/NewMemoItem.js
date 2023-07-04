@@ -1,5 +1,5 @@
 import React from "react";
-import { postMemo } from "../api/fetch";
+import { postMemo } from "../api/memoFetch";
 import { useNavigate } from "react-router-dom";
 
 const NewMemoItem = ({

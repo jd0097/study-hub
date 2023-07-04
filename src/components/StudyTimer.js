@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Space, Row } from "antd";
-import { postMinute } from "../api/fetch";
+import { Button, Input } from "antd";
+import { postSeconds } from "../api/planFetch";
 
 const StudyTimer = () => {
-  // =============== 타이머 만들기
+  // 시간 문자열
+  const [studyTime, setStudyTime] = useState("");
+
+  // 초
   const [seconds, setSeconds] = useState(0);
+  // 분
   const [minutes, setMinutes] = useState(0);
+  // 시간
   const [hours, setHours] = useState(0);
+  // 타이머 작동
   const [isRunning, setIsRunning] = useState(false);
+  // 타이머 일시멈춤
+  const [isPaused, setIsPaused] = useState(false);
+  // 타이머 정지
+  const [isStopped, setIsStopped] = useState(false);
+
+  // 타이머 시작
   useEffect(() => {
     let interval = null;
     if (isRunning) {
@@ -15,41 +27,10 @@ const StudyTimer = () => {
         setSeconds(prevSeconds => prevSeconds + 1);
       }, 1000);
     }
-
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  const handleStart = () => {
-    handleReset();
-    setIsRunning(true);
-  };
-
-  const handlePause = () => {
-    setIsRunning(false);
-  };
-
-  // 공부멈춤;
-  const handleStop = () => {
-    handlePause();
-    // 서버로 분으로 보내기
-    // studyTime 에는 "00:03:01"
-    const timeArr = studyTime.split(":");
-    // timeArr = ["00", "03", "01"]
-    const totalMinutes =
-      parseInt(timeArr[0]) * 3600 +
-      parseInt(timeArr[1]) * 60 +
-      parseInt(timeArr[2]);
-    console.log(totalMinutes);
-    // axios 로 공부한 시간(분)의 정보를 전달함.
-    // postMinute(totalMinutes);
-  };
-  const handleReset = () => {
-    setIsRunning(false);
-    setSeconds(0);
-    setMinutes(0);
-    setHours(0);
-  };
-
+  // 문자열 계산 출력
   useEffect(() => {
     if (seconds === 60) {
       setSeconds(0);
@@ -67,13 +48,90 @@ const StudyTimer = () => {
         seconds.toString().padStart(2, "0"),
     );
   }, [seconds, minutes]);
-  // 시간 출력을 위한 State
-  const [studyTime, setStudyTime] = useState("");
 
-  // ===============// 타이머 만들기
+  // 타이머 초기화
+  const handleReset = () => {
+    setIsRunning(false);
+    setIsPaused(false);
+    setIsStopped(false);
+    setSeconds(0);
+    setMinutes(0);
+    setHours(0);
+  };
+
+  // 시작버튼
+  const handleStart = () => {
+    handleReset();
+    // 타이머 작동
+    setIsRunning(true);
+    setIsPaused(false);
+    setIsStopped(false);
+  };
+  // 일시멈춤
+  const handlePause = () => {
+    setIsRunning(false);
+    setIsPaused(true);
+    setIsStopped(false);
+  };
+
+  // 타이머 정지
+  const handleStop = () => {
+    setIsRunning(false);
+    setIsPaused(false);
+    setIsStopped(true);
+    const timeArr = studyTime.split(":");
+    const totalSeconds =
+      parseInt(timeArr[0]) * 3600 +
+      parseInt(timeArr[1]) * 60 +
+      parseInt(timeArr[2]);
+    // console.log(totalSeconds);
+    // axios 로 공부한 시간(초)의 정보를 전달함.
+    postSeconds({
+      studyLine: totalSeconds,
+      iuser: 2,
+    });
+  };
+
+  // 타이머 멈췄다가 계속 진행
+  const handleResume = () => {
+    setIsRunning(true);
+    setIsPaused(false);
+    setIsStopped(false);
+  };
+
+
+ // Load timer state from local storage
+ useEffect(() => {
+  const timerState = JSON.parse(localStorage.getItem("studyTimerState"));
+  if (timerState) {
+    setSeconds(timerState.seconds);
+    setMinutes(timerState.minutes);
+    setHours(timerState.hours);
+    setIsRunning(timerState.isRunning);
+    setIsPaused(timerState.isPaused);
+    setIsStopped(timerState.isStopped);
+  }
+}, []);
+
+// Save timer state to local storage
+useEffect(() => {
+  const timerState = {
+    seconds,
+    minutes,
+    hours,
+    isRunning,
+    isPaused,
+    isStopped,
+  };
+  localStorage.setItem("studyTimerState", JSON.stringify(timerState));
+}, [seconds, minutes, hours, isRunning, isPaused, isStopped]);
+
+
+
+  
+
   return (
     <div className="timer">
-      {/* 타이머가 들어갑니다. */}
       <div className="time_box">
         <Input
           value={studyTime}
@@ -86,22 +144,39 @@ const StudyTimer = () => {
         />
       </div>
       <div className="time_select">
-        {isRunning ? (
+        {!isRunning && !isStopped && !isPaused && (
+          <div>
+            <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
+              시작
+            </Button>
+          </div>
+        )}
+        {isRunning && !isStopped && !isPaused && (
           <div>
             <Button onClick={handlePause} style={{ borderRadius: "25px" }}>
-              일시중지
+              일시정지
             </Button>
-            {/* <Button onClick={handleReset} style={{ borderRadius: "25px" }}>
-              Reset
-            </Button> */}
             <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
               정지
             </Button>
           </div>
-        ) : (
-          <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
-            시작
-          </Button>
+        )}
+        {!isRunning && !isStopped && isPaused && (
+          <div>
+            <Button onClick={handleResume} style={{ borderRadius: "25px" }}>
+              재실행
+            </Button>
+            <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
+              정지
+            </Button>
+          </div>
+        )}
+        {!isRunning && isStopped && !isPaused && (
+          <div>
+            <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
+              시작
+            </Button>
+          </div>
         )}
       </div>
     </div>

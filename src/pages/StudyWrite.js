@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Button, Input, Space, Row } from "antd";
+// import { useNavigate } from "react-router-dom";
+// import StudyListEmpty from "../components/StudyListEmpty";
+// import StudyListForm from "../components/StudyListForm";
+
+
 const { TextArea } = Input;
 const StudyWrite = () => {
   const [title, setTitle] = useState("");
@@ -18,10 +23,34 @@ const StudyWrite = () => {
     setSelectedSubject(subject);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    // setTitle;
+    // setContent;
+    // setSelectedSubject;
 
-  // subjects 배열
+  //   // // axios 전달 
+  //   getAllCategory({
+  //     iuser: 2,
+  //   });
+  };
+
+ 
+  
+    // // 게시물 생성 클릭시 
+    // const navigate = useNavigate();
+    // const handleClick = () => {
+    //   navigate("/studyplan");
+    // };
+  
+
+
+
+
+  //  subjects 배열
   const subjects = ["국어", "영어", "수학", "과학", "사회"];
+
+
+
 
   return (
     <div className="study_plan_warp">

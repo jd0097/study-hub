@@ -1,4 +1,4 @@
-import { getMemo, postMemo, patchMemo } from "../api/fetch";
+import { getMemo, postMemo, patchMemo } from "../api/memoFetch";
 import React, { memo, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import MemoItem from "../components/MemoItem";

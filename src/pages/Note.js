@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteAllTodo, deleteMemo } from "../api/fetch";
+import { deleteAllTodo, deleteMemo } from "../api/memoFetch";
 import NoteWrite from "./NoteWrite";
 
 
@@ -58,24 +58,26 @@ const Note = ({
         </div>
         {memoData.length ? (
           <ul className="note_list">
-            {memoData.map((item, index) => (
-              <li key={index}>
-                <span className="note_list_title">
-                  <p>{item.title}</p>
-                </span>
-                <span className="note_list_text">
-                  <p>{item.ctnt}</p>
-                  <div className="list_func">
-                    <button onClick={() => handlesome(item.iuser, index)}>
-                      수정
-                    </button>
-                    <button onClick={() => handleDeleteClick(item.iuser)}>
-                      삭제
-                    </button>
-                  </div>
-                </span>
-              </li>
-            ))}
+            {memoData
+              .filter(item => item.iuser === 2)
+              .map((item, index) => (
+                <li key={index}>
+                  <span className="note_list_title">
+                    <p>{item.title}</p>
+                  </span>
+                  <span className="note_list_text">
+                    <p>{item.ctnt}</p>
+                    <div className="list_func">
+                      <button onClick={() => handlesome(item.imemo)}>
+                        수정
+                      </button>
+                      <button onClick={() => handleDeleteClick(item.iuser)}>
+                        삭제
+                      </button>
+                    </div>
+                  </span>
+                </li>
+              ))}
           </ul>
         ) : (
           <div className="title_box">

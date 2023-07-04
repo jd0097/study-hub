@@ -1,6 +1,6 @@
 import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
-import { getMemo } from "./api/fetch";
+import { getMemo } from "./api/memoFetch";
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
