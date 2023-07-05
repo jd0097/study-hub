@@ -14,7 +14,7 @@ const UserObj = ({ profile, setProfile, item }) => {
   return (
     <div className="user_obj_area">
       <div className="user_objective" ref={userObjecttiveBoxRef}>
-        <p>어쩌고포부다</p>
+        <p>어쩌고</p>
         <button
           className="user_objective_change"
           onClick={handleObjChange}

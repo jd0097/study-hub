@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button, Input } from "antd";
 import { postSeconds } from "../api/planFetch";
 
-
 const StudyTimer = () => {
   // 시간 문자열
   const [studyTime, setStudyTime] = useState("");
@@ -99,37 +98,6 @@ const StudyTimer = () => {
     setIsPaused(false);
     setIsStopped(false);
   };
-
-
- // Load timer state from local storage
- useEffect(() => {
-  const timerState = JSON.parse(localStorage.getItem("studyTimerState"));
-  if (timerState) {
-    setSeconds(timerState.seconds);
-    setMinutes(timerState.minutes);
-    setHours(timerState.hours);
-    setIsRunning(timerState.isRunning);
-    setIsPaused(timerState.isPaused);
-    setIsStopped(timerState.isStopped);
-  }
-}, []);
-
-// Save timer state to local storage
-useEffect(() => {
-  const timerState = {
-    seconds,
-    minutes,
-    hours,
-    isRunning,
-    isPaused,
-    isStopped,
-  };
-  localStorage.setItem("studyTimerState", JSON.stringify(timerState));
-}, [seconds, minutes, hours, isRunning, isPaused, isStopped]);
-
-
-
-  
 
   return (
     <div className="timer">
