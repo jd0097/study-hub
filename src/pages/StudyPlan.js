@@ -1,35 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { Button, Input, Space, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
-// import { getSubjects } from "../api/planFetch";
 
-  const StudyPlan = () => {
+
+  const StudyPlan = ({
+    planData,
+    setPlanData,
+    planTitle,
+    setPlanTitle,
+    planLog,
+    setplanLog,
+    planIndex,
+    setplanIndex,
+    profile,
+  }) => {
   const navigate = useNavigate();
+
   const handleClick = () => {
     navigate("/studywrite");
+    setplanLog("");
   };
-
-  // const [allSubject, setAllSubject] = useState([]);
-
-
-  // const allCategory = async () => {
-  //   try{
-  //    const categoryjson = await getSubjects()
-  //    setAllSubject(categoryjson)
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }
-
-  // useEffect(()=>{
-  //   allCategory();
-  // },[])
 
     // 오늘 날짜
     const today = moment().format("MM월 DD일");
-
+   
 
   return (
     <div className="study_plan_warp">

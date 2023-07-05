@@ -2,6 +2,8 @@ import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
 
 import { getMemo, getProfile } from "./api/memoFetch";
+import { getPlan, getUerId } from "./api/planFetch"
+
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -25,6 +27,8 @@ function App() {
   const [memoIndex, setMemoIndex] = useState("");
   const [profile, setProfile] = useState([]);
 
+
+  
   const getProfile = async () => {
     try {
       const profileJson = await getMemo();
@@ -32,8 +36,8 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  };
-
+  }; 
+  
   const getMomoFetch = async () => {
     try {
       const memoJson = await getMemo();
@@ -43,13 +47,35 @@ function App() {
     }
     // const memoJson = await getMemo();
     // if (!memoJson) {
-    //   setMemoData("memmmono", memoJson);
-    // }
-  };
+      //   setMemoData("memmmono", memoJson);
+      // }
+    };
+    
+    
+    // 스터디 플랜
+    const [planData, setPlanData] = useState([]);
+    const [planTitle, setPlanTitle] = useState()
+    const [planText, setplanText] = useState()
+    const [planLog, setplanLog] = useState()
+    const [planIndex, setplanIndex] = useState()
+    
+
+
+  const getUerId = async () => {
+    try {
+      const studyPlanJson = await getPlan();
+      setProfile(studyPlanJson)
+    } catch(err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
     getMomoFetch();
     getProfile();
+    getUerId();
+
+
   }, []);
 
 
@@ -97,8 +123,38 @@ function App() {
             element={<Mypages profile={profile} setProfile={setProfile} />}
           ></Route>
           <Route path="/caledar" element={<CalendarPage />}></Route>
-          <Route path="/studyWrite" element={<StudyWrite />}></Route>
-          <Route path="/studyplan" element={<StudyPlan />}></Route>
+          <Route path="/studyplan" 
+          element={
+          <StudyPlan  
+          planData={planData}
+          setPlanData={setPlanData}
+          planTitle={planTitle}
+          setPlanTitle={setPlanTitle}
+          planLog={planLog}
+          setplanLog={setplanLog}
+          planIndex={planIndex}
+          setplanIndex={setplanIndex}
+          profile={profile}
+          />
+          }
+          ></Route>
+          <Route path="/studyWrite" 
+          element={
+          <StudyWrite 
+          planData={planData}
+          setPlanData={setPlanData}
+          planTitle={planTitle}
+          setPlanTitle={setPlanTitle}
+          planText={planText}
+          setplanText={setplanText}
+          planLog={planLog}
+          setplanLog={setplanLog}
+          planIndex={planIndex}
+          setplanIndex={setplanIndex}
+          profile={profile}
+          />
+          }
+          ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
