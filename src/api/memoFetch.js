@@ -1,11 +1,12 @@
 import axios from "axios";
 
-// MEMO 데이터 불러오기 기능
-const getProfiles = async () => {
+//PLAN 데이터 불러오기 기능
+
+const getPlan = async () => {
   try {
-    const res = await axios.get("/api/user/allList");
+    const res = await axios.get("/api/todo/allboard");
     const result = res.data;
-    console.log("잘못된요청?");
+    console.log("getPlan 요청완료");
     return result;
   } catch (err) {
     console.log(err);
@@ -13,6 +14,20 @@ const getProfiles = async () => {
     return [];
   }
 };
+
+// // USER 데이터 불러오기 기능
+// const getProfiles = async () => {
+//   try {
+//     const res = await axios.get("/api/user/allList");
+//     const result = res.data;
+//     console.log("getProfile 요청완료");
+//     return result;
+//   } catch (err) {
+//     console.log(err);
+
+//     return [];
+//   }
+// };
 
 // MEMO 데이터 불러오기 기능
 const getMemo = async () => {
@@ -95,10 +110,10 @@ const deleteMemo = async _imemo => {
 
 export {
   axios,
-  getProfiles,
   getMemo,
   deleteAllTodo,
   postMemo,
   patchMemo,
   deleteMemo,
+  getPlan,
 };

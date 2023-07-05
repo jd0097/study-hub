@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 
 import { patchMemo } from "../api/memoFetch";
@@ -15,8 +14,7 @@ const MemoItem = ({ memoData, setMemoData, item, memoLog }) => {
   console.log(memoLog);
 
   const title = memoData.find(
-    item => (item.imemo === memoLog) & (item.iuser === 2),
-  ).title;
+    item => (item.imemo === memoLog) & (item.iuser === 2),).title;
   console.log("타이틀" + title);
 
   const ctnt = memoData.find(
@@ -42,23 +40,6 @@ const MemoItem = ({ memoData, setMemoData, item, memoLog }) => {
     patchMemo(memoLog, editTitle, editctnt, 2);
     navigate("/note");
   };
-
-  // const iuser = memoData.find(
-  //   item => (item.imemo === memoLog) & (item.iuser === 2),
-  // ).title;
-
-  // const handlePatchSubmit = _iuser => {
-  //   const newMemoData = memoData.map((item, index) => {
-  //     if (index === memoIndex) {
-  //       item.title = editTitle;
-  //       item.ctcn = editctnt;
-  //     }
-  //     return item;
-  //   });
-  //   setMemoData(newMemoData);
-  //   patchMemo(editTitle, editctnt);
-  //   navigate("/note");
-  // };
 
   return (
     <>

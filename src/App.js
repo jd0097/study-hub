@@ -1,9 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
-
-import { getMemo, getProfile } from "./api/memoFetch";
-import { getPlan, getUerId } from "./api/planFetch"
-
+import { getMemo, getPlan } from "./api/memoFetch";
+import { getProfiles } from "./api/userFatch";
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -26,19 +24,31 @@ function App() {
   const [memoLog, setMemoLog] = useState(null);
   const [memoIndex, setMemoIndex] = useState("");
   const [profile, setProfile] = useState([]);
+  // 스터디 플랜
+  const [planData, setPlanData] = useState([]);
+  const [planTitle, setPlanTitle] = useState();
+  const [planText, setplanText] = useState();
+  const [planLog, setplanLog] = useState();
+  const [planIndex, setplanIndex] = useState();
 
+  const getPlanFetch = async () => {
+    try {
+      const planJson = await getPlan();
+      setPlanData(planJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  
-  const getProfile = async () => {
-
+  const getProfileFetch = async () => {
     try {
       const profileJson = await getProfiles();
       setProfile(profileJson);
     } catch (error) {
       console.log(error);
     }
-  }; 
-  
+  };
+
   const getMomoFetch = async () => {
     try {
       const memoJson = await getMemo();
@@ -46,35 +56,12 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-    // const memoJson = await getMemo();
-    // if (!memoJson) {
-      //   setMemoData("memmmono", memoJson);
-      // }
-    };
-    
-    
-    // 스터디 플랜
-    const [planData, setPlanData] = useState([]);
-    const [planTitle, setPlanTitle] = useState()
-    const [planText, setplanText] = useState()
-    const [planLog, setplanLog] = useState()
-    const [planIndex, setplanIndex] = useState()
-    
-
-
-  const getUerId = async () => {
-    try {
-      const studyPlanJson = await getPlan();
-      setProfile(studyPlanJson)
-    } catch(err) {
-      console.log(err);
-    }
-  }
+  };
 
   useEffect(() => {
     getMomoFetch();
-    getProfilesFatch();
-
+    getProfileFetch();
+    getPlanFetch();
   }, []);
 
   return (
@@ -121,37 +108,39 @@ function App() {
             element={<Mypages profile={profile} setProfile={setProfile} />}
           ></Route>
           <Route path="/caledar" element={<CalendarPage />}></Route>
-          <Route path="/studyplan" 
-          element={
-          <StudyPlan  
-          planData={planData}
-          setPlanData={setPlanData}
-          planTitle={planTitle}
-          setPlanTitle={setPlanTitle}
-          planLog={planLog}
-          setplanLog={setplanLog}
-          planIndex={planIndex}
-          setplanIndex={setplanIndex}
-          profile={profile}
-          />
-          }
+          <Route
+            path="/studyplan"
+            element={
+              <StudyPlan
+                planData={planData}
+                setPlanData={setPlanData}
+                planTitle={planTitle}
+                setPlanTitle={setPlanTitle}
+                planLog={planLog}
+                setplanLog={setplanLog}
+                planIndex={planIndex}
+                setplanIndex={setplanIndex}
+                profile={profile}
+              />
+            }
           ></Route>
-          <Route path="/studyWrite" 
-          element={
-          <StudyWrite 
-          planData={planData}
-          setPlanData={setPlanData}
-          planTitle={planTitle}
-          setPlanTitle={setPlanTitle}
-          planText={planText}
-          setplanText={setplanText}
-          planLog={planLog}
-          setplanLog={setplanLog}
-          planIndex={planIndex}
-          setplanIndex={setplanIndex}
-          profile={profile}
-          />
-          }
+          <Route
+            path="/studyWrite"
+            element={
+              <StudyWrite
+                planData={planData}
+                setPlanData={setPlanData}
+                planTitle={planTitle}
+                setPlanTitle={setPlanTitle}
+                planText={planText}
+                setplanText={setplanText}
+                planLog={planLog}
+                setplanLog={setplanLog}
+                planIndex={planIndex}
+                setplanIndex={setplanIndex}
+                profile={profile}
+              />
+            }
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>

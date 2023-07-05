@@ -15,41 +15,54 @@ export const postSeconds = async _data => {
   }
 };
 
-//플랜 가져오기
 export const getPlan = async () => {
-  try{
-    const res = await axios.get("/api/todo/allboard")
+  try {
+    const res = await axios.get("/api/todo/allboard");
     const result = res.data;
-    console.log(result);
-  }catch(err){
-    console.log(err)
+    console.log("getPlan 요청완료");
+    return result;
+  } catch (err) {
+    console.log(err);
+
+    return [];
   }
-}
+};
+
+//플랜 가져오기
+// export const getPlan = async () => {
+//   try{
+//     const res = await axios.get("/api/todo/allboard")
+//     const result = res.data;
+//     console.log(result);
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
 
 // 플랜 작성기능
 export const postWrite = async () => {
   try {
-      const res =  await axios.post("/api/todo");
-      const result = res.data;
-      console.log(result);
-  } catch(err) {
-      console.log(err);
+    const res = await axios.post("/api/todo");
+    const result = res.data;
+    console.log(result);
+  } catch (err) {
+    console.log(err);
   }
 };
 // 플랜 수정기능
-// export const  
+// export const
 
 //플랜 전체삭제기능
 
 // 플랜 삭제기능
 
-// 카테고리 가져오기 
+// 카테고리 가져오기
 export const getSubjects = async () => {
   try {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
     console.log(result);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };

@@ -12,7 +12,6 @@ const Note = ({
   setMemoData,
   setMemoLog,
   memoIndex,
-  setMemoIndex,
   profile,
 }) => {
   const navigate = useNavigate();
@@ -79,7 +78,6 @@ const Note = ({
                           handleDeleteClick(item.iuser, item.imemo)
                         }
                       >
-
                         삭제
                       </button>
                     </div>
