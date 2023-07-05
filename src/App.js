@@ -1,7 +1,7 @@
 import "./scss/layout.scss";
 import { Route, Routes } from "react-router-dom";
 
-import { getMemo, getProfile } from "./api/memoFetch";
+import { getMemo, getProfiles } from "./api/memoFetch";
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -25,9 +25,9 @@ function App() {
   const [memoIndex, setMemoIndex] = useState("");
   const [profile, setProfile] = useState([]);
 
-  const getProfile = async () => {
+  const getProfilesFatch = async () => {
     try {
-      const profileJson = await getMemo();
+      const profileJson = await getProfiles();
       setProfile(profileJson);
     } catch (error) {
       console.log(error);
@@ -49,9 +49,8 @@ function App() {
 
   useEffect(() => {
     getMomoFetch();
-    getProfile();
+    getProfilesFatch();
   }, []);
-
 
   return (
     <div className="wrap">
