@@ -52,4 +52,8 @@ const Main = ({ memoData }) => {
   );
 };
 
+
+
+
+
 export default Main;
