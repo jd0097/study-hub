@@ -4,7 +4,6 @@ import UserObj from "../components/UserObj";
 
 const Mypages = ({ profile, setProfile }) => {
   const path = process.env.PUBLIC_URL;
-  console.log(profile);
 
   // const handleNameChange = e => {
   //   userNameBoxref.current.style.display = "none";
@@ -20,15 +19,19 @@ const Mypages = ({ profile, setProfile }) => {
   return (
     <div className="mypage_wrap">
       <h1 className="title">사용자 계정</h1>
-      <div className="mypage_inner">
-        <div className="account_img">
-          <img src={`${path}/source/default.png`}></img>
-          <button className="img_change">수정</button>
-        </div>
-        {profile.length ? "프로필데이터가 존재한다" : "프로필데이터가 읎으요"}
-        <form className="user_profile_form">
-          <p>사용자 이름</p>
-          {profile.map(item => (
+      {profile ? (
+        <div className="mypage_inner">
+          {profile
+            .filter(item => item.iuser === 2)
+            .map((item, index) => (
+              <>
+                <div className="account_img">
+                  <img src={`${path}/source/default.png`}></img>
+                  <button className="img_change">수정</button>
+                </div>
+                <form className="user_profile_form">
+                  <p>{item.name}</p>
+                  {/* {profile.map(item => (
             <UserName
               key={item.iuser}
               profile={profile}
@@ -44,9 +47,14 @@ const Mypages = ({ profile, setProfile }) => {
               setProfile={setProfile}
               item={item}
             />
-          ))}
-        </form>
-      </div>
+          ))} */}
+                </form>
+              </>
+            ))}
+        </div>
+      ) : (
+        <div className="mypage_inner">데이터가 없다</div>
+      )}
     </div>
   );
 };

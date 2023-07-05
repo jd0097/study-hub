@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -14,8 +13,7 @@ const NoteWrite = ({
   memoUser,
 }) => {
   const navigate = useNavigate();
-
-  console.log("NOTEWRITE메모로그" + memoLog);
+  
 
   const [value, setValue] = useState("");
   const [text, setText] = useState("");

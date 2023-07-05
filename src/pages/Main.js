@@ -7,7 +7,6 @@ import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 
 const Main = ({ memoData }) => {
   const navigate = useNavigate();
-  console.log("메모데이터" + memoData);
   return (
     <div className="home_wrap">
       <h1 className="title">HOME</h1>

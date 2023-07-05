@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
+
 import { getMemo, getProfile } from "./api/memoFetch";
 import { getPlan, getUerId } from "./api/planFetch"
 
@@ -29,8 +30,9 @@ function App() {
 
   
   const getProfile = async () => {
+
     try {
-      const profileJson = await getMemo();
+      const profileJson = await getProfiles();
       setProfile(profileJson);
     } catch (error) {
       console.log(error);
@@ -71,12 +73,9 @@ function App() {
 
   useEffect(() => {
     getMomoFetch();
-    getProfile();
-    getUerId();
-
+    getProfilesFatch();
 
   }, []);
-
 
   return (
     <div className="wrap">

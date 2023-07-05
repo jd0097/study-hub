@@ -1,12 +1,11 @@
 import axios from "axios";
 
-
 // MEMO 데이터 불러오기 기능
-const getMemo = async () => {
+const getProfiles = async () => {
   try {
-    const res = await axios.get("/api/memo/allMemo");
+    const res = await axios.get("/api/user/allList");
     const result = res.data;
-    console.log(result);
+    console.log("잘못된요청?");
     return result;
   } catch (err) {
     console.log(err);
@@ -15,6 +14,19 @@ const getMemo = async () => {
   }
 };
 
+// MEMO 데이터 불러오기 기능
+const getMemo = async () => {
+  try {
+    const res = await axios.get("/api/memo/allMemo");
+    const result = res.data;
+    console.log("getMemo 요청완료");
+    return result;
+  } catch (err) {
+    console.log(err);
+
+    return [];
+  }
+};
 
 // MEMO 작성/전송/기능
 // ===================================
@@ -22,14 +34,11 @@ const postMemo = async newMemo => {
   try {
     const res = await axios.post("/api/memo", newMemo);
     const result = res.data;
-    console.log(result);
     console.log("전송성공?");
-
   } catch (error) {
     console.log(error);
   }
 };
-
 
 // MEMO 수정 기능
 // ===================================
@@ -49,7 +58,6 @@ const patchMemo = async (memoLog, editTitle, editctnt, _iuser) => {
     console.log(error);
   }
 };
-
 
 // MEMO 전체삭제기능;
 // ====================================
@@ -79,12 +87,18 @@ const deleteMemo = async _imemo => {
       },
       headers: { "Content-Type": "application/json" },
     });
-    console.log("성공입니까?");
-
+    console.log("성공?");
   } catch (error) {
     console.log(error);
   }
 };
 
-export { axios, getMemo, deleteAllTodo, postMemo, patchMemo, deleteMemo };
-
+export {
+  axios,
+  getProfiles,
+  getMemo,
+  deleteAllTodo,
+  postMemo,
+  patchMemo,
+  deleteMemo,
+};
