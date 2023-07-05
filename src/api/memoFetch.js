@@ -1,5 +1,19 @@
 import axios from "axios";
 
+
+// const getPlan = async () => {
+//   try {
+//     const res = await axios.get("/api/todo/allboard");
+//     const result = res.data;
+//     console.log("getPlan 요청완료");
+//     return result;
+//   } catch (err) {
+//     console.log(err);
+
+//     return [];
+//   }
+// };
+
 // MEMO 데이터 불러오기 기능
 const getProfiles = async () => {
   try {
@@ -101,4 +115,5 @@ export {
   postMemo,
   patchMemo,
   deleteMemo,
+
 };

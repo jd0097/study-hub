@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 
 
-import { getMemo, getProfile } from "./api/memoFetch";
-import { getPlan, getUerId } from "./api/planFetch"
+import { getMemo, getProfiles } from "./api/memoFetch";
+import { getPlan } from "./api/planFetch";
 
 
 import "./scss/layout.scss";
@@ -28,8 +28,16 @@ function App() {
   const [profile, setProfile] = useState([]);
 
 
+  // 스터디 플랜
+  const [planData, setPlanData] = useState([]);
+  const [planTitle, setPlanTitle] = useState();
+  const [planText, setplanText] = useState();
+  const [planLog, setplanLog] = useState();
+  const [planIndex, setplanIndex] = useState();
+
+
   
-  const getProfile = async () => {
+  const getProfilesFatch = async () => {
 
     try {
       const profileJson = await getProfiles();
@@ -46,35 +54,24 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-    // const memoJson = await getMemo();
-    // if (!memoJson) {
-      //   setMemoData("memmmono", memoJson);
-      // }
     };
     
     
-    // 스터디 플랜
-    const [planData, setPlanData] = useState([]);
-    const [planTitle, setPlanTitle] = useState()
-    const [planText, setplanText] = useState()
-    const [planLog, setplanLog] = useState()
-    const [planIndex, setplanIndex] = useState()
-    
+    const getPlanFetch = async () => {
+      try {
+        const planJson = await getPlan();
+        setPlanData(planJson);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
 
-  const getUerId = async () => {
-    try {
-      const studyPlanJson = await getPlan();
-      setProfile(studyPlanJson)
-    } catch(err) {
-      console.log(err);
-    }
-  }
 
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
-
+    getPlanFetch();
   }, []);
 
   return (
@@ -139,17 +136,17 @@ function App() {
           <Route path="/studyWrite" 
           element={
           <StudyWrite 
-          planData={planData}
-          setPlanData={setPlanData}
-          planTitle={planTitle}
-          setPlanTitle={setPlanTitle}
-          planText={planText}
-          setplanText={setplanText}
-          planLog={planLog}
-          setplanLog={setplanLog}
-          planIndex={planIndex}
-          setplanIndex={setplanIndex}
-          profile={profile}
+          // planData={planData}
+          // setPlanData={setPlanData}
+          // planTitle={planTitle}
+          // setPlanTitle={setPlanTitle}
+          // planText={planText}
+          // setplanText={setplanText}
+          // planLog={planLog}
+          // setplanLog={setplanLog}
+          // planIndex={planIndex}
+          // setplanIndex={setplanIndex}
+          // profile={profile}
           />
           }
           ></Route>
