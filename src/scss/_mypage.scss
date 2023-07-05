@@ -7,192 +7,182 @@
     border-radius: 30px;
     background: #e9e9e9;
     padding-top: 50px;
-    .account_img {
-      position: relative;
-      margin: 0 auto;
-      width: 200px;
-      height: 200px;
-      border-radius: 100%;
-      background: skyblue;
-      overflow: hidden;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 200px;
-        height: 200px;
-      }
-      .img_change {
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-        height: 35px;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-      }
-    }
-    .user_profile_form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 auto;
-      margin-top: 20px;
+    .user_info {
       width: 100%;
-      height: 200px;
-      p {
-        margin: 5px 0px;
-      }
-      .user_name {
+      height: 100%;
+      .user_profile_form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: relative;
-        margin-top: 5px;
-        display: block;
-        width: 300px;
-        min-width: 300px;
-        height: 45px;
-        padding: 5px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 50px;
-        text-align: center;
-        background: rgb(215, 215, 215);
-        p {
-          display: block;
-          width: 100%;
-          text-align: center;
-        }
-        .user_name_change {
-          position: absolute;
-          top: 50%;
-          right: 10px;
-          transform: translate(0%, -50%);
-          width: 35px;
-          height: 35px;
-          border-radius: 100%;
-          background-image: url(../../public/source/edit.png);
-          background-repeat: no-repeat;
-          background-size: 50%;
-          background-position: center;
-          background-color: inherit;
-          border: none;
-        }
-      }
-      .set_user_name_box {
-        position: relative;
-        margin-top: 5px;
-        display: none;
-        width: 300px;
-        min-width: 300px;
-        height: 45px;
-        padding: 5px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 50px;
-        text-align: center;
-        background: rgb(215, 215, 215);
-        .set_user_name {
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          border: none;
-          background: none;
-        }
-        .name_change_summit {
-          position: absolute;
-          top: 50%;
-          right: 10px;
-          transform: translate(0%, -50%);
-          width: 35px;
-          height: 35px;
-          border-radius: 100%;
-          border: none;
-        }
-      }
-
-      .user_objective {
-        position: relative;
-        margin-top: 5px;
-        display: block;
-        width: 300px;
-        min-width: 300px;
-        height: 45px;
-        padding: 5px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 50px;
-        text-align: center;
-        background: rgb(215, 215, 215);
-        p {
-          display: block;
-          width: 100%;
-          text-align: center;
-        }
-        .user_objective_change {
-          position: absolute;
-          top: 50%;
-          right: 10px;
-          transform: translate(0%, -50%);
-          width: 35px;
-          height: 35px;
-          border-radius: 100%;
-          background-image: url(../../public/source/edit.png);
-          background-repeat: no-repeat;
-          background-size: 50%;
-          background-position: center;
-          background-color: inherit;
-          border: none;
-        }
-      }
-      .set_user_objective_box {
-        display: none;
-        position: relative;
-        margin-top: 5px;
-        width: 300px;
-        min-width: 300px;
-        height: 45px;
-        padding: 5px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 50px;
-        text-align: center;
-        background: rgb(215, 215, 215);
-        .set_objective {
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          border: none;
-          background: none;
-        }
-        .objective_change_summit {
-          position: absolute;
-          top: 50%;
-          right: 10px;
-          transform: translate(0%, -50%);
-          width: 35px;
-          height: 35px;
-          border-radius: 100%;
-          border: none;
-        }
-      }
-    }
-
-    .account_change {
-      margin-top: 50px;
-      display: flex;
-      flex-direction: column;
-      .name_change {
         margin: 0 auto;
-        width: 150px;
-        height: 35px;
-        border-radius: 50px;
-        border: none;
-      }
-      .name_input {
-        margin-top: 15px;
-        padding: 10px;
-        border-radius: 200px;
-        border: none;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .user_profile_img {
+          position: relative;
+          width: 150px;
+          height: 150px;
+          background: red;
+          border-radius: 100%;
+          overflow: hidden;
+          img {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+          }
+          .profile_img_change {
+            position: absolute;
+            left: 50%;
+            bottom: 0px;
+            width: 100%;
+            height: 35px;
+            transform: translate(-50%, -0%);
+          }
+        }
+        .user_name_box {
+          position: relative;
+          width: 300px;
+          height: 40px;
+          background: gold;
+          border-radius: 200px;
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+          }
+          .name_change_btn {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border: none;
+            transform: translate(-0%, -50%);
+            background: none;
+            background-image: url(../../public/source/edit.png);
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: center;
+          }
+        }
+        .input_user_name {
+          display: none;
+          position: relative;
+          width: 300px;
+          height: 40px;
+          background: gold;
+          border-radius: 200px;
+          .input_name {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background: none;
+          }
+          .name_submit_btn {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border: none;
+            transform: translate(-0%, -50%);
+            background: none;
+            background-image: url(../../public/source/editsubmit.png);
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: center;
+          }
+        }
+        .user_goal_box {
+          position: relative;
+          width: 300px;
+          height: 40px;
+          background: gold;
+          border-radius: 200px;
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+          }
+          .goal_change_btn {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border: none;
+            transform: translate(-0%, -50%);
+            background: none;
+            background-image: url(../../public/source/edit.png);
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: center;
+          }
+        }
+        .input_user_goal {
+          display: none;
+          position: relative;
+          width: 300px;
+          height: 40px;
+          background: gold;
+          border-radius: 200px;
+          .input_goal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background: none;
+          }
+          .goal_submit_btn {
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border: none;
+            transform: translate(-0%, -50%);
+            background: none;
+            background-image: url(../../public/source/edit.png);
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: center;
+          }
+        }
+        .edit_profile {
+          margin-top: 30px;
+          width: 200px;
+          height: 35px;
+          border-radius: 200px;
+          background: rgb(213, 213, 213);
+          border: none;
+        }
+        .set_profile {
+          display: none;
+          margin-top: 30px;
+          width: 200px;
+          height: 35px;
+          border-radius: 200px;
+          background: rgb(213, 213, 213);
+          border: none;
+        }
       }
     }
   }

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
-
-import { getMemo, getProfiles } from "./api/memoFetch";
+import { getMemo } from "./api/memoFetch";
+import { getProfiles } from "./api/userFatch";
 import { getPlan } from "./api/planFetch";
 
 
@@ -26,7 +26,21 @@ function App() {
   const [memoLog, setMemoLog] = useState(null);
   const [memoIndex, setMemoIndex] = useState("");
   const [profile, setProfile] = useState([]);
+  // 스터디 플랜
+  const [planData, setPlanData] = useState([]);
+  const [planTitle, setPlanTitle] = useState();
+  const [planText, setplanText] = useState();
+  const [planLog, setplanLog] = useState();
+  const [planIndex, setplanIndex] = useState();
 
+  const getPlanFetch = async () => {
+    try {
+      const planJson = await getPlan();
+      setPlanData(planJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // 스터디 플랜
   const [planData, setPlanData] = useState([]);
@@ -38,15 +52,14 @@ function App() {
 
   
   const getProfilesFatch = async () => {
-
     try {
       const profileJson = await getProfiles();
       setProfile(profileJson);
     } catch (error) {
       console.log(error);
     }
-  }; 
-  
+  };
+
   const getMomoFetch = async () => {
     try {
       const memoJson = await getMemo();
@@ -54,7 +67,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-    };
+   };
     
     
     const getPlanFetch = async () => {
@@ -118,20 +131,21 @@ function App() {
             element={<Mypages profile={profile} setProfile={setProfile} />}
           ></Route>
           <Route path="/caledar" element={<CalendarPage />}></Route>
-          <Route path="/studyplan" 
-          element={
-          <StudyPlan  
-          planData={planData}
-          setPlanData={setPlanData}
-          planTitle={planTitle}
-          setPlanTitle={setPlanTitle}
-          planLog={planLog}
-          setplanLog={setplanLog}
-          planIndex={planIndex}
-          setplanIndex={setplanIndex}
-          profile={profile}
-          />
-          }
+          <Route
+            path="/studyplan"
+            element={
+              <StudyPlan
+                planData={planData}
+                setPlanData={setPlanData}
+                planTitle={planTitle}
+                setPlanTitle={setPlanTitle}
+                planLog={planLog}
+                setplanLog={setplanLog}
+                planIndex={planIndex}
+                setplanIndex={setplanIndex}
+                profile={profile}
+              />
+            }
           ></Route>
           <Route path="/studyWrite" 
           element={
@@ -149,6 +163,7 @@ function App() {
           // profile={profile}
           />
           }
+
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>

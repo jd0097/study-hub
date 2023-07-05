@@ -1,5 +1,4 @@
 .study_plan_warp {
-
   .study_inner {
     position: relative;
     width: 100%;
@@ -8,10 +7,10 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-     background: #f7f5ef;
 
+    background: #f7f5ef;
+    .button_form {
 
-     .button_form {
       display: flex;
       justify-content: flex-end;
       width: 100%;
@@ -28,8 +27,8 @@
       }
     }
 
+    .study_list {
 
-     .study_list {
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -90,7 +89,7 @@
         }
       }
     }
-     
+
     .timer_date {
       display: flex;
       justify-content: space-around;
@@ -136,17 +135,15 @@
     .study_empty {
       position: relative;
       width: 100%;
-  
+
       padding: 15px;
-  
-    
-      
-        .empty_notice {
-          display: block;
-          width: 100%;
-          text-align: center;
-          font-size: 16px;
-        }
+
+      .empty_notice {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+      }
     }
   }
 }

@@ -16,9 +16,6 @@ export const postSeconds = async _data => {
 };
 
 
-
-
-//플랜 가져오기
 export const getPlan = async () => {
   try {
     const res = await axios.get("/api/todo/allboard");
@@ -32,25 +29,26 @@ export const getPlan = async () => {
   }
 };
 
-
 // 플랜 작성기능
 export const postWrite = async newPlan => {
   console.log("플랜작성 보내줍니다. ========");
   console.log(newPlan);
   try {
+
       const res =  await axios.post("/api/todo", newPlan);
       const result = await res.data;
       console.log(result);
       
   } catch(err) {
       console.log(err);
+
   }
 };
 
 
 
 // 플랜 수정기능
-// export const  
+// export const
 
 //플랜 전체삭제기능
 
@@ -74,13 +72,13 @@ export const deletePlan = async _itodo => {
 
 
 
-// 카테고리 가져오기 
+// 카테고리 가져오기
 export const getSubjects = async () => {
   try {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
     console.log(result);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
   }
 };

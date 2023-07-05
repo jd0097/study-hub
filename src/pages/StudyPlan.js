@@ -30,10 +30,19 @@ const StudyPlan = ({
     <div className="study_plan_warp">
       <h1 className="title">STUDY-PLAN</h1>
       <div className="study_inner">
+
       <div className="timer_date">
+
           <div className="today">
             {/* 날자 데이터가 들어갑니다. */}
-            <Input value={today} style={{ textAlign: "center" ,  borderStyle: "unset",  borderRadius:"unset"}} />
+            <Input
+              value={today}
+              style={{
+                textAlign: "center",
+                borderStyle: "unset",
+                borderRadius: "unset",
+              }}
+            />
           </div>
           {/* 타이머출력 위치 */}
           <StudyTimer />
@@ -46,6 +55,7 @@ const StudyPlan = ({
         {planData ? (
           <ul className="study_list">
             {planData.map((item, index) => (
+
                <li key={index}>
                <span className="study_list_title">
                  <p>{item.title}</p>
@@ -63,6 +73,7 @@ const StudyPlan = ({
                  </div>
                </span>
              </li>
+
             ))}
           </ul>
         ) : (
@@ -78,7 +89,9 @@ const StudyPlan = ({
               </span>
             </Row>
             <Row justify="center" style={{ margin: "30px 0" }}>
+
               <Button onClick={handleClick} style={{ borderRadius: "20px"}}>
+
                 작성하기
               </Button>
             </Row>
