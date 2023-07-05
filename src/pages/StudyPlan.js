@@ -30,7 +30,9 @@ const StudyPlan = ({
     <div className="study_plan_warp">
       <h1 className="title">STUDY-PLAN</h1>
       <div className="study_inner">
-        <div className="timer_date">
+
+      <div className="timer_date">
+
           <div className="today">
             {/* 날자 데이터가 들어갑니다. */}
             <Input
@@ -44,6 +46,7 @@ const StudyPlan = ({
           </div>
           {/* 타이머출력 위치 */}
           <StudyTimer />
+
         </div>
         <div className="button_form">
           <button>전체삭제</button>
@@ -52,19 +55,25 @@ const StudyPlan = ({
         {planData ? (
           <ul className="study_list">
             {planData.map((item, index) => (
-              <li key={index}>
-                <span className="study_list_title">
-                  <p>{item.title}</p>
-                </span>
-                <span className="study_list_text">
-                  <p>{item.ctnt}</p>
-                  <div className="list_func">
-                    <button>수정</button>
 
-                    <button></button>
-                  </div>
-                </span>
-              </li>
+               <li key={index}>
+               <span className="study_list_title">
+                 <p>{item.title}</p>
+               </span>
+               <span className="study_list_text">
+                 <p>{item.ctnt}</p>
+                 <div className="list_func">
+                   <Button onClick={handleClick} style={{ borderRadius: "25px"}}>
+                     수정
+                   </Button>
+                   <Button  style={{ borderRadius: "20px" }}
+                   >
+                     삭제
+                   </Button>
+                 </div>
+               </span>
+             </li>
+
             ))}
           </ul>
         ) : (
@@ -80,7 +89,9 @@ const StudyPlan = ({
               </span>
             </Row>
             <Row justify="center" style={{ margin: "30px 0" }}>
-              <Button onClick={handleClick} style={{ borderRadius: "25px" }}>
+
+              <Button onClick={handleClick} style={{ borderRadius: "20px"}}>
+
                 작성하기
               </Button>
             </Row>

@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 
-import { getMemo, getPlan } from "./api/memoFetch";
+import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
+import { getPlan } from "./api/planFetch";
+
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -40,7 +42,16 @@ function App() {
     }
   };
 
-  const getProfileFetch = async () => {
+  // 스터디 플랜
+  const [planData, setPlanData] = useState([]);
+  const [planTitle, setPlanTitle] = useState();
+  const [planText, setplanText] = useState();
+  const [planLog, setplanLog] = useState();
+  const [planIndex, setplanIndex] = useState();
+
+
+  
+  const getProfilesFatch = async () => {
     try {
       const profileJson = await getProfiles();
       setProfile(profileJson);
@@ -56,11 +67,23 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  };
+   };
+    
+    
+    const getPlanFetch = async () => {
+      try {
+        const planJson = await getPlan();
+        setPlanData(planJson);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
 
   useEffect(() => {
     getMomoFetch();
-    getProfileFetch();
+    getProfilesFatch();
     getPlanFetch();
   }, []);
 
@@ -124,23 +147,23 @@ function App() {
               />
             }
           ></Route>
-          <Route
-            path="/studyWrite"
-            element={
-              <StudyWrite
-                planData={planData}
-                setPlanData={setPlanData}
-                planTitle={planTitle}
-                setPlanTitle={setPlanTitle}
-                planText={planText}
-                setplanText={setplanText}
-                planLog={planLog}
-                setplanLog={setplanLog}
-                planIndex={planIndex}
-                setplanIndex={setplanIndex}
-                profile={profile}
-              />
-            }
+          <Route path="/studyWrite" 
+          element={
+          <StudyWrite 
+          // planData={planData}
+          // setPlanData={setPlanData}
+          // planTitle={planTitle}
+          // setPlanTitle={setPlanTitle}
+          // planText={planText}
+          // setplanText={setplanText}
+          // planLog={planLog}
+          // setplanLog={setplanLog}
+          // planIndex={planIndex}
+          // setplanIndex={setplanIndex}
+          // profile={profile}
+          />
+          }
+
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
