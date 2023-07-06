@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Button, Input, Space, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
-import Item from "antd/es/list/Item";
 
 const StudyPlan = ({
   planData,
@@ -18,13 +17,13 @@ const StudyPlan = ({
 }) => {
   const navigate = useNavigate();
 
-
+//새 작성 
   const handleClick = () => {
     navigate ("/studywrite");
     setPlanLog("")
   }
 
-
+//데이터 수정
   const handleSubmit = _itodo => {
     setPlanLog(_itodo);
     navigate("/studywrite");
@@ -32,11 +31,13 @@ const StudyPlan = ({
 
 
 
-// useEffect(() => {}, [planIndex]) 
-
+  useEffect(() => {
+    console.log(planData)
+  }, [planData]) 
+  
   // 오늘 날짜
   const today = moment().format("MM월 DD일");
-
+  
   return (
     <div className="study_plan_warp">
       <h1 className="title">STUDY-PLAN</h1>

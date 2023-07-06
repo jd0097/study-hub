@@ -1,12 +1,13 @@
-
 import React, { useEffect, useState } from "react";
 // import { putPlan } from "../api/planFetch"
 import { useNavigate } from "react-router-dom";
-import { Button, Row } from "antd";
+import { Button, Input, Row, Space } from "antd";
+import { putPlan } from "../api/planFetch";
+import TextArea from "antd/es/input/TextArea";
 
 
 
-const StudyListItem = ({planData, setPlanData, item, planLog }) => {
+const StudyListItem = ({planData, setPlanData, planLog }) => {
       const navigate = useNavigate();
 
       // const [selectedSubject, setSelectedSubject] = useState();
@@ -16,13 +17,13 @@ const StudyListItem = ({planData, setPlanData, item, planLog }) => {
 
       // console.log(selectedSubject);
       console.log(editTitle);
+      console.log(editCtnt);
       console.log(planLog);
-      // console.log(editCtnt);
 
-      const title = planData.find(
-        item => (item.itodo === planLog) & (item.iuser === 2),).PlanTitle
+      const planTitle = planData.find(
+        item => (item.itodo === planLog) & (item.iuser === 2),).title
         console.log("타이틀======")
-        console.log(title)
+        console.log(planTitle)
         
 
         // const sudbject = planData.find(
@@ -32,38 +33,78 @@ const StudyListItem = ({planData, setPlanData, item, planLog }) => {
 
 
 
-        const ctnt = planData.find(
-          item => (item.itodo === planLog) & (item.iuser === 2),).PlanCtnt
+        const planCtnt = planData.find(
+          item => (item.itodo === planLog) & (item.iuser === 2),).ctnt
           console.log("내용======")
-          console.log(ctnt)
+          console.log(planCtnt)
 
         useEffect(() => {
-            setEditTitle(title)
+            setEditTitle(planTitle)
             // setSelectedSubject(sudbject)
-            setEditCtnt(ctnt)
-        },[title,ctnt])
+            setEditCtnt(planCtnt)
+        },[planTitle,planCtnt])
+
+        console.log(editTitle)
+        console.log(editCtnt)
         
 
         const handlePutSubmit = planLog => {
-          console.log(item.iuser)
           const newPlanData = planData.map(item => {
             if (item.iuser === 2 && item.itodo === planLog) {
             // item.sudbject = selectedSubject;
             item.title = editTitle;
-            // item.ctnt = editCtnt
-          } return item;
-          })
-          setPlanData(newPlanData)
-          // putPlan(planLog, editTitle, 2)
+            item.ctnt = editCtnt;
+          } 
+          return item;
+          });
+          setPlanData(newPlanData);
+          putPlan(planLog, editTitle, editCtnt, 2);
           navigate("/studyplan")
         };
 
   return (
     <>
-    <></>
     <Row justify="center" style={{ margin: "30px 0" }}>
-            <Button  onClick={() => handlePutSubmit(planLog, item.iuser)} style={{borderRadius:"25px"}}>수정</Button>
+            <Input
+              size="large"
+              placeholder="큰 제목 입력"
+              type="text"
+              value={editTitle}
+              onChange={e => setEditTitle(e.target.value)}
+            />
           </Row>
+          <Row justify="center" style={{ margin: "30px 0" }}>
+            {/* <Space wrap>
+              {subjects.map((subject, index) => (
+                <Button
+                  key={subject}
+                  value={index}
+                  onClick={ handleClick }
+                  className={setPlanText=== subject ? "selected" : ""}
+                  style={{ borderRadius: "25px" }}
+                >
+                  {subject}
+                </Button>
+              ))}
+            </Space> */}
+          </Row>
+          <Row justify="center" style={{ margin: "30px 0" }}>
+            <TextArea
+              autoSize={{
+                minRows: 5,
+                maxRows: 7,
+              }}
+              value={editCtnt}
+              onChange={e => setEditCtnt(e.target.value)}
+              placeholder="내용 작성"
+            ></TextArea>
+          </Row>
+          <Row justify="end" style={{ margin: "30px 0" }}>
+            <Button onClick={() => handlePutSubmit(planLog)} style={{ borderRadius: "25px" }}>
+              수정
+            </Button>
+          </Row>
+  
     </>
      
   );
