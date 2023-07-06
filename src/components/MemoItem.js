@@ -14,7 +14,8 @@ const MemoItem = ({ memoData, setMemoData, item, memoLog }) => {
   console.log(memoLog);
 
   const title = memoData.find(
-    item => (item.imemo === memoLog) & (item.iuser === 2),).title;
+    item => (item.imemo === memoLog) & (item.iuser === 2),
+  ).title;
   console.log("타이틀" + title);
 
   const ctnt = memoData.find(

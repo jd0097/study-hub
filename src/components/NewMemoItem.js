@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { postMemo } from "../api/memoFetch";
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +25,7 @@ const NewMemoItem = ({
     setValue("");
     setText("");
     navigate("/note");
+    window.location.reload();
   };
 
   const handleTextChange = e => {

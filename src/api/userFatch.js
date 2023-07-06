@@ -16,9 +16,12 @@ const getProfiles = async () => {
   }
 };
 
-const putProfile = async () => {
+const putProfile = async (editName, editGoal) => {
   try {
-    const res = await axios.put("/api/user/profile/2", {});
+    const res = await axios.put("/api/user/profile/2", {
+      name:editName,
+      objective:editGoal
+    });
     const result = res.data;
     console.log("put완료?");
     console.log(result);

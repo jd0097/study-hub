@@ -33,23 +33,6 @@ function App() {
   const [planLog, setplanLog] = useState();
   const [planIndex, setplanIndex] = useState();
 
-  const getPlanFetch = async () => {
-    try {
-      const planJson = await getPlan();
-      setPlanData(planJson);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // 스터디 플랜
-  const [planData, setPlanData] = useState([]);
-  const [planTitle, setPlanTitle] = useState();
-  const [planText, setplanText] = useState();
-  const [planLog, setplanLog] = useState();
-  const [planIndex, setplanIndex] = useState();
-
-
   
   const getProfilesFatch = async () => {
     try {
