@@ -33,7 +33,7 @@ const getMemo = async () => {
 // ===================================
 const postMemo = async newMemo => {
   try {
-    const res = await axios.post("/api/memo", newMemo);
+    const res = await axios.post("/api/memo/post", newMemo);
     const result = res.data;
     console.log("전송성공?");
   } catch (error) {
@@ -47,7 +47,6 @@ const patchMemo = async (memoLog, editTitle, editctnt, _iuser) => {
   try {
     const res = await axios.patch(`/api/memo/titleCtnt/${_iuser}`, {
       imemo: memoLog,
-
       title: editTitle,
       ctnt: editctnt,
     });
@@ -84,21 +83,14 @@ const deleteMemo = async _imemo => {
     const res = await axios.delete("/api/memo", {
       data: {
         imemo: _imemo,
-        delYn: 1,
       },
-      headers: { "Content-Type": "application/json" },
     });
-    console.log("성공?");
+    const result = res.data;
+    console.log(result);
+    console.log("삭제요청 성공?");
   } catch (error) {
     console.log(error);
   }
 };
 
-export {
-  axios,
-  getMemo,
-  deleteAllTodo,
-  postMemo,
-  patchMemo,
-  deleteMemo,
-};
+export { axios, getMemo, deleteAllTodo, postMemo, patchMemo, deleteMemo };

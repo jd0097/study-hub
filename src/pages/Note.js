@@ -1,8 +1,6 @@
-
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteMemo } from "../api/memoFetch";
-
 
 const Note = ({
   memoLog,
@@ -23,31 +21,30 @@ const Note = ({
     // deleteAllTodo();
   };
 
+  // 새작성
   const handleClick = () => {
     navigate("/notewrite");
     setMemoLog("");
   };
 
-  const handleDeleteClick = (_iuser, _imemo) => {
-    console.log(_iuser);
+  const handleDeleteClick = _imemo => {
     console.log(_imemo);
-    // const deleteMemoData = memoData.map(item => {
-    //   if (item.iuser === _iuser && item.imemo === _imemo) {
-    //     item.imemo = _imemo;
-    //   }
-    // });
+    const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
+    setMemoData(deleteMemoData);
     deleteMemo(_imemo);
-    // const newMomoData = memoData.filter(item => item.iuser !== _id);
-    // setMemoData(newMomoData);
-    // deleteMemo(_id);
   };
 
+  // 데이터 수정
   const handlesome = _imemo => {
     setMemoLog(_imemo);
     navigate("/notewrite");
   };
 
-  useEffect(() => {}, [memoIndex]);
+  useEffect(() => {
+    console.log(memoData);
+  }, [memoData]);
+
+  // useEffect(() => {}, [memoIndex]);
 
   return (
     <div className="note_wrap">
@@ -73,11 +70,7 @@ const Note = ({
                         수정
                       </button>
 
-                      <button
-                        onClick={() =>
-                          handleDeleteClick(item.iuser, item.imemo)
-                        }
-                      >
+                      <button onClick={() => handleDeleteClick(item.imemo)}>
                         삭제
                       </button>
                     </div>
