@@ -11,17 +11,28 @@ const StudyPlan = ({
   planTitle,
   setPlanTitle,
   planLog,
-  setplanLog,
+  setPlanLog,
   planIndex,
-  setplanIndex,
+  setPlanIndex,
   profile,
 }) => {
   const navigate = useNavigate();
 
+
   const handleClick = () => {
+    navigate ("/studywrite");
+    setPlanLog("")
+  }
+
+
+  const handleSubmit = _itodo => {
+    setPlanLog(_itodo);
     navigate("/studywrite");
-    setplanLog("");
   };
+
+
+
+// useEffect(() => {}, [planIndex]) 
 
   // 오늘 날짜
   const today = moment().format("MM월 DD일");
@@ -49,13 +60,18 @@ const StudyPlan = ({
 
         </div>
         <div className="button_form">
-          <button>전체삭제</button>
-          <button>작성하기</button>
+          <Button  style={{ borderRadius: "20px"}}>
+                전체삭제
+          </Button>
+          <Button onClick={handleClick} style={{ borderRadius: "20px"}}>
+                작성하기
+          </Button>
         </div>
         {planData ? (
           <ul className="study_list">
-            {planData.map((item, index) => (
-
+            {planData
+            .filter(item => item.iuser === 2)
+            .map((item, index) => (
                <li key={index}>
                <span className="study_list_title">
                  <p>{item.title}</p>
@@ -63,7 +79,7 @@ const StudyPlan = ({
                <span className="study_list_text">
                  <p>{item.ctnt}</p>
                  <div className="list_func">
-                   <Button onClick={handleClick} style={{ borderRadius: "25px"}}>
+                   <Button onClick={() => handleSubmit(item.itodo)} style={{ borderRadius: "25px"}}>
                      수정
                    </Button>
                    <Button  style={{ borderRadius: "20px" }}
@@ -91,7 +107,6 @@ const StudyPlan = ({
             <Row justify="center" style={{ margin: "30px 0" }}>
 
               <Button onClick={handleClick} style={{ borderRadius: "20px"}}>
-
                 작성하기
               </Button>
             </Row>
