@@ -47,8 +47,24 @@ export const postWrite = async newPlan => {
 
 
 
-// 플랜 수정기능
-// export const
+// // 플랜 수정기능
+export const putPlan = async (planLog, editTitle, editctnt, selectedSubject) => {
+  try {
+ const res = await axios.put("/api/todo",{
+  itodo: planLog,
+  title: editTitle,
+  ctnt: editctnt ,
+  icategory: selectedSubject,
+ });
+ console.log("수정 성공!!!!!!")
+ const result = res.data
+ console.log(result)
+  }catch(err){
+    console.log(err)
+  }
+}
+
+
 
 //플랜 전체삭제기능
 
@@ -62,7 +78,7 @@ export const deletePlan = async _itodo => {
       },
       headers: { "Content-Type": "application/json" },
     });
-    console.log("성공!!!!");
+    console.log("삭제했다!!!!");
   } catch (error) {
     console.log(error);
   }

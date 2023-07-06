@@ -26,12 +26,14 @@ function App() {
   const [memoLog, setMemoLog] = useState(null);
   const [memoIndex, setMemoIndex] = useState("");
   const [profile, setProfile] = useState([]);
+
   // 스터디 플랜
   const [planData, setPlanData] = useState([]);
   const [planTitle, setPlanTitle] = useState();
-  const [planText, setplanText] = useState();
-  const [planLog, setplanLog] = useState();
-  const [planIndex, setplanIndex] = useState();
+  const [planText, setPlanText] = useState();
+  const [planLog, setPlanLog] = useState(null);
+  const [planIndex, setPlanIndex] = useState();
+
 
   
   const getProfilesFatch = async () => {
@@ -62,6 +64,7 @@ function App() {
       }
     };
 
+  
 
 
   useEffect(() => {
@@ -123,9 +126,9 @@ function App() {
                 planTitle={planTitle}
                 setPlanTitle={setPlanTitle}
                 planLog={planLog}
-                setplanLog={setplanLog}
+                setPlanLog={setPlanLog}
                 planIndex={planIndex}
-                setplanIndex={setplanIndex}
+                setPlanIndex={setPlanIndex}
                 profile={profile}
               />
             }
@@ -133,17 +136,17 @@ function App() {
           <Route path="/studyWrite" 
           element={
           <StudyWrite 
-          // planData={planData}
-          // setPlanData={setPlanData}
-          // planTitle={planTitle}
-          // setPlanTitle={setPlanTitle}
-          // planText={planText}
-          // setplanText={setplanText}
-          // planLog={planLog}
-          // setplanLog={setplanLog}
-          // planIndex={planIndex}
-          // setplanIndex={setplanIndex}
-          // profile={profile}
+          planData={planData}
+          setPlanData={setPlanData}
+          planTitle={planTitle}
+          setPlanTitle={setPlanTitle}
+          planText={planText}
+          setPlanText={setPlanText}
+          planLog={planLog}
+          setPlanLog={setPlanLog}
+          planIndex={planIndex}
+          setPlanIndex={setPlanIndex}
+          profile={profile}
           />
           }
 
