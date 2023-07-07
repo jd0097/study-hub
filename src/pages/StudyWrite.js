@@ -53,8 +53,8 @@ const StudyWrite = ({
       <div className="study_inner">
         <div style={{ width: "90%", margin: "0 auto" }}>
 
-            {/* studyPlan 있다 */}
-            {planLog ? (
+      {/* studyPlan 있다 */}
+          {planLog ? (
            <StudyListItem
            planData={planData}
            planLog={planLog}

@@ -20,8 +20,8 @@ const StudyWrite = ({
       const newPlan = {
         ctnt: content,
         title: title,
-        isticker: 0,
-        icategory: 0,
+        isticker: 1,
+        icategory: 1,
         iuser: 2,
       }
   

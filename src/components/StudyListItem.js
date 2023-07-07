@@ -104,9 +104,8 @@ const StudyListItem = ({planData, setPlanData, planLog }) => {
               수정
             </Button>
           </Row>
-  
     </>
-     
+  
   );
 };
 
