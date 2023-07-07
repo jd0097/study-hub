@@ -33,7 +33,6 @@ function App() {
   const [planText, setPlanText] = useState("");
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
-  
 
   // 모달창
   const [Modal, isModal] = useState("");
@@ -74,7 +73,9 @@ function App() {
 
   return (
     <div className="wrap">
-      {/* <ImgModal /> */}
+
+      {/* <ImgModal imgModal={imgModal} isImgModal={isImgModal} /> */}
+
       {Modal ? (
         <MemoModal
           memoData={memoData}

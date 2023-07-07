@@ -31,12 +31,14 @@ const StudyPlan = ({
     navigate("/studywrite");
   };
 
+
   //선택 삭제
   const handleDeleteClick = itodo => {
     console.log(itodo);
     const deleteTodoData = planData.filter(item => item.itodo !== itodo);
     setPlanData(deleteTodoData);
     deletePlan(itodo);
+
   };
 
   // //선택 삭제
@@ -78,7 +80,9 @@ const StudyPlan = ({
         {planData.length ? (
           <ul className="study_list">
             {planData
+
               .filter(item => item.iuser === 2)
+
               .map((item, index) => (
                 <li key={index}>
                   <span className="study_list_title">
