@@ -74,7 +74,7 @@ function App() {
 
   return (
     <div className="wrap">
-      <ImgModal />
+      {/* <ImgModal /> */}
       {Modal ? (
         <MemoModal
           memoData={memoData}
@@ -87,7 +87,7 @@ function App() {
       )}
 
       <Header />
-      <Intro />
+      {/* <Intro /> */}
       <div className="container">
         <Routes>
           <Route path="/main" element={<Main memoData={memoData} />}></Route>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input } from "antd";
+import { Button, Input, Modal } from "antd";
 import { postSeconds } from "../api/planFetch";
+import { useNavigate } from "react-router";
 
 const StudyTimer = () => {
+  const navigator = useNavigate();
   // 시간 문자열
   const [studyTime, setStudyTime] = useState("");
 
@@ -90,6 +92,8 @@ const StudyTimer = () => {
       studyLine: totalSeconds,
       iuser: 2,
     });
+    // 모달창 띄우기
+    showModal();
   };
 
   // 타이머 멈췄다가 계속 진행
@@ -99,56 +103,89 @@ const StudyTimer = () => {
     setIsStopped(false);
   };
 
+  // 모달창 관련 기능
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    navigator("/caledar");
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="timer">
-      <div className="time_box">
-        <Input
-          value={studyTime}
-          placeholder="00:00:00"
-          style={{
-            textAlign: "center",
-            borderRadius: "unset",
-            borderStyle: "unset",
-          }}
-        />
+    <>
+      <div className="timer">
+        <div className="time_box">
+          <Input
+            value={studyTime}
+            placeholder="00:00:00"
+            style={{
+              textAlign: "center",
+              borderRadius: "unset",
+              borderStyle: "unset",
+            }}
+          />
+        </div>
+        <div className="time_select">
+          {!isRunning && !isStopped && !isPaused && (
+            <div>
+              <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
+                시작
+              </Button>
+            </div>
+          )}
+          {isRunning && !isStopped && !isPaused && (
+            <div>
+              <Button onClick={handlePause} style={{ borderRadius: "25px" }}>
+                일시정지
+              </Button>
+              <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
+                정지
+              </Button>
+            </div>
+          )}
+          {!isRunning && !isStopped && isPaused && (
+            <div>
+              <Button onClick={handleResume} style={{ borderRadius: "25px" }}>
+                재실행
+              </Button>
+              <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
+                정지
+              </Button>
+            </div>
+          )}
+          {!isRunning && isStopped && !isPaused && (
+            <div>
+              <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
+                시작
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
-      <div className="time_select">
-        {!isRunning && !isStopped && !isPaused && (
-          <div>
-            <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
-              시작
-            </Button>
-          </div>
-        )}
-        {isRunning && !isStopped && !isPaused && (
-          <div>
-            <Button onClick={handlePause} style={{ borderRadius: "25px" }}>
-              일시정지
-            </Button>
-            <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
-              정지
-            </Button>
-          </div>
-        )}
-        {!isRunning && !isStopped && isPaused && (
-          <div>
-            <Button onClick={handleResume} style={{ borderRadius: "25px" }}>
-              재실행
-            </Button>
-            <Button onClick={handleStop} style={{ borderRadius: "25px" }}>
-              정지
-            </Button>
-          </div>
-        )}
-        {!isRunning && isStopped && !isPaused && (
-          <div>
-            <Button onClick={handleStart} style={{ borderRadius: "25px" }}>
-              시작
-            </Button>
-          </div>
-        )}
-      </div>
-    </div>
+      {/* 모달창 */}
+      <Modal
+        title="스티커 확인하기"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        // centered
+        footer={[
+          <Button key="back" onClick={handleOk}>
+            확인
+          </Button>,
+          <Button key="close" type="primary" onClick={handleCancel}>
+            닫기
+          </Button>,
+        ]}
+      >
+        스티커가 발급 되었습니다. 확인하시겠습니까?
+      </Modal>
+    </>
   );
 };
 

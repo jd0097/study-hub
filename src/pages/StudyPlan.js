@@ -17,40 +17,40 @@ const StudyPlan = ({
   profile,
 }) => {
   const navigate = useNavigate();
+  console.log(planData)
 
-//새 작성 
+  //새 작성
   const handleClick = () => {
-    navigate ("/studywrite");
-    setPlanLog("")
-  }
+    navigate("/studywrite");
+    setPlanLog("");
+  };
 
-//데이터 수정
+  //데이터 수정
   const handleSubmit = _itodo => {
     setPlanLog(_itodo);
     navigate("/studywrite");
   };
 
+  //선택 삭제
+  const handleDeleteClick = itodo => {
+    console.log(itodo);
+    const deleteTodoData = planData.filter(item => item.itodo !== itodo);
+    setPlanData(deleteTodoData);
+    deletePlan(itodo);
+  };
 
-//삭제
-const handleDeleteClick = _itodo => {
-  console.log(_itodo);
-  const deleteTodoData = planData.filter(item => item.itodo !== _itodo);
-  setPlanData(deleteTodoData);
-  deletePlan(_itodo);
-};
+  // //선택 삭제
+  // const handleDeleteClick = (_itodo) => {
+  //   if (_itodo !== undefined) {
+  //     const deleteTodoData = planData.filter((item) => item.itodo !== _itodo);
+  //     setPlanData(deleteTodoData);
+  //     deletePlan(_itodo);
+  //   }
+  // };
 
-// //선택 삭제
-// const handleDeleteClick = (_itodo) => {
-//   if (_itodo !== undefined) {
-//     const deleteTodoData = planData.filter((item) => item.itodo !== _itodo);
-//     setPlanData(deleteTodoData);
-//     deletePlan(_itodo);
-//   }
-// };
-
-// 오늘 날짜
+  // 오늘 날짜
   const today = moment().format("MM월 DD일");
-  
+
   return (
     <div className="study_plan_warp">
       <h1 className="title">STUDY-PLAN</h1>
@@ -78,7 +78,7 @@ const handleDeleteClick = _itodo => {
         {planData.length ? (
           <ul className="study_list">
             {planData
-              .filter((item) => item.iuser === 2 && item.delYn !== 1)
+              .filter(item => item.iuser === 2)
               .map((item, index) => (
                 <li key={index}>
                   <span className="study_list_title">
@@ -94,7 +94,9 @@ const handleDeleteClick = _itodo => {
                         수정
                       </Button>
                       <Button
-                        onClick={() => handleDeleteClick(item.itodo)}
+                        onClick={() =>
+                          handleDeleteClick(item.itodo, item.iuser, item.delYn)
+                        }
                         style={{ borderRadius: "20px" }}
                       >
                         삭제
@@ -118,7 +120,7 @@ const handleDeleteClick = _itodo => {
             </Row>
             <Row justify="center" style={{ margin: "30px 0" }}>
               <Button onClick={handleClick} style={{ borderRadius: "20px" }}>
-                작성하기
+               작성하기
               </Button>
             </Row>
           </div>
