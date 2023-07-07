@@ -29,10 +29,11 @@ function App() {
 
   // 스터디 플랜
   const [planData, setPlanData] = useState([]);
-  const [planTitle, setPlanTitle] = useState();
-  const [planText, setPlanText] = useState();
+  const [planTitle, setPlanTitle] = useState("");
+  const [planText, setPlanText] = useState("");
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
+  
 
   // 모달창
   const [Modal, isModal] = useState("");

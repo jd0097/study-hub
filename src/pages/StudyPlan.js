@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Input, Space, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
-import Item from "antd/es/list/Item";
+import { deletePlan } from "../api/planFetch";
 
 const StudyPlan = ({
   planData,
@@ -18,32 +18,44 @@ const StudyPlan = ({
 }) => {
   const navigate = useNavigate();
 
-
+//새 작성 
   const handleClick = () => {
     navigate ("/studywrite");
     setPlanLog("")
   }
 
-
+//데이터 수정
   const handleSubmit = _itodo => {
     setPlanLog(_itodo);
     navigate("/studywrite");
   };
 
 
+//삭제
+const handleDeleteClick = _itodo => {
+  console.log(_itodo);
+  const deleteTodoData = planData.filter(item => item.itodo !== _itodo);
+  setPlanData(deleteTodoData);
+  deletePlan(_itodo);
+};
 
-// useEffect(() => {}, [planIndex]) 
+// //선택 삭제
+// const handleDeleteClick = (_itodo) => {
+//   if (_itodo !== undefined) {
+//     const deleteTodoData = planData.filter((item) => item.itodo !== _itodo);
+//     setPlanData(deleteTodoData);
+//     deletePlan(_itodo);
+//   }
+// };
 
-  // 오늘 날짜
+// 오늘 날짜
   const today = moment().format("MM월 DD일");
-
+  
   return (
     <div className="study_plan_warp">
       <h1 className="title">STUDY-PLAN</h1>
       <div className="study_inner">
-
-      <div className="timer_date">
-
+        <div className="timer_date">
           <div className="today">
             {/* 날자 데이터가 들어갑니다. */}
             <Input
@@ -57,40 +69,40 @@ const StudyPlan = ({
           </div>
           {/* 타이머출력 위치 */}
           <StudyTimer />
-
         </div>
         <div className="button_form">
-          <Button  style={{ borderRadius: "20px"}}>
-                전체삭제
-          </Button>
-          <Button onClick={handleClick} style={{ borderRadius: "20px"}}>
-                작성하기
+          <Button onClick={handleClick} style={{ borderRadius: "20px" }}>
+            작성하기
           </Button>
         </div>
-        {planData ? (
+        {planData.length ? (
           <ul className="study_list">
             {planData
-            .filter(item => item.iuser === 2)
-            .map((item, index) => (
-               <li key={index}>
-               <span className="study_list_title">
-                 <p>{item.title}</p>
-               </span>
-               <span className="study_list_text">
-                 <p>{item.ctnt}</p>
-                 <div className="list_func">
-                   <Button onClick={() => handleSubmit(item.itodo)} style={{ borderRadius: "25px"}}>
-                     수정
-                   </Button>
-                   <Button  style={{ borderRadius: "20px" }}
-                   >
-                     삭제
-                   </Button>
-                 </div>
-               </span>
-             </li>
-
-            ))}
+              .filter((item) => item.iuser === 2 && item.delYn !== 1)
+              .map((item, index) => (
+                <li key={index}>
+                  <span className="study_list_title">
+                    <p>{item.title}</p>
+                  </span>
+                  <span className="study_list_text">
+                    <p>{item.ctnt}</p>
+                    <div className="list_func">
+                      <Button
+                        onClick={() => handleSubmit(item.itodo)}
+                        style={{ borderRadius: "25px" }}
+                      >
+                        수정
+                      </Button>
+                      <Button
+                        onClick={() => handleDeleteClick(item.itodo)}
+                        style={{ borderRadius: "20px" }}
+                      >
+                        삭제
+                      </Button>
+                    </div>
+                  </span>
+                </li>
+              ))}
           </ul>
         ) : (
           <div>
@@ -105,8 +117,7 @@ const StudyPlan = ({
               </span>
             </Row>
             <Row justify="center" style={{ margin: "30px 0" }}>
-
-              <Button onClick={handleClick} style={{ borderRadius: "20px"}}>
+              <Button onClick={handleClick} style={{ borderRadius: "20px" }}>
                 작성하기
               </Button>
             </Row>

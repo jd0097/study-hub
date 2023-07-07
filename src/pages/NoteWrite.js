@@ -6,6 +6,7 @@ import NewMemoItem from "../components/NewMemoItem";
 import MemoModal from "../components/MemoModal";
 
 const NoteWrite = ({ memoData, setMemoData, memoLog }) => {
+
   const [value, setValue] = useState("");
   const [text, setText] = useState("");
 

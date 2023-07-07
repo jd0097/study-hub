@@ -66,18 +66,21 @@ export const putPlan = async (planLog, editTitle, editctnt, selectedSubject) => 
 
 
 
-//플랜 전체삭제기능
-
 // 플랜 삭제기능
 export const deletePlan = async _itodo => {
   try {
-    const res = await axios.delete("/api/todo", {
-      data: {
-        itodo: _itodo,
-        delYn: 1,
-      },
-      headers: { "Content-Type": "application/json" },
-    });
+    const res = await axios.delete(`/api/todo?itodo=${_itodo}`
+    // , {
+    //   data: {
+    //     itodo: _itodo,
+    //     delYn: 1,
+    //   },
+    //   headers: { "Content-Type": "application/json" },
+    // }
+    );
+    const result = res.data
+    
+    console.log(result)
     console.log("삭제했다!!!!");
   } catch (error) {
     console.log(error);
