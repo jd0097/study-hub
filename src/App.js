@@ -73,7 +73,9 @@ function App() {
 
   return (
     <div className="wrap">
+
       {/* <ImgModal imgModal={imgModal} isImgModal={isImgModal} /> */}
+
       {Modal ? (
         <MemoModal
           memoData={memoData}

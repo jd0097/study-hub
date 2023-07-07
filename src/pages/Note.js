@@ -35,10 +35,10 @@ const Note = ({
 
   // 일부 삭제 기능
   const handleDeleteClick = _imemo => {
-    console.log(_imemo);
-    const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
-    setMemoData(deleteMemoData);
-    deleteMemo(_imemo);
+  console.log(_imemo);
+  const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
+  setMemoData(deleteMemoData);
+  deleteMemo(_imemo);
   };
 
   // 데이터 수정

@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "../style/calendarpage.css";
 import { Modal, Button } from "antd";
+import { useNavigate } from "react-router";
 
 const CalendarPage = () => {
+  const navigator = useNavigate();
   // 달력 초기 포커스 값
   const [day, setDay] = useState(new Date());
   // 사용자가 선택한 날짜를 저장하는 용도
@@ -58,21 +60,21 @@ const CalendarPage = () => {
   // 신규인지 아닌지 구분
   const [editData, setEditData] = useState(false);
   const handleClickDay = (value, event) => {
-    const selectDay = moment(value).format("YYYY-MM-DD");
-    // 사용자가 날짜를 클릭하면 보관해 둔다.
-    setUserSelectDay(selectDay);
-
-    // 현재 사용자 정보가 있는 경우인지 아닌지 구분
-    const userData = event.currentTarget.querySelector(".user-level");
-    console.log(userData);
-    if (userData) {
-      // 수정을 하는 경우
-      setEditData(true);
-    } else {
-      // 신규로 등록을 하는 경우
-      setEditData(false);
-    }
-    showModal();
+    // const selectDay = moment(value).format("YYYY-MM-DD");
+    // // 사용자가 날짜를 클릭하면 보관해 둔다.
+    // setUserSelectDay(selectDay);
+    // // 현재 사용자 정보가 있는 경우인지 아닌지 구분
+    // const userData = event.currentTarget.querySelector(".user-level");
+    // console.log(userData);
+    // if (userData) {
+    //   // 수정을 하는 경우
+    //   setEditData(true);
+    // } else {
+    //   // 신규로 등록을 하는 경우
+    //   setEditData(false);
+    // }
+    // showModal();
+    navigator("/studyplan");
   };
 
   // 모달창의 아이콘을 클릭했을 때
