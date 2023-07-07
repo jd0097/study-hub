@@ -61,15 +61,16 @@ const patchMemo = async (memoLog, editTitle, editctnt, _iuser) => {
 
 // MEMO 전체삭제기능;
 // ====================================
-const deleteAllTodo = async () => {
+const deleteAllMemo = async _imemo => {
   try {
-    const res = await axios.get("/api/memo");
-
-    const result = res.data;
-    // 문제가 무엇인가? true false 가 문자열로 들어옴
-    result.forEach(item => {
-      deleteMemo(item.id);
+    const res = await axios.delete("/api/memo/AllDelMemo", {
+      data: {
+        imemo: _imemo,
+      },
     });
+    const result = res.data;
+    console.log(result);
+    console.log("전체삭제요청 성공?");
   } catch (error) {
     console.log(error);
   }
@@ -93,4 +94,4 @@ const deleteMemo = async _imemo => {
   }
 };
 
-export { axios, getMemo, deleteAllTodo, postMemo, patchMemo, deleteMemo };
+export { axios, getMemo, deleteAllMemo, postMemo, patchMemo, deleteMemo };

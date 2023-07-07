@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { patchMemo } from "../api/memoFetch";
 import { useNavigate } from "react-router-dom";
 
-const MemoItem = ({ memoData, setMemoData, item, memoLog }) => {
+const MemoItem = ({ memoData, setMemoData, memoLog }) => {
   const navigate = useNavigate();
 
   const [editTitle, setEditTitle] = useState("");
@@ -29,7 +29,6 @@ const MemoItem = ({ memoData, setMemoData, item, memoLog }) => {
   }, [title, ctnt]);
 
   const handlePatchSubmit = memoLog => {
-    console.log("아이유저" + item.iuser);
     const newMemoData = memoData.map(item => {
       if (item.iuser === 2 && item.imemo === memoLog) {
         item.title = editTitle;
@@ -59,7 +58,7 @@ const MemoItem = ({ memoData, setMemoData, item, memoLog }) => {
       <button
         type="button"
         className="confirm"
-        onClick={() => handlePatchSubmit(memoLog, item.iuser)}
+        onClick={() => handlePatchSubmit(memoLog)}
       >
         수정완료
       </button>

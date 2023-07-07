@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteMemo } from "../api/memoFetch";
+import { deleteMemo, deleteAllTodo } from "../api/memoFetch";
 
 const Note = ({
+  Modal,
+  isModal,
   memoLog,
   memoUser,
   setMemoUser,
@@ -14,11 +16,15 @@ const Note = ({
 }) => {
   const navigate = useNavigate();
 
-  // 이거 누르지맙시다 지금은
-  const handleRemoveClick = e => {
-    e.preventDefault();
+  // 전체삭제 기능
+  const handleRemoveClick = () => {
+    // const deleteAllMemo = memoData.filter(item => item.iuser === 2);
+    // deleteAllMemo.forEach(item => {
+    //   deleteAllTodo(item.imemo);
+    // });
     // setMemoData([]);
-    // deleteAllTodo();
+    isModal(true);
+    console.log(Modal);
   };
 
   // 새작성
@@ -27,6 +33,7 @@ const Note = ({
     setMemoLog("");
   };
 
+  // 일부 삭제 기능
   const handleDeleteClick = _imemo => {
     console.log(_imemo);
     const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
@@ -48,7 +55,9 @@ const Note = ({
 
   return (
     <div className="note_wrap">
-      <h1 className="title">메모</h1>
+      <div className="title">
+        <span>메모</span>
+      </div>
       <div className="note_wrap_inner">
         <div className="button_form">
           <button onClick={handleRemoveClick}>전체삭제</button>
@@ -70,7 +79,11 @@ const Note = ({
                         수정
                       </button>
 
-                      <button onClick={() => handleDeleteClick(item.imemo)}>
+                      <button
+                        onClick={() =>
+                          handleDeleteClick(item.imemo, item.iuser)
+                        }
+                      >
                         삭제
                       </button>
                     </div>

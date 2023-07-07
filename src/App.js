@@ -1,23 +1,23 @@
 import { Route, Routes } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 import { getPlan } from "./api/planFetch";
-
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CalendarPage from "./pages/CalendarPage";
-// import Intro from "./pages/Intro";
+import Intro from "./pages/Intro";
 import Main from "./pages/Main";
 import Mypages from "./pages/Mypages";
 import Note from "./pages/Note";
 import NoteWrite from "./pages/NoteWrite";
 import StudyWrite from "./pages/StudyWrite";
 import NotFound from "./pages/NotFound";
-import { useEffect, useState } from "react";
 import StudyPlan from "./pages/StudyPlan";
+import MemoModal from "./components/MemoModal";
+import ImgModal from "./components/ImgModal";
 
 function App() {
   const [memoData, setMemoData] = useState([]);
@@ -34,8 +34,10 @@ function App() {
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
 
+  // 모달창
+  const [Modal, isModal] = useState("");
+  const [imgModal, isImgModal] = useState("");
 
-  
   const getProfilesFatch = async () => {
     try {
       const profileJson = await getProfiles();
@@ -52,20 +54,16 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-   };
-    
-    
-    const getPlanFetch = async () => {
-      try {
-        const planJson = await getPlan();
-        setPlanData(planJson);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  };
 
-  
-
+  const getPlanFetch = async () => {
+    try {
+      const planJson = await getPlan();
+      setPlanData(planJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getMomoFetch();
@@ -75,8 +73,20 @@ function App() {
 
   return (
     <div className="wrap">
+      <ImgModal />
+      {Modal ? (
+        <MemoModal
+          memoData={memoData}
+          setMemoData={setMemoData}
+          Modal={Modal}
+          isModal={isModal}
+        />
+      ) : (
+        ""
+      )}
+
       <Header />
-      {/* <Intro /> */}
+      <Intro />
       <div className="container">
         <Routes>
           <Route path="/main" element={<Main memoData={memoData} />}></Route>
@@ -84,6 +94,8 @@ function App() {
             path="/note"
             element={
               <Note
+                Modal={Modal}
+                isModal={isModal}
                 setMemoLog={setMemoLog}
                 memoLog={memoLog}
                 memoData={memoData}
@@ -133,23 +145,23 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/studyWrite" 
-          element={
-          <StudyWrite 
-          planData={planData}
-          setPlanData={setPlanData}
-          planTitle={planTitle}
-          setPlanTitle={setPlanTitle}
-          planText={planText}
-          setPlanText={setPlanText}
-          planLog={planLog}
-          setPlanLog={setPlanLog}
-          planIndex={planIndex}
-          setPlanIndex={setPlanIndex}
-          profile={profile}
-          />
-          }
-
+          <Route
+            path="/studyWrite"
+            element={
+              <StudyWrite
+                planData={planData}
+                setPlanData={setPlanData}
+                planTitle={planTitle}
+                setPlanTitle={setPlanTitle}
+                planText={planText}
+                setPlanText={setPlanText}
+                planLog={planLog}
+                setPlanLog={setPlanLog}
+                planIndex={planIndex}
+                setPlanIndex={setPlanIndex}
+                profile={profile}
+              />
+            }
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>

@@ -63,7 +63,10 @@ const UserInfo = ({ profile, setProfile }) => {
     <div className="user_info">
       <form className="user_profile_form">
         <div className="user_profile_img">
-          <img src={editImg} alt="이미지"></img>
+          <img
+            src={"http://192.168.0.144:5008/img/" + editImg}
+            alt="이미지"
+          ></img>
         </div>
         <div className="user_info_right">
           <p className="my_name">사용자 이름</p>
