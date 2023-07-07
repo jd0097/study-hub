@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
-import { getPlan } from "./api/planFetch";
+import { getPlan, getSubjects } from "./api/planFetch";
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -33,10 +33,21 @@ function App() {
   const [planText, setPlanText] = useState("");
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
+  const [subject, setSubject] = useState([]);
+  const [selectSubject, setselectSubject] = useState(null);
 
   // 모달창
   const [Modal, isModal] = useState("");
-  const [imgModal, isImgModal] = useState("");
+  const [imgModal, isImgModal] = useState(false);
+
+  const getSubjectsFetch = async () => {
+    try {
+      const SubjectsJson = await getSubjects();
+      setSubject(SubjectsJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getProfilesFatch = async () => {
     try {
@@ -69,11 +80,13 @@ function App() {
     getMomoFetch();
     getProfilesFatch();
     getPlanFetch();
+    getSubjectsFetch();
   }, []);
+
+  console.log(subject);
 
   return (
     <div className="wrap">
-
       {/* <ImgModal imgModal={imgModal} isImgModal={isImgModal} /> */}
 
       {Modal ? (
@@ -144,6 +157,9 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+                subject={subject}
+                selectSubject={selectSubject}
+                setselectSubject={setselectSubject}
               />
             }
           ></Route>
@@ -162,6 +178,10 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+                subject={subject}
+                setSubject={setSubject}
+                selectSubject={selectSubject}
+                setselectSubject={setselectSubject}
               />
             }
           ></Route>

@@ -1,109 +1,107 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Button, Input, Space, Row } from "antd";
 import { postWrite } from "../api/planFetch";
 import { useNavigate } from "react-router-dom";
 
 const { TextArea } = Input;
 const StudyWrite = ({
-    planData,
-    setPlanData,
-    title,
-    setTitle,
-    content,
-    setContent,
-    setPlanText,
-  }) => {
-    const navigate = useNavigate();
-  
-    const handleSubmit = e => {
-      e.preventDefault();
-      const newPlan = {
-        ctnt: content,
-        title: title,
-        isticker: 1,
-        icategory: 1,
-        iuser: 2,
-      }
-  
-      setPlanData([...planData, newPlan]);
-      postWrite(newPlan);
-      setTitle("");
-      setContent("");
-      navigate("/studyPlan");
+  planData,
+  setPlanData,
+  title,
+  setTitle,
+  content,
+  setContent,
+  setPlanText,
+  subject,
+  setSubject,
+  selectSubject,
+  setselectSubject,
+}) => {
+  const navigate = useNavigate();
+
+  console.log(selectSubject);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newPlan = {
+      ctnt: content,
+      title: title,
+      isticker: 1,
+      icategory: selectSubject,
+      iuser: 2,
     };
-  
-  // // 제목
-  // const [title, setTitle] = useState("");
-  // 과목
-  const [selectedSubject, setSelectedSubject] = useState("");
-  // // 내용
-  // const [content, setContent] = useState("");
-  
 
-  
-  // const handleTitleChange = (e) => {
-  //   setTitle(e.target.value);
-  // };
-  
-  // const handleContentChange = (e) => {
-  //   setContent(e.target.value);
-  // };
-  
+    setPlanData([...planData, newPlan]);
+    postWrite(newPlan);
+    setTitle("");
+    setContent("");
+    navigate("/studyPlan");
+  };
 
-//   const handleClick = e => {
-//     setSelectedSubject(e.target.value);
-    
-//   };
-
-  const subjects = ["국어", "영어", "수학", "과학", "사회"];
+  const handleChange = e => {
+    const selectedIndex = parseInt(e.target.value, 10);
+    setselectSubject(selectedIndex);
+    console.log(selectSubject);
+  };
 
   return (
-  <>
-   <Row justify="center" style={{ margin: "30px 0" }}>
-            <Input
-              size="large"
-              placeholder="큰 제목 입력"
-              type="text"
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-            />
-          </Row>
-          <Row justify="center" style={{ margin: "30px 0" }}>
-            {/* <Space wrap>
-              {subjects.map((subject, index) => (
-                <Button
-                  key={subject}
-                  value={index}
-                  onClick={ handleClick }
-                  className={setPlanText=== subject ? "selected" : ""}
-                  style={{ borderRadius: "25px" }}
-                >
-                  {subject}
-                </Button>
-              ))}
-            </Space> */}
-          </Row>
-          <Row justify="center" style={{ margin: "30px 0" }}>
-            <TextArea
-              autoSize={{
-                minRows: 5,
-                maxRows: 7,
-              }}
-              value={content}
-              onChange={e => setContent(e.target.value)}
-              placeholder="내용 작성"
-            ></TextArea>
-          </Row>
-          <Row justify="end" style={{ margin: "30px 0" }}>
-            <Button onClick={handleSubmit} style={{ borderRadius: "25px" }}>
-              게시물 생성
+    <>
+      <Row justify="center" style={{ margin: "30px 0" }}>
+        <Input
+          size="large"
+          placeholder="큰 제목 입력"
+          type="text"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+      </Row>
+      <Row justify="center" style={{ margin: "30px 0" }}>
+        <div style={{ width: "100%", height: "100px", background: "skyblue" }}>
+          {subject.map((item, index) => (
+            <label key={index}>
+              <input
+                type="radio"
+                name="sub"
+                value={index}
+                checked={selectSubject === index}
+                onChange={handleChange}
+              />
+              {item.title}
+            </label>
+          ))}
+        </div>
+        {/* <Space wrap>
+          {subject.map((item, index) => (
+            <Button
+              key={index}
+              value={item}
+              onClick={handleClick}
+              className={setPlanText === subject ? "selected" : ""}
+              style={{ borderRadius: "25px" }}
+            >
+              이게 어디있나요?
             </Button>
-          </Row>
-  </>
+          ))}
+        </Space> */}
+      </Row>
+      <Row justify="center" style={{ margin: "30px 0" }}>
+        <TextArea
+          autoSize={{
+            minRows: 5,
+            maxRows: 7,
+          }}
+          value={content}
+          onChange={e => setContent(e.target.value)}
+          placeholder="내용 작성"
+        ></TextArea>
+      </Row>
+      <Row justify="end" style={{ margin: "30px 0" }}>
+        <Button onClick={handleSubmit} style={{ borderRadius: "25px" }}>
+          게시물 생성
+        </Button>
+      </Row>
+    </>
   );
 };
 
 export default StudyWrite;
-
-
-
