@@ -46,6 +46,7 @@ const NewMemoItem = ({
         className="note_text"
         value={text}
         onChange={handleTextChange}
+        placeholder="메모 내용을 입력해주세요"
       />
       <button type="button" className="confirm" onClick={handleSubmit}>
         완료

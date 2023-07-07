@@ -5,6 +5,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    min-height: 550px;
     border-radius: 30px;
     background: #e5e5e5;
     padding: 50px 0px;
@@ -49,7 +50,7 @@
       background: rgb(177, 204, 255);
     }
   }
-.note_list {
+  .note_list {
     display: flex;
     flex-direction: column;
     gap: 20px;

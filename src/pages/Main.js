@@ -36,13 +36,12 @@ const Main = ({ memoData }) => {
         <h3>최근 작성된 메모</h3>
         {memoData.length > 0 ? (
           <ul className="recently_list">
-            {memoData.length > 3
-              ? memoData
-                  .slice(0, 3)
-                  .map((item, index) => <li key={index}>{item.title}</li>)
-              : memoData.map((item, index) => (
-                  <li key={index}>{item.title}</li>
-                ))}
+            {memoData
+              .filter(item => item.iuser === 2)
+              .slice(-3)
+              .map((item, index) => (
+                <li key={index}>{item.title}</li>
+              ))}
           </ul>
         ) : (
           <span>작성된 메모가 없습니다.</span>
@@ -51,9 +50,5 @@ const Main = ({ memoData }) => {
     </div>
   );
 };
-
-
-
-
 
 export default Main;
