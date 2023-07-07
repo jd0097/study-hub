@@ -16,7 +16,9 @@ const StudyWrite = ({
   setPlanLog,
   planIndex,
   setplanIndex,
-  profile
+  profile,
+  selectedSubject,
+  setSelectedSubject,
 }) => {
   const navigate = useNavigate();
 
@@ -45,7 +47,7 @@ const StudyWrite = ({
   // };
   
 
-  const subjects = ["국어", "영어", "수학", "과학", "사회"];
+  // const subjects = ["국어", "영어", "수학", "과학", "사회"];
 
   return (
     <div className="study_plan_warp">
@@ -59,6 +61,8 @@ const StudyWrite = ({
            planData={planData}
            planLog={planLog}
            setPlanData={setPlanData}
+           selectedSubject={selectedSubject}
+           setSelectedSubject={setSelectedSubject}
            />
             ):(
               //없다.
@@ -70,6 +74,8 @@ const StudyWrite = ({
             content={content}
             setContent={setContent}
             setPlanText={setPlanText}
+            selectedSubject={selectedSubject}
+            setSelectedSubject={setSelectedSubject}
             />
             )}
         

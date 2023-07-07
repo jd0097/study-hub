@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
-import { getPlan } from "./api/planFetch";
+import { getPlan, getSubjects } from "./api/planFetch";
+
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -33,6 +34,11 @@ function App() {
   const [planText, setPlanText] = useState("");
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
+  // const [subject, setSubject] = useState([]);
+
+      // 과목
+      const [selectedSubject, setSelectedSubject] = useState("");
+  
 
   // 모달창
   const [Modal, isModal] = useState("");
@@ -65,10 +71,20 @@ function App() {
     }
   };
 
+  const getSubjectsFetch = async () => {
+    try{
+ const subjectJson = await getSubjects();
+ setSelectedSubject(subjectJson);
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
     getPlanFetch();
+    getSubjectsFetch();
   }, []);
 
   return (
@@ -144,6 +160,9 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+                    // 과목
+    selectedSubject={selectedSubject}
+    setSelectedSubject={setSelectedSubject}
               />
             }
           ></Route>
@@ -162,6 +181,8 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+                selectedSubject={selectedSubject}
+                setSelectedSubject={setSelectedSubject}
               />
             }
           ></Route>

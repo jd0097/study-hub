@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Button, Input, Space, Row } from "antd";
 import { postWrite } from "../api/planFetch";
 import { useNavigate } from "react-router-dom";
@@ -12,52 +12,59 @@ const StudyWrite = ({
     content,
     setContent,
     setPlanText,
+    selectedSubject,
+    setSelectedSubject,
   }) => {
     const navigate = useNavigate();
-  
+
+    const [planSudbject, setPlanSudbject] = useState("");
     const handleSubmit = e => {
+
       e.preventDefault();
       const newPlan = {
         ctnt: content,
         title: title,
         isticker: 1,
-        icategory: 1,
+        icategory: setPlanSudbject,
         iuser: 2,
       }
   
       setPlanData([...planData, newPlan]);
       postWrite(newPlan);
       setTitle("");
+      setPlanSudbject([])
       setContent("");
       navigate("/studyPlan");
     };
-  
-  // // 제목
-  // const [title, setTitle] = useState("");
-  // 과목
-  const [selectedSubject, setSelectedSubject] = useState("");
-  // // 내용
-  // const [content, setContent] = useState("");
-  
-
-  
-  // const handleTitleChange = (e) => {
-  //   setTitle(e.target.value);
-  // };
-  
-  // const handleContentChange = (e) => {
-  //   setContent(e.target.value);
-  // };
-  
-
-//   const handleClick = e => {
-//     setSelectedSubject(e.target.value);
     
-//   };
+    // // 제목
+    // const [title, setTitle] = useState("");
 
-  const subjects = ["국어", "영어", "수학", "과학", "사회"];
-
-  return (
+    // // 내용
+    // const [content, setContent] = useState("");
+    
+    
+    
+    // const handleTitleChange = (e) => {
+      //   setTitle(e.target.value);
+      // };
+      
+      // const handleContentChange = (e) => {
+        //   setContent(e.target.value);
+        // };
+        
+        
+        const handleClick = e => {
+          setPlanSudbject(e.target.innerText);
+          
+        };
+        
+      
+        useEffect (() => {
+         
+        },[])
+        
+        return (
   <>
    <Row justify="center" style={{ margin: "30px 0" }}>
             <Input
@@ -69,19 +76,20 @@ const StudyWrite = ({
             />
           </Row>
           <Row justify="center" style={{ margin: "30px 0" }}>
-            {/* <Space wrap>
-              {subjects.map((subject, index) => (
-                <Button
-                  key={subject}
-                  value={index}
-                  onClick={ handleClick }
-                  className={setPlanText=== subject ? "selected" : ""}
-                  style={{ borderRadius: "25px" }}
-                >
-                  {subject}
-                </Button>
-              ))}
-            </Space> */}
+          {/* <div style={{width: "100%", height: "100px", background: "skyblue" }}>
+            {subject.map((item, index) => (
+            <label key={index}>
+              <input
+                type="radio"
+                name="sub"
+                value={index}
+                checked={selectSubject === index}
+                onChange={handleChange}
+              />
+              {item.title}
+            </label>
+            ))}
+            </div> */}
           </Row>
           <Row justify="center" style={{ margin: "30px 0" }}>
             <TextArea

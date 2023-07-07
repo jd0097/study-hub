@@ -37,11 +37,28 @@ export const getSubjects = async () => {
   try {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
-    console.log(result);
+    console.log(result)
+    console.log("카테고리 요청완료");
+    return result;
   } catch (err) {
     console.log(err);
+    return []
   }
 };
+
+// //카테고리 보내기 
+// export const postSubjects = async newSubjects => {
+//   console.log("카테고리 보내줍니다. ========")
+//   console.log(newSubjects)
+//   try{
+// const res = await axios.post("/api/category" , newSubjects);
+// const result = await res.data
+// console.log(result)
+
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
 
 
 // 플랜 작성기능
@@ -56,7 +73,6 @@ export const postWrite = async newPlan => {
       
   } catch(err) {
       console.log(err);
-
   }
 };
 
@@ -96,5 +112,6 @@ export const deletePlan = async itodo => {
     console.log("삭제했다!!!!");
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
