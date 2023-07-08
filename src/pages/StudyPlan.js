@@ -15,6 +15,7 @@ const StudyPlan = ({
   planIndex,
   setPlanIndex,
   profile,
+  
 }) => {
   const navigate = useNavigate();
 

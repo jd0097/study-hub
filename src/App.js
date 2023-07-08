@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 import { getPlan } from "./api/planFetch";
+import {getSticker} from "./api/planFetch";
+
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -33,11 +35,14 @@ function App() {
   const [planText, setPlanText] = useState("");
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
-  
+
+
+  //캘린더 
+  const [sticker, setSticker] = useState([]);  
 
   // 모달창
   const [Modal, isModal] = useState("");
-  const [imgModal, isImgModal] = useState("");
+  // const [imgModal, isImgModal] = useState("");
 
   const getProfilesFatch = async () => {
     try {
@@ -66,10 +71,22 @@ function App() {
     }
   };
 
+
+
+ const getStickerFetch = async () => {
+  try{
+ const stickerJson = await getSticker();
+ setSticker(stickerJson)
+  } catch (err) {
+    console.log(err)
+  }
+ }
+
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
     getPlanFetch();
+    getStickerFetch();
   }, []);
 
   return (
@@ -129,7 +146,9 @@ function App() {
             path="/mypages"
             element={<Mypages profile={profile} setProfile={setProfile} />}
           ></Route>
-          <Route path="/caledar" element={<CalendarPage />}></Route>
+          <Route path="/caledar" element={<CalendarPage 
+          sticker={sticker} setSticker={setSticker} 
+          />}></Route>
           <Route
             path="/studyplan"
             element={
@@ -143,6 +162,8 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+                sticker={sticker}
+                setSticker={setSticker}
               />
             }
           ></Route>
@@ -161,6 +182,8 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+                sticker={sticker}
+                setSticker={setSticker}
               />
             }
           ></Route>

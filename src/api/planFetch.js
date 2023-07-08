@@ -38,11 +38,12 @@ export const getSubjects = async () => {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
     console.log(result);
+    return result;
   } catch (err) {
     console.log(err);
+    return [];
   }
 };
-
 
 // 플랜 작성기능
 export const postWrite = async newPlan => {
@@ -97,5 +98,32 @@ export const deletePlan = async itodo => {
     console.log("삭제했다!!!!");
   } catch (error) {
     console.log(error);
+  }
+};
+
+//스티커 모두 가져오기
+export const getAllSticker = async isticker => {
+  try {
+  const res = await axios.get("/api/sticker");
+  const result = res.data;
+  console.log("getAllSticker 요청완료");
+return result
+  } catch(err) {
+    console.log(err);
+    return[];
+  }
+};
+
+// 캘린더에 스티커 가져오기
+export const getSticker = async (_iuser,_data) => {
+  try{
+  const res = await axios.get(`/timer?iuser=${_iuser}&itimer=${_data}`) 
+  const result = res.data;
+  console.log("getSticker 요청완료");
+return result;
+  } catch(err) {
+    console.log(err);
+
+    return[];
   }
 };
