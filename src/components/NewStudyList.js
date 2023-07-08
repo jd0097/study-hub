@@ -14,6 +14,7 @@ const StudyWrite = ({
     setPlanText,
     selectedSubject,
     setSelectedSubject,
+    subject,
   }) => {
     const navigate = useNavigate();
 
@@ -58,6 +59,13 @@ const StudyWrite = ({
           setPlanSudbject(e.target.innerText);
           
         };
+
+        const handleChange = e => {
+          const selectedIndex = parseInt(e.target.value, 10);
+          setSelectedSubject(selectedIndex);
+          console.log(setSelectedSubject);
+        };
+      
         
       
         useEffect (() => {
@@ -76,20 +84,22 @@ const StudyWrite = ({
             />
           </Row>
           <Row justify="center" style={{ margin: "30px 0" }}>
-          {/* <div style={{width: "100%", height: "100px", background: "skyblue" }}>
-            {subject.map((item, index) => (
-            <label key={index}>
+          <div>
+          {subject.map((item, index) => (
+            <label key={index} htmlFor="sub" className="subject_label">
               <input
                 type="radio"
                 name="sub"
+                id="sub"
                 value={index}
-                checked={selectSubject === index}
+                checked={selectedSubject === index}
                 onChange={handleChange}
               />
               {item.title}
             </label>
-            ))}
-            </div> */}
+          ))}
+        </div>
+
           </Row>
           <Row justify="center" style={{ margin: "30px 0" }}>
             <TextArea

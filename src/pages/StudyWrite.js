@@ -19,6 +19,7 @@ const StudyWrite = ({
   profile,
   selectedSubject,
   setSelectedSubject,
+  subject,
 }) => {
   const navigate = useNavigate();
 
@@ -63,6 +64,7 @@ const StudyWrite = ({
            setPlanData={setPlanData}
            selectedSubject={selectedSubject}
            setSelectedSubject={setSelectedSubject}
+           subject={subject}
            />
             ):(
               //없다.
@@ -76,6 +78,7 @@ const StudyWrite = ({
             setPlanText={setPlanText}
             selectedSubject={selectedSubject}
             setSelectedSubject={setSelectedSubject}
+            subject={subject}
             />
             )}
         

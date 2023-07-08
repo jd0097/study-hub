@@ -34,7 +34,7 @@ function App() {
   const [planText, setPlanText] = useState("");
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
-  // const [subject, setSubject] = useState([]);
+  const [subject, setSubject] = useState([]);
 
       // 과목
       const [selectedSubject, setSelectedSubject] = useState("");
@@ -79,7 +79,6 @@ function App() {
       console.log(err)
     }
   }
-
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
@@ -163,6 +162,8 @@ function App() {
                     // 과목
     selectedSubject={selectedSubject}
     setSelectedSubject={setSelectedSubject}
+    subject={subject}
+    setSubject={setSubject}
               />
             }
           ></Route>
@@ -183,6 +184,8 @@ function App() {
                 profile={profile}
                 selectedSubject={selectedSubject}
                 setSelectedSubject={setSelectedSubject}
+                subject={subject}
+    setSubject={setSubject}
               />
             }
           ></Route>
