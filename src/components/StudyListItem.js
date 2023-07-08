@@ -101,7 +101,7 @@ const StudyListItem = ({planData, setPlanData, planLog }) => {
           </Row>
           <Row justify="end" style={{ margin: "30px 0" }}>
             <Button onClick={() => handlePutSubmit(planLog)} style={{ borderRadius: "25px" }}>
-              수정하기 
+              수정
             </Button>
           </Row>
     </>

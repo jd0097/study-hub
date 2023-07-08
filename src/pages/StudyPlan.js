@@ -15,12 +15,8 @@ const StudyPlan = ({
   planIndex,
   setPlanIndex,
   profile,
-  subject,
 }) => {
   const navigate = useNavigate();
-  console.log(planData)
-
-
 
   //새 작성
   const handleClick = () => {
@@ -34,14 +30,12 @@ const StudyPlan = ({
     navigate("/studywrite");
   };
 
-
   //선택 삭제
   const handleDeleteClick = itodo => {
     console.log(itodo);
     const deleteTodoData = planData.filter(item => item.itodo !== itodo);
     setPlanData(deleteTodoData);
     deletePlan(itodo);
-
   };
 
   // //선택 삭제
@@ -83,9 +77,7 @@ const StudyPlan = ({
         {planData.length ? (
           <ul className="study_list">
             {planData
-
-              .filter(item => item.iuser === 2)
-
+              .filter(item => item.iuser === 2 && item.delYn !== 1)
               .map((item, index) => (
                 <li key={index}>
                   <span className="study_list_title">
@@ -127,7 +119,7 @@ const StudyPlan = ({
             </Row>
             <Row justify="center" style={{ margin: "30px 0" }}>
               <Button onClick={handleClick} style={{ borderRadius: "20px" }}>
-              작성하기
+                작성하기
               </Button>
             </Row>
           </div>

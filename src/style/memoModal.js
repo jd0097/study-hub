@@ -2,12 +2,13 @@ import styled from "@emotion/styled";
 
 export const MemoModalForm = styled.div`
   position: fixed;
-  z-index: 9999999999;
-  top: 0px;
-  left: 0px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+
   .memo_modal_inner {
     display: flex;
     flex-direction: column;
