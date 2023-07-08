@@ -1,14 +1,29 @@
-import styled  from "@emotion/styled";
+import styled from "@emotion/styled";
 
-
-  const StudyPlanDiv = styled.div`
-  button {
-    background-color: #f5f5f5;
-    padding: 16px;
+export const StudyPlanDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+    width: 125px;
+    height: 40px;
+    border-radius: 30px;
     text-align: center;
-    item
+    .cate_input {
+      position: absolute;
+      left: -9999px;
+    }
   }
-  `;
-
- 
- export default StudyPlanDiv;
+  .active {
+    background: skyblue;
+  }
+`;

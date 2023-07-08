@@ -15,9 +15,17 @@ const StudyPlan = ({
   planIndex,
   setPlanIndex,
   profile,
-  
+
+  category,
+  setCategory,
+  selectedSubject,
+  setSelectedSubject,
+
 }) => {
   const navigate = useNavigate();
+
+  console.log(category);
+  console.log(selectedSubject);
 
   //새 작성
   const handleClick = () => {
@@ -26,7 +34,7 @@ const StudyPlan = ({
   };
 
   //데이터 수정
-  const handleSubmit = _itodo => {
+  const handleSubmit = (_itodo, _icate) => {
     setPlanLog(_itodo);
     navigate("/studywrite");
   };
@@ -82,13 +90,25 @@ const StudyPlan = ({
               .map((item, index) => (
                 <li key={index}>
                   <span className="study_list_title">
-                    <p>{item.title}</p>
+                    <p>
+                      {item.icategory === 0
+                        ? "국어"
+                        : item.icategory === 1
+                        ? "수학"
+                        : item.icategory === 2
+                        ? "사회"
+                        : item.icategory === 3
+                        ? "과학"
+                        : item.icategory === 4
+                        ? "영어"
+                        : "선택과목없음"}
+                    </p>
                   </span>
                   <span className="study_list_text">
-                    <p>{item.ctnt}</p>
+                    <p>{item.title}</p>
                     <div className="list_func">
                       <Button
-                        onClick={() => handleSubmit(item.itodo)}
+                        onClick={() => handleSubmit(item.itodo, item.icategory)}
                         style={{ borderRadius: "25px" }}
                       >
                         수정

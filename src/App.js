@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
-import { getPlan } from "./api/planFetch";
+
+import { getPlan, getSubjects } from "./api/planFetch";
 import {getSticker} from "./api/planFetch";
 
 
@@ -36,14 +37,31 @@ function App() {
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
 
+  const [category, setCategory] = useState([]);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [savedSubject, setSavedSubject] = useState(null);
+
+
 
   //캘린더 
   const [sticker, setSticker] = useState([]);  
+
 
   // 모달창
   const [Modal, isModal] = useState("");
   // const [imgModal, isImgModal] = useState("");
 
+  // 카테고리 데이터 가져오기
+  const getCategoryFatch = async () => {
+    try {
+      const categoryJson = await getSubjects();
+      setCategory(categoryJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // 프로필 데이터 가져오기
   const getProfilesFatch = async () => {
     try {
       const profileJson = await getProfiles();
@@ -53,6 +71,7 @@ function App() {
     }
   };
 
+  // 메모데이터 가져오기
   const getMomoFetch = async () => {
     try {
       const memoJson = await getMemo();
@@ -62,6 +81,7 @@ function App() {
     }
   };
 
+  // 플랜데이터 가져오기
   const getPlanFetch = async () => {
     try {
       const planJson = await getPlan();
@@ -86,7 +106,11 @@ function App() {
     getMomoFetch();
     getProfilesFatch();
     getPlanFetch();
+
+    getCategoryFatch();
+
     getStickerFetch();
+
   }, []);
 
   return (
@@ -162,8 +186,15 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
+                category={category}
+                setCategory={setCategory}
+                selectedSubject={selectedSubject}
+                setSelectedSubject={setSelectedSubject}
+
                 sticker={sticker}
                 setSticker={setSticker}
+
               />
             }
           ></Route>
@@ -182,8 +213,17 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
+                category={category}
+                setCategory={setCategory}
+                selectedSubject={selectedSubject}
+                setSelectedSubject={setSelectedSubject}
+                savedSubject={savedSubject}
+                setSavedSubject={setSavedSubject}
+
                 sticker={sticker}
                 setSticker={setSticker}
+
               />
             }
           ></Route>
