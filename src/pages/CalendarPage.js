@@ -1,29 +1,58 @@
 import moment from "moment/moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "../style/calendarpage.css";
 import { Modal, Button } from "antd";
 import { useNavigate } from "react-router";
 
-const CalendarPage = () => {
+
+const CalendarPage = ({
+  sticker, 
+  setSticker,
+}) => {
   const navigator = useNavigate();
+
   // 달력 초기 포커스 값
   const [day, setDay] = useState(new Date());
+
   // 사용자가 선택한 날짜를 저장하는 용도
   const [userSelectDay, setUserSelectDay] = useState("");
-  // public 폴더를 가르킴(카페참조)
-  const path = process.env.PUBLIC_URL;
-  // 화면에 출력될 서버 정보
-  const 서버정보 = [
-    { day: "2023-06-28", level: 0 },
-    { day: "2023-06-05", level: 1 },
-    { day: "2023-06-25", level: 2 },
-    { day: "2023-06-11", level: 3 },
-    { day: "2023-06-21", level: 4 },
-    { day: "2023-06-15", level: 5 },
-  ];
+
+
+  // // public 폴더를 가르킴(카페참조)
+  // const path = process.env.PUBLIC_URL;
+  // // 화면에 출력될 서버 정보
+  // const 서버정보 = [
+  //   { day: "2023-06-28", level: 0 },
+  //   { day: "2023-06-05", level: 1 },
+  //   { day: "2023-06-25", level: 2 },
+  //   { day: "2023-06-11", level: 3 },
+  //   { day: "2023-06-21", level: 4 },
+  //   { day: "2023-06-15", level: 5 },
+  // ];
+
+
+
   // 데이터 화면 갱신 용도
-  const [serverData, setServerData] = useState(서버정보);
+  const [serverData, setServerData] = useState([]);
+
+
+  useEffect(() => {
+    // 데이터베이스에서 스티커 정보를 가져와서 서버 데이터 설정
+    // 예시: fetchStickers 함수로 스티커 정보를 가져와서 설정하는 로직
+    const fetchStickers = async () => {
+      try {
+        const response = await fetch("your-api-endpoint");
+        const data = await response.json();
+        setServerData(data);
+      } catch (error) {
+        console.error("Error fetching stickers:", error);
+      }
+    };
+    fetchStickers();
+  }, []);
+
+
   // 조건 즉, 서버의 데이터를 읽어와서 날짜{day}를 비교해서
   // 같으면 html 을 만들어서 집어넣는다.
   const showScheduleJSX = ({ date, view }) => {
@@ -35,11 +64,11 @@ const CalendarPage = () => {
       }
     });
     if (obj) {
-      // 아이템을 찾은 경우 jsx 생성하여 Return 출력
+      // 아이템을 찾은 경우 jsx 생성하여 Return 출력  
       return (
         <div className="user-level">
           <img
-            src={`${path}/images/calendar-icon-${obj.level}.png`}
+            // src={`${path}/images/calendar-icon-${obj.level}.png`}
             style={{ width: 50 }}
           />
         </div>
@@ -49,7 +78,7 @@ const CalendarPage = () => {
       return (
         <div className="user-level-default">
           <img
-            src={`${path}/images/calendar-icon-0.png`}
+            // src={`${path}/images/calendar-icon-0.png`}
             style={{ width: 50 }}
           />
         </div>
@@ -57,25 +86,31 @@ const CalendarPage = () => {
     }
   };
 
+
   // 신규인지 아닌지 구분
   const [editData, setEditData] = useState(false);
   const handleClickDay = (value, event) => {
-    // const selectDay = moment(value).format("YYYY-MM-DD");
-    // // 사용자가 날짜를 클릭하면 보관해 둔다.
-    // setUserSelectDay(selectDay);
-    // // 현재 사용자 정보가 있는 경우인지 아닌지 구분
-    // const userData = event.currentTarget.querySelector(".user-level");
-    // console.log(userData);
-    // if (userData) {
-    //   // 수정을 하는 경우
-    //   setEditData(true);
-    // } else {
-    //   // 신규로 등록을 하는 경우
-    //   setEditData(false);
-    // }
-    // showModal();
-    navigator("/studyplan");
-  };
+    const selectDay = moment(value).format("YYYY-MM-DD");
+    // 사용자가 날짜를 클릭하면 보관해 둔다.
+    setUserSelectDay(selectDay);
+    // 현재 사용자 정보가 있는 경우인지 아닌지 구분
+    const userData = event.currentTarget.querySelector(".user-level");
+    console.log(userData);
+  //   if (userData) {
+  //     // 수정을 하는 경우
+  //     // setEditData(true);
+  //   } else {
+  //     // 신규로 등록을 하는 경우
+  //     setEditData(false);
+  //   }
+  //   showModal();
+  //   navigator("/studyplan");
+  // };
+
+
+
+
+
 
   // 모달창의 아이콘을 클릭했을 때
   const handleClickIcon = _id => {
@@ -100,6 +135,12 @@ const CalendarPage = () => {
     setIsModalOpen(false);
   };
 
+
+
+
+
+
+
   // 사용자 정보 초기화
   const handleDelete = () => {
     console.log("삭제");
@@ -111,6 +152,7 @@ const CalendarPage = () => {
     });
     // 업데이트
     setServerData(newArr);
+
     // 모달 숨기기
     setIsModalOpen(false);
   };
@@ -127,6 +169,13 @@ const CalendarPage = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+
+
+
+
+
+
 
   return (
     <div className="p-6 mt-5 shadow rounded bg-white">
@@ -155,7 +204,10 @@ const CalendarPage = () => {
           </Button>,
         ]}
       >
-        <ul className="calendar-modal-level-list">
+        {/* 스티커 넣기 */}
+
+
+        {/* <ul className="calendar-modal-level-list">
           <li>
             <img
               src={`${path}/images/calendar-icon-1.png`}
@@ -191,10 +243,14 @@ const CalendarPage = () => {
               onClick={() => handleClickIcon(5)}
             />
           </li>
-        </ul>
+        </ul> */}
       </Modal>
     </div>
   );
 };
+
+};
+
+
 
 export default CalendarPage;

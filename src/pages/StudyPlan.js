@@ -15,10 +15,12 @@ const StudyPlan = ({
   planIndex,
   setPlanIndex,
   profile,
+
   category,
   setCategory,
   selectedSubject,
   setSelectedSubject,
+
 }) => {
   const navigate = useNavigate();
 

@@ -2,7 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
+
 import { getPlan, getSubjects } from "./api/planFetch";
+import {getSticker} from "./api/planFetch";
+
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -33,13 +36,20 @@ function App() {
   const [planText, setPlanText] = useState("");
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
+
   const [category, setCategory] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [savedSubject, setSavedSubject] = useState(null);
 
+
+
+  //캘린더 
+  const [sticker, setSticker] = useState([]);  
+
+
   // 모달창
   const [Modal, isModal] = useState("");
-  const [imgModal, isImgModal] = useState("");
+  // const [imgModal, isImgModal] = useState("");
 
   // 카테고리 데이터 가져오기
   const getCategoryFatch = async () => {
@@ -81,11 +91,26 @@ function App() {
     }
   };
 
+
+
+ const getStickerFetch = async () => {
+  try{
+ const stickerJson = await getSticker();
+ setSticker(stickerJson)
+  } catch (err) {
+    console.log(err)
+  }
+ }
+
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
     getPlanFetch();
+
     getCategoryFatch();
+
+    getStickerFetch();
+
   }, []);
 
   return (
@@ -145,7 +170,9 @@ function App() {
             path="/mypages"
             element={<Mypages profile={profile} setProfile={setProfile} />}
           ></Route>
-          <Route path="/caledar" element={<CalendarPage />}></Route>
+          <Route path="/caledar" element={<CalendarPage 
+          sticker={sticker} setSticker={setSticker} 
+          />}></Route>
           <Route
             path="/studyplan"
             element={
@@ -159,10 +186,15 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
                 category={category}
                 setCategory={setCategory}
                 selectedSubject={selectedSubject}
                 setSelectedSubject={setSelectedSubject}
+
+                sticker={sticker}
+                setSticker={setSticker}
+
               />
             }
           ></Route>
@@ -181,12 +213,17 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
                 category={category}
                 setCategory={setCategory}
                 selectedSubject={selectedSubject}
                 setSelectedSubject={setSelectedSubject}
                 savedSubject={savedSubject}
                 setSavedSubject={setSavedSubject}
+
+                sticker={sticker}
+                setSticker={setSticker}
+
               />
             }
           ></Route>
