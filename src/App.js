@@ -4,6 +4,7 @@ import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 import { getPlan, getSubjects } from "./api/planFetch";
 
+
 import "./scss/layout.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -34,7 +35,14 @@ function App() {
   const [planLog, setPlanLog] = useState(null);
   const [planIndex, setPlanIndex] = useState();
   const [subject, setSubject] = useState([]);
+
   const [selectSubject, setselectSubject] = useState(null);
+
+
+      // 과목
+      const [selectedSubject, setSelectedSubject] = useState("");
+  
+
 
   // 모달창
   const [Modal, isModal] = useState("");
@@ -76,7 +84,18 @@ function App() {
     }
   };
 
-  console.log(subject);
+
+
+
+
+  const getSubjectsFetch = async () => {
+    try{
+ const subjectJson = await getSubjects();
+ setSelectedSubject(subjectJson);
+    } catch(err) {
+      console.log(err)
+    }
+  }
 
   useEffect(() => {
     getMomoFetch();
@@ -159,9 +178,17 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
                 subject={subject}
                 selectSubject={selectSubject}
                 setselectSubject={setselectSubject}
+
+                    // 과목
+    selectedSubject={selectedSubject}
+    setSelectedSubject={setSelectedSubject}
+    subject={subject}
+    setSubject={setSubject}
+
               />
             }
           ></Route>
@@ -180,10 +207,17 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
                 subject={subject}
                 setSubject={setSubject}
                 selectSubject={selectSubject}
                 setselectSubject={setselectSubject}
+
+                selectedSubject={selectedSubject}
+                setSelectedSubject={setSelectedSubject}
+                subject={subject}
+    setSubject={setSubject}
+
               />
             }
           ></Route>

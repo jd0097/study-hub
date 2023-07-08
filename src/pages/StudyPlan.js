@@ -15,6 +15,7 @@ const StudyPlan = ({
   planIndex,
   setPlanIndex,
   profile,
+  subject,
 }) => {
   const navigate = useNavigate();
   console.log(planData)
@@ -126,7 +127,7 @@ const StudyPlan = ({
             </Row>
             <Row justify="center" style={{ margin: "30px 0" }}>
               <Button onClick={handleClick} style={{ borderRadius: "20px" }}>
-               작성하기
+              작성하기
               </Button>
             </Row>
           </div>

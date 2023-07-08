@@ -34,6 +34,7 @@ export const getSubjects = async () => {
   try {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
+
     console.log(result);
     return result;
   } catch (err) {
@@ -43,16 +44,38 @@ export const getSubjects = async () => {
   }
 };
 
+
+
+// //카테고리 보내기 
+// export const postSubjects = async newSubjects => {
+//   console.log("카테고리 보내줍니다. ========")
+//   console.log(newSubjects)
+//   try{
+// const res = await axios.post("/api/category" , newSubjects);
+// const result = await res.data
+// console.log(result)
+
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+
+
+
 // 플랜 작성기능
 export const postWrite = async newPlan => {
   console.log("플랜작성 보내줍니다. ========");
   console.log(newPlan);
   try {
-    const res = await axios.post("/api/todo", newPlan);
-    const result = await res.data;
-    console.log(result);
-  } catch (err) {
-    console.log(err);
+
+
+      const res =  await axios.post("/api/todo", newPlan);
+      const result = await res.data;
+      console.log(result);
+      
+  } catch(err) {
+      console.log(err);
+
   }
 };
 
@@ -93,5 +116,6 @@ export const deletePlan = async itodo => {
     console.log("삭제했다!!!!");
   } catch (error) {
     console.log(error);
+    return [];
   }
 };

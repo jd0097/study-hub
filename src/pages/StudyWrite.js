@@ -16,10 +16,11 @@ const StudyWrite = ({
   planIndex,
   setplanIndex,
   profile,
+
+  selectedSubject,
+  setSelectedSubject,
   subject,
-  setSubject,
-  selectSubject,
-  setselectSubject,
+
 }) => {
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ const StudyWrite = ({
   //   setSelectedSubject(e.target.value);
   // };
 
-  const subjects = ["국어", "영어", "수학", "과학", "사회"];
+  // const subjects = ["국어", "영어", "수학", "과학", "사회"];
 
   return (
     <div className="study_plan_warp">
@@ -54,29 +55,29 @@ const StudyWrite = ({
         <div style={{ width: "90%", margin: "0 auto" }}>
           {/* studyPlan 있다 */}
           {planLog ? (
-            <StudyListItem
-              planData={planData}
-              planLog={planLog}
-              setPlanData={setPlanData}
-              subject={subject}
-              setSubject={setSubject}
-              selectSubject={selectSubject}
-              setselectSubject={setselectSubject}
-            />
-          ) : (
-            //없다.
+
+           <StudyListItem
+           planData={planData}
+           planLog={planLog}
+           setPlanData={setPlanData}
+           selectedSubject={selectedSubject}
+           setSelectedSubject={setSelectedSubject}
+           subject={subject}
+           />
+            ):(
+              //없다.
             <NewStudyList
-              planData={planData}
-              setPlanData={setPlanData}
-              title={title}
-              setTitle={setTitle}
-              content={content}
-              setContent={setContent}
-              setPlanText={setPlanText}
-              subject={subject}
-              setSubject={setSubject}
-              selectSubject={selectSubject}
-              setselectSubject={setselectSubject}
+            planData={planData}
+            setPlanData={setPlanData}
+            title={title}
+            setTitle={setTitle}
+            content={content}
+            setContent={setContent}
+            setPlanText={setPlanText}
+            selectedSubject={selectedSubject}
+            setSelectedSubject={setSelectedSubject}
+            subject={subject}
+
             />
           )}
         </div>
