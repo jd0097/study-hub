@@ -1,10 +1,14 @@
-import React, {  useEffect, useState } from "react";
+
+import React, { useState } from "react";
+
 import { Button, Input, Space, Row } from "antd";
 import { postWrite } from "../api/planFetch";
 import { useNavigate } from "react-router-dom";
+import { SubjectList } from "../style/subjects";
 
 const { TextArea } = Input;
 const StudyWrite = ({
+
     planData,
     setPlanData,
     title,
@@ -68,9 +72,7 @@ const StudyWrite = ({
       
         
       
-        useEffect (() => {
-         
-        },[])
+      
         
         return (
   <>
@@ -85,6 +87,7 @@ const StudyWrite = ({
           </Row>
           <Row justify="center" style={{ margin: "30px 0" }}>
           <div>
+
           {subject.map((item, index) => (
             <label key={index} htmlFor="sub" className="subject_label">
               <input
@@ -92,12 +95,17 @@ const StudyWrite = ({
                 name="sub"
                 id="sub"
                 value={index}
-                checked={selectedSubject === index}
+
+                checked={selectSubject === index}
+
+        
+
                 onChange={handleChange}
               />
               {item.title}
             </label>
           ))}
+
         </div>
 
           </Row>
@@ -115,13 +123,29 @@ const StudyWrite = ({
           <Row justify="end" style={{ margin: "30px 0" }}>
             <Button onClick={handleSubmit} style={{ borderRadius: "25px" }}>
               게시물 생성
+
             </Button>
-          </Row>
-  </>
+          ))}
+        </Space> */}
+      </Row>
+      <Row justify="center" style={{ margin: "30px 0" }}>
+        <TextArea
+          autoSize={{
+            minRows: 5,
+            maxRows: 7,
+          }}
+          value={content}
+          onChange={e => setContent(e.target.value)}
+          placeholder="내용 작성"
+        ></TextArea>
+      </Row>
+      <Row justify="end" style={{ margin: "30px 0" }}>
+        <Button onClick={handleSubmit} style={{ borderRadius: "25px" }}>
+          게시물 생성
+        </Button>
+      </Row>
+    </>
   );
 };
 
 export default StudyWrite;
-
-
-

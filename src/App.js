@@ -36,13 +36,26 @@ function App() {
   const [planIndex, setPlanIndex] = useState();
   const [subject, setSubject] = useState([]);
 
+  const [selectSubject, setselectSubject] = useState(null);
+
+
       // 과목
       const [selectedSubject, setSelectedSubject] = useState("");
   
 
+
   // 모달창
   const [Modal, isModal] = useState("");
-  const [imgModal, isImgModal] = useState("");
+  const [imgModal, isImgModal] = useState(false);
+
+  const getSubjectsFetch = async () => {
+    try {
+      const SubjectsJson = await getSubjects();
+      setSubject(SubjectsJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getProfilesFatch = async () => {
     try {
@@ -71,6 +84,10 @@ function App() {
     }
   };
 
+
+
+
+
   const getSubjectsFetch = async () => {
     try{
  const subjectJson = await getSubjects();
@@ -79,6 +96,7 @@ function App() {
       console.log(err)
     }
   }
+
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
@@ -86,9 +104,10 @@ function App() {
     getSubjectsFetch();
   }, []);
 
+  console.log(subject);
+
   return (
     <div className="wrap">
-
       {/* <ImgModal imgModal={imgModal} isImgModal={isImgModal} /> */}
 
       {Modal ? (
@@ -159,11 +178,17 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
+                subject={subject}
+                selectSubject={selectSubject}
+                setselectSubject={setselectSubject}
+
                     // 과목
     selectedSubject={selectedSubject}
     setSelectedSubject={setSelectedSubject}
     subject={subject}
     setSubject={setSubject}
+
               />
             }
           ></Route>
@@ -182,10 +207,17 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
+
+                subject={subject}
+                setSubject={setSubject}
+                selectSubject={selectSubject}
+                setselectSubject={setselectSubject}
+
                 selectedSubject={selectedSubject}
                 setSelectedSubject={setSelectedSubject}
                 subject={subject}
     setSubject={setSubject}
+
               />
             }
           ></Route>

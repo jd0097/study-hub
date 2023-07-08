@@ -20,6 +20,8 @@ const StudyPlan = ({
   const navigate = useNavigate();
   console.log(planData)
 
+
+
   //새 작성
   const handleClick = () => {
     navigate("/studywrite");
