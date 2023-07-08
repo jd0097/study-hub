@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Input, Space, Row } from "antd";
 import { postWrite } from "../api/planFetch";
 import { useNavigate } from "react-router-dom";
+import { SubjectList } from "../style/subjects";
 
 const { TextArea } = Input;
 const StudyWrite = ({
@@ -56,12 +57,13 @@ const StudyWrite = ({
         />
       </Row>
       <Row justify="center" style={{ margin: "30px 0" }}>
-        <div style={{ width: "100%", height: "100px", background: "skyblue" }}>
+        <SubjectList>
           {subject.map((item, index) => (
-            <label key={index}>
+            <label key={index} htmlFor="sub" className="subject_label">
               <input
                 type="radio"
                 name="sub"
+                id="sub"
                 value={index}
                 checked={selectSubject === index}
                 onChange={handleChange}
@@ -69,7 +71,7 @@ const StudyWrite = ({
               {item.title}
             </label>
           ))}
-        </div>
+        </SubjectList>
         {/* <Space wrap>
           {subject.map((item, index) => (
             <Button

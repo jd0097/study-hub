@@ -76,6 +76,8 @@ function App() {
     }
   };
 
+  console.log(subject);
+
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
