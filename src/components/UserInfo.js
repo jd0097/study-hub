@@ -13,10 +13,6 @@ const UserInfo = ({
 }) => {
   const navigate = useNavigate();
 
-
-
-
-
   const userNameRef = useRef(null);
   const userGoalRef = useRef(null);
   const userInputNameRef = useRef(null);

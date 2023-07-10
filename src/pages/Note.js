@@ -35,10 +35,10 @@ const Note = ({
 
   // 일부 삭제 기능
   const handleDeleteClick = _imemo => {
-  console.log(_imemo);
-  const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
-  setMemoData(deleteMemoData);
-  deleteMemo(_imemo);
+    console.log(_imemo);
+    const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
+    setMemoData(deleteMemoData);
+    deleteMemo(_imemo);
   };
 
   // 데이터 수정
@@ -60,8 +60,14 @@ const Note = ({
       </div>
       <div className="note_wrap_inner">
         <div className="button_form">
-          <button onClick={handleRemoveClick}>전체삭제</button>
-          <button onClick={handleClick}>작성하기</button>
+          {memoData.length ? (
+            <>
+              <button onClick={handleRemoveClick}>전체삭제</button>
+              <button onClick={handleClick}>작성하기</button>
+            </>
+          ) : (
+            ""
+          )}
         </div>
         {memoData.length ? (
           <ul className="note_list">
