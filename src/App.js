@@ -4,8 +4,7 @@ import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 
 import { getPlan, getSubjects } from "./api/planFetch";
-import {getSticker} from "./api/planFetch";
-
+import { getSticker } from "./api/planFetch";
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -23,12 +22,18 @@ import MemoModal from "./components/MemoModal";
 import ImgModal from "./components/ImgModal";
 
 function App() {
+  // 유저프로필 쪽
+  const [profile, setProfile] = useState([]);
+  const [editImg, setEditImg] = useState("");
+  const [editGoal, setEditGoal] = useState("");
+  const [editName, setEditName] = useState("");
+
+  // 메모쪽
   const [memoData, setMemoData] = useState([]);
   const [memoTitle, setMemoTitle] = useState("");
   const [memoText, setMemoText] = useState("");
   const [memoLog, setMemoLog] = useState(null);
   const [memoIndex, setMemoIndex] = useState("");
-  const [profile, setProfile] = useState([]);
 
   // 스터디 플랜
   const [planData, setPlanData] = useState([]);
@@ -41,11 +46,8 @@ function App() {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [savedSubject, setSavedSubject] = useState(null);
 
-
-
-  //캘린더 
-  const [sticker, setSticker] = useState([]);  
-
+  //캘린더
+  const [sticker, setSticker] = useState([]);
 
   // 모달창
   const [Modal, isModal] = useState("");
@@ -91,26 +93,33 @@ function App() {
     }
   };
 
+  const getStickerFetch = async () => {
+    try {
+      const stickerJson = await getSticker();
+      setSticker(stickerJson);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
+  const profileName = profile[1]?.name || "";
+  const porifleGoal = profile[1]?.objective || "";
+  const profileImg = profile[1]?.mainPic || "";
 
- const getStickerFetch = async () => {
-  try{
- const stickerJson = await getSticker();
- setSticker(stickerJson)
-  } catch (err) {
-    console.log(err)
-  }
- }
+  console.log(profile);
+
+  useEffect(() => {
+    setEditName(profileName);
+    setEditGoal(porifleGoal);
+    setEditImg(profileImg);
+  }, [profileName, porifleGoal, profileImg]);
 
   useEffect(() => {
     getMomoFetch();
     getProfilesFatch();
     getPlanFetch();
-
     getCategoryFatch();
-
     getStickerFetch();
-
   }, []);
 
   return (
@@ -127,7 +136,7 @@ function App() {
         ""
       )}
 
-      <Header />
+      <Header profile={profile} editImg={editImg} editName={editName} />
       {/* <Intro /> */}
       <div className="container">
         <Routes>
@@ -144,7 +153,6 @@ function App() {
                 setMemoData={setMemoData}
                 memoIndex={memoIndex}
                 setMemoIndex={setMemoIndex}
-                profile={profile}
               />
             }
           ></Route>
@@ -162,17 +170,28 @@ function App() {
                 setMemoTitle={setMemoTitle}
                 memoIndex={memoIndex}
                 setMemoIndex={setMemoIndex}
-                profile={profile}
               />
             }
           ></Route>
           <Route
             path="/mypages"
-            element={<Mypages profile={profile} setProfile={setProfile} />}
+            element={
+              <Mypages
+                profile={profile}
+                setProfile={setProfile}
+                editImg={editImg}
+                setEditImg={setEditImg}
+                editGoal={editGoal}
+                setEditGoal={setEditGoal}
+                editName={editName}
+                setEditName={setEditName}
+              />
+            }
           ></Route>
-          <Route path="/caledar" element={<CalendarPage 
-          sticker={sticker} setSticker={setSticker} 
-          />}></Route>
+          <Route
+            path="/caledar"
+            element={<CalendarPage sticker={sticker} setSticker={setSticker} />}
+          ></Route>
           <Route
             path="/studyplan"
             element={
@@ -186,15 +205,12 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
-
                 category={category}
                 setCategory={setCategory}
                 selectedSubject={selectedSubject}
                 setSelectedSubject={setSelectedSubject}
-
                 sticker={sticker}
                 setSticker={setSticker}
-
               />
             }
           ></Route>
@@ -213,17 +229,14 @@ function App() {
                 planIndex={planIndex}
                 setPlanIndex={setPlanIndex}
                 profile={profile}
-
                 category={category}
                 setCategory={setCategory}
                 selectedSubject={selectedSubject}
                 setSelectedSubject={setSelectedSubject}
                 savedSubject={savedSubject}
                 setSavedSubject={setSavedSubject}
-
                 sticker={sticker}
                 setSticker={setSticker}
-
               />
             }
           ></Route>

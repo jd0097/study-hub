@@ -1,8 +1,4 @@
 .header {
-  // width: 100%;
-  // height: 300px;
-  // background-image: url(../../public/source/bg.jpg);
-
   .inner {
     display: flex;
     flex-direction: column;
@@ -10,12 +6,13 @@
     width: 100%;
     height: 100%;
     .account {
+      position: relative;
       display: flex;
       justify-content: center;
       width: 100%;
       height: 75px;
-      background: rgba(255, 255, 255, 0.5);
       .account_list {
+        position: relative;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -23,19 +20,102 @@
         width: 100%;
         max-width: 1400px;
         height: 100%;
+        .account_img_box {
+          display: flex;
+          justify-content: flex-end;
+          width: 100px;
+          height: 50px;
+        }
+        svg {
+          margin-right: 10px;
+          width: 10px;
+          height: 100%;
+          color: #cacaca;
+        }
         .account_img {
+          position: relative;
+          cursor: pointer;
           width: 50px;
           height: 50px;
           background: red;
           border-radius: 100%;
-        }
-        li {
-          a {
-            color: #222;
+          overflow: hidden;
+          transition-duration: 0.1s;
+          img {
+            width: 100%;
+            height: 100%;
           }
+        }
+        .account_img:hover {
+          box-shadow: 0px 0px 15px skyblue;
+        }
+        .account_name {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 125px;
+          padding: 0px 10px;
+        }
+        .to_myPage {
+          padding: 5px 10px;
+          background: rgb(222, 222, 222);
+          border-radius: 10px;
+        }
+        .account_detail {
+          display: none;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          right: 0px;
+          top: 80px;
+          width: 250px;
+          height: 125px;
+          background: #f3f6fc;
+          box-shadow: 0px 0px 15px rgb(0, 0, 0, 0.3);
+          border-radius: 30px;
+          padding: 10px;
+          .detail {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 30px;
+            padding: 10px;
+            .datail_info {
+              display: flex;
+              width: 100%;
+              height: 50px;
+              img {
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+              }
+              span {
+                padding-left: 15px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+              }
+            }
+            a {
+              margin-top: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              height: 50px;
+              text-align: center;
+              border-radius: 200px;
+              font-weight: 600;
+            }
+          }
+        }
+        .account_detail.open {
         }
       }
     }
+
     .nav {
       display: flex;
       justify-content: center;

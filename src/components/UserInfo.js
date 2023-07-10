@@ -1,25 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { putProfile } from "../api/userFatch";
 import { useNavigate } from "react-router";
-const UserInfo = ({ profile, setProfile }) => {
-  const [editName, setEditName] = useState("");
-  const [editGoal, setEditGoal] = useState("");
-  const [editImg, setEditImg] = useState("");
-  console.log(profile);
+const UserInfo = ({
+  profile,
+  setProfile,
+  editName,
+  setEditName,
+  editGoal,
+  setEditGoal,
+  editImg,
+  setEditImg,
+}) => {
   const navigate = useNavigate();
 
-  const profileName = profile[1].name;
-  const porifleGoal = profile[1].objective;
-  const profileImg = profile[1].mainPic;
 
-  useEffect(() => {
-    setEditName(profileName);
-    setEditGoal(porifleGoal);
-    setEditImg(profileImg);
-  }, [profileName, porifleGoal, profileImg]);
 
-  console.log(editName);
-  console.log(editGoal);
+
 
   const userNameRef = useRef(null);
   const userGoalRef = useRef(null);
