@@ -120,9 +120,10 @@ return result;
 // 캘린더에 스티커 가져오기
 export const getSticker = async () => {
   try{
-  const res = await axios.get(`api/todo/bymonth?iuser=2&month=`); 
+  const res = await axios.get(`/api/timer?iuser=2`); 
   const result = res.data;
   console.log("getSticker 요청완료");
+  console.log("result");
 return result;
   } catch(err) {
     console.log(err);
@@ -131,3 +132,18 @@ return result;
   }
 };
 
+
+// // 월별 데이터 가져오기
+// export const getMonth = async (month) => {
+//   try {
+//     const res = await axios.get(`/api/todo/bymonth?iuser=2&month=${month}`)
+//     const result = res.data;
+//     console.log("getMonth 요청완료")
+//      console.log("result");
+//     // return result;
+//   } catch (err) {
+//     console.log(err);
+    
+//     return[];
+//   }
+// };

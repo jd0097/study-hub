@@ -4,7 +4,7 @@ import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 
 import { getPlan, getSubjects } from "./api/planFetch";
-import { getSticker, getAllSticker } from "./api/planFetch";
+import { getSticker, getAllSticker, getMonth } from "./api/planFetch";
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -49,6 +49,8 @@ function App() {
   //캘린더
   const [sticker, setSticker] = useState([]);
   const [allSticker, setAllSticker] = useState([]);
+  const [month, setMonth] = useState(null);
+  
 
   // 모달창
   const [Modal, isModal] = useState("");
@@ -113,6 +115,31 @@ const getStickerFetch = async () => {
   }
 };
 
+
+// //월별 데이터
+// const  getMonthFetch = async () => {
+//   try {
+//     const monthData = await getMonth();
+//     setMonth(monthData);
+//   } catch(err) {
+//     console.log(err)
+//   }
+// }
+
+
+const profileName = profile[1]?.name || "";
+  const porifleGoal = profile[1]?.objective || "";
+  const profileImg = profile[1]?.mainPic || "";
+
+  console.log(profile);
+
+  useEffect(() => {
+    setEditName(profileName);
+    setEditGoal(porifleGoal);
+    setEditImg(profileImg);
+  }, [profileName, porifleGoal, profileImg]);
+
+
 useEffect(() => {
   getMomoFetch();
   getProfilesFatch();
@@ -121,7 +148,16 @@ useEffect(() => {
   getCategoryFatch();
   getAllStickerFetch();
   getStickerFetch([]);
+  // getMonthFetch();
+  
 }, []);
+
+// useEffect(() => {
+//   const handleMonthChange = (e) => {
+//     const month =   (e.activeStartDate).split("-");
+//     setMonth(month);
+//   };
+// })
 
   return (
     <div className="wrap">
@@ -137,7 +173,7 @@ useEffect(() => {
         ""
       )}
 
-      <Header  />
+     <Header profile={profile} editImg={editImg} editName={editName} />
       {/* <Intro /> */}
       <div className="container">
         <Routes>
@@ -197,6 +233,7 @@ useEffect(() => {
                 setSticker={setSticker}
                 setPlanData={setPlanData}
                 allSticker={allSticker}
+                // month={handleMonthChange}
               />
             }
           ></Route>

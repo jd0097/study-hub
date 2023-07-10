@@ -74,11 +74,11 @@ const Header = ({ profile, editImg, editName }) => {
                   STUDY-CALENDAR
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/studyplan" exact activeClassName="active">
                   STUDY-PLAN
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to="/note" exact activeClassName="active">
                   MEMO
