@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import Mypages from "../pages/Mypages";
@@ -65,16 +65,24 @@ const Header = ({ profile, editImg, editName }) => {
             <div className="logo"></div>
             <ul className="nav_list">
               <li>
-                <Link to="/main">HOME</Link>
+                <NavLink to="/main" exact activeClassName="active">
+                  MAIN
+                </NavLink>
               </li>
               <li>
-                <Link to="/caledar">STUDY-CALENDAR</Link>
+                <NavLink to="/caledar" exact activeClassName="active">
+                  STUDY-CALENDAR
+                </NavLink>
               </li>
               <li>
-                <Link to="/studyplan">STUDY-PLAN</Link>
+                <NavLink to="/studyplan" exact activeClassName="active">
+                  STUDY-PLAN
+                </NavLink>
               </li>
               <li>
-                <Link to="/note">MEMO</Link>
+                <NavLink to="/note" exact activeClassName="active">
+                  MEMO
+                </NavLink>
               </li>
             </ul>
           </div>
