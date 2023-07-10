@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Input, Space, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
@@ -22,6 +22,18 @@ const StudyPlan = ({
   setSelectedSubject,
 
 }) => {
+  
+ // 타이머 보일지 말지
+ const { selectday } = useParams();
+ const [timerFlag, setTimerFlag] = useState(false);
+ useEffect(() => {
+   if (selectday === moment(Date.now()).format("YYYY-MM-DD")) {
+     setTimerFlag(true);
+   }
+ }, []);
+
+
+
   const navigate = useNavigate();
 
   console.log(category);
@@ -76,7 +88,7 @@ const StudyPlan = ({
             />
           </div>
           {/* 타이머출력 위치 */}
-          <StudyTimer />
+          {timerFlag && <StudyTimer />}
         </div>
         <div className="button_form">
           <Button onClick={handleClick} style={{ borderRadius: "20px" }}>

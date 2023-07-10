@@ -6,11 +6,10 @@ import { Modal, Button } from "antd";
 import { useNavigate } from "react-router";
 
 
-const CalendarPage = ({
-  sticker, 
-  setSticker,
-}) => {
+const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
   const navigator = useNavigate();
+  console.log("카렌더의 전체 스티커 이미지 정보 : ", allSticker);
+  console.log("카렌더의 스티커 정보 : ", sticker);
 
   // 달력 초기 포커스 값
   const [day, setDay] = useState(new Date());
@@ -19,17 +18,17 @@ const CalendarPage = ({
   const [userSelectDay, setUserSelectDay] = useState("");
 
 
-  // // public 폴더를 가르킴(카페참조)
-  // const path = process.env.PUBLIC_URL;
-  // // 화면에 출력될 서버 정보
-  // const 서버정보 = [
-  //   { day: "2023-06-28", level: 0 },
-  //   { day: "2023-06-05", level: 1 },
-  //   { day: "2023-06-25", level: 2 },
-  //   { day: "2023-06-11", level: 3 },
-  //   { day: "2023-06-21", level: 4 },
-  //   { day: "2023-06-15", level: 5 },
-  // ];
+  // public 폴더를 가르킴(카페참조)
+  const path = process.env.PUBLIC_URL;
+  // 화면에 출력될 서버 정보
+  const 서버정보 = [
+    { day: "2023-06-28", level: 0 },
+    { day: "2023-06-05", level: 1 },
+    { day: "2023-06-25", level: 2 },
+    { day: "2023-06-11", level: 3 },
+    { day: "2023-06-21", level: 4 },
+    { day: "2023-06-15", level: 5 },
+  ];
 
 
 
@@ -58,8 +57,8 @@ const CalendarPage = ({
   const showScheduleJSX = ({ date, view }) => {
     // moment 라이브러리는 날짜를 우리가 원하는 형태로 변경한다.
     let tempDay = moment(date).format("YYYY-MM-DD");
-    let obj = serverData.find(item => {
-      if (item.day === tempDay) {
+    let obj = sticker.find(item => {
+      if (moment(item.deadLine).format("YYYY-MM-DD") === tempDay) {
         return item;
       }
     });
@@ -68,9 +67,10 @@ const CalendarPage = ({
       return (
         <div className="user-level">
           <img
-            // src={`${path}/images/calendar-icon-${obj.level}.png`}
+            src={`${path}/images/calendar-icon-${obj.isticker}.png`}
             style={{ width: 50 }}
           />
+           {obj.isticker}
         </div>
       );
     } else {
@@ -78,7 +78,7 @@ const CalendarPage = ({
       return (
         <div className="user-level-default">
           <img
-            // src={`${path}/images/calendar-icon-0.png`}
+             src={`${path}/images/calendar-icon-0.png`}
             style={{ width: 50 }}
           />
         </div>
@@ -91,21 +91,32 @@ const CalendarPage = ({
   const [editData, setEditData] = useState(false);
   const handleClickDay = (value, event) => {
     const selectDay = moment(value).format("YYYY-MM-DD");
+
+    let now = new Date();
+    let nextNow = new Date(selectDay);
+    if (nextNow.getTime() > now.getTime()) {
+      console.log("날짜를 선택해 주세요~.");
+    } else {
+      console.log("오늘 날자에요.");
+
+
+
     // 사용자가 날짜를 클릭하면 보관해 둔다.
     setUserSelectDay(selectDay);
     // 현재 사용자 정보가 있는 경우인지 아닌지 구분
     const userData = event.currentTarget.querySelector(".user-level");
     console.log(userData);
-  //   if (userData) {
-  //     // 수정을 하는 경우
-  //     // setEditData(true);
-  //   } else {
-  //     // 신규로 등록을 하는 경우
-  //     setEditData(false);
-  //   }
-  //   showModal();
-  //   navigator("/studyplan");
-  // };
+    if (userData) {
+      // 수정을 하는 경우
+      // setEditData(true);
+    } else {
+      // 신규로 등록을 하는 경우
+      setEditData(false);
+    }
+    showModal();
+    navigator(`/studyplan/${selectDay}`);
+  }
+};
 
 
 
@@ -114,7 +125,7 @@ const CalendarPage = ({
 
   // 모달창의 아이콘을 클릭했을 때
   const handleClickIcon = _id => {
-    // console.log("서버에 저장할 데이터 날짜 : ", userSelectDay, " 레벨 : ", _id);
+    console.log("서버에 저장할 데이터 날짜 : ", userSelectDay, " 레벨 : ", _id);
     if (editData) {
       // 수정할거에요.
       console.log("수정");
@@ -249,7 +260,7 @@ const CalendarPage = ({
   );
 };
 
-};
+
 
 
 

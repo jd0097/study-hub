@@ -4,7 +4,7 @@ import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 
 import { getPlan, getSubjects } from "./api/planFetch";
-import { getSticker } from "./api/planFetch";
+import { getSticker, getAllSticker } from "./api/planFetch";
 
 import "./scss/layout.scss";
 import Header from "./components/Header";
@@ -48,6 +48,7 @@ function App() {
 
   //캘린더
   const [sticker, setSticker] = useState([]);
+  const [allSticker, setAllSticker] = useState([]);
 
   // 모달창
   const [Modal, isModal] = useState("");
@@ -93,34 +94,34 @@ function App() {
     }
   };
 
-  const getStickerFetch = async () => {
-    try {
-      const stickerJson = await getSticker();
-      setSticker(stickerJson);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+ // 스티커 모두 가져오기
+ const getAllStickerFetch = async () => {
+  try {
+    const allstickerJson = await getAllSticker();
+    setAllSticker(allstickerJson);
+  } catch (err) {
+    console.log(err);
+  }
+};
+// 스티커 가져오기
+const getStickerFetch = async () => {
+  try {
+    const stickerJson = await getSticker();
+    setSticker(stickerJson);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-  const profileName = profile[1]?.name || "";
-  const porifleGoal = profile[1]?.objective || "";
-  const profileImg = profile[1]?.mainPic || "";
+useEffect(() => {
+  getMomoFetch();
+  getProfilesFatch();
+  getPlanFetch();
 
-  console.log(profile);
-
-  useEffect(() => {
-    setEditName(profileName);
-    setEditGoal(porifleGoal);
-    setEditImg(profileImg);
-  }, [profileName, porifleGoal, profileImg]);
-
-  useEffect(() => {
-    getMomoFetch();
-    getProfilesFatch();
-    getPlanFetch();
-    getCategoryFatch();
-    getStickerFetch();
-  }, []);
+  getCategoryFatch();
+  getAllStickerFetch();
+  getStickerFetch([]);
+}, []);
 
   return (
     <div className="wrap">
@@ -136,7 +137,7 @@ function App() {
         ""
       )}
 
-      <Header profile={profile} editImg={editImg} editName={editName} />
+      <Header  />
       {/* <Intro /> */}
       <div className="container">
         <Routes>
@@ -190,10 +191,17 @@ function App() {
           ></Route>
           <Route
             path="/caledar"
-            element={<CalendarPage sticker={sticker} setSticker={setSticker} />}
+            element={
+              <CalendarPage
+                sticker={sticker}
+                setSticker={setSticker}
+                setPlanData={setPlanData}
+                allSticker={allSticker}
+              />
+            }
           ></Route>
           <Route
-            path="/studyplan"
+            path="/studyplan/:selectday"
             element={
               <StudyPlan
                 planData={planData}
