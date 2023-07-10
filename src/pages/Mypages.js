@@ -3,10 +3,18 @@ import UserName from "../components/UserName";
 import UserObj from "../components/UserObj";
 import UserInfo from "../components/UserInfo";
 
-const Mypages = ({ profile, setProfile }) => {
+const Mypages = ({
+  profile,
+  setProfile,
+  editName,
+  setEditName,
+  editImg,
+  setEditImg,
+  editGoal,
+  setEditGoal,
+}) => {
   const path = process.env.PUBLIC_URL;
-  const [editName, setEditName] = useState("");
-  const [editGoal, setEditGoal] = useState("");
+
   return (
     <div className="mypage_wrap">
       <div className="title">
@@ -14,7 +22,16 @@ const Mypages = ({ profile, setProfile }) => {
       </div>
       <div className="mypage_inner">
         {profile ? (
-          <UserInfo profile={profile} setProfile={setProfile} />
+          <UserInfo
+            profile={profile}
+            setProfile={setProfile}
+            editName={editName}
+            setEditName={setEditName}
+            editGoal={editGoal}
+            setEditGoal={setEditGoal}
+            editImg={editImg}
+            setEditImg={setEditImg}
+          />
         ) : (
           "프로필데이터가 없습니다. 근데 없을리가 없을것."
         )}
