@@ -78,12 +78,14 @@ const StudyPlan = ({
         <div className="timer_date">
           <div className="today">
             {/* 날자 데이터가 들어갑니다. */}
-            <Input
+            <Input 
               value={today}
               style={{
                 textAlign: "center",
                 borderStyle: "unset",
                 borderRadius: "unset",
+                // width:'120px',
+           
               }}
             />
           </div>
@@ -91,7 +93,7 @@ const StudyPlan = ({
           {timerFlag && <StudyTimer />}
         </div>
         <div className="button_form">
-          <Button onClick={handleClick} style={{ borderRadius: "20px" }}>
+          <Button onClick={handleClick} style={{ borderRadius: "20px" , background:"#fff"}}>
             작성하기
           </Button>
         </div>
@@ -121,7 +123,7 @@ const StudyPlan = ({
                     <div className="list_func">
                       <Button
                         onClick={() => handleSubmit(item.itodo, item.icategory)}
-                        style={{ borderRadius: "25px" }}
+                        style={{ borderRadius: "25px", background:"#fff" }}
                       >
                         수정
                       </Button>
@@ -129,7 +131,7 @@ const StudyPlan = ({
                         onClick={() =>
                           handleDeleteClick(item.itodo, item.iuser, item.delYn)
                         }
-                        style={{ borderRadius: "20px" }}
+                        style={{ borderRadius: "20px", background:"#fff" }}
                       >
                         삭제
                       </Button>

@@ -43,12 +43,13 @@
         height: 50px;
         span {
           display: flex;
-          justify-content: flex-start;
+          justify-content: center; /* 텍스트를 수평으로 중앙 정렬 */
           align-items: center;
           padding-left: 2%;
           border-radius: 100px;
           font-size: 18px;
-          color: #fff;
+          color: #000;
+        
         }
         .study_list_title {
           width: 20%;
