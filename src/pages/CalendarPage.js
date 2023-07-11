@@ -8,8 +8,7 @@ import { useNavigate } from "react-router";
 
 const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
   const navigator = useNavigate();
-  console.log("카렌더의 전체 스티커 이미지 정보 : ", allSticker);
-  console.log("카렌더의 스티커 정보 : ", sticker);
+
 
   // 달력 초기 포커스 값
   const [day, setDay] = useState(new Date());
@@ -64,12 +63,12 @@ const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
     });
     if (obj) {
       // 아이템을 찾은 경우 jsx 생성하여 Return 출력  
+      const tempImg = allSticker[obj.level].pic;
       return (
         <div className="user-level">
-          <img
-            src={`${path}/images/calendar-icon-${obj.isticker}.png`}
-            style={{ width: 50 }}
-          />
+          <img src={`/img/${tempImg}`} style={{ width: 50 }} />
+
+
            {obj.isticker}
         </div>
       );
@@ -97,23 +96,23 @@ const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
     if (nextNow.getTime() > now.getTime()) {
       console.log("날짜를 선택해 주세요~.");
     } else {
-      console.log("오늘 날자에요.");
+      // console.log("오늘 날자에요.");
 
 
 
-    // 사용자가 날짜를 클릭하면 보관해 둔다.
+    // // 사용자가 날짜를 클릭하면 보관해 둔다.
     setUserSelectDay(selectDay);
-    // 현재 사용자 정보가 있는 경우인지 아닌지 구분
-    const userData = event.currentTarget.querySelector(".user-level");
-    console.log(userData);
-    if (userData) {
-      // 수정을 하는 경우
-      // setEditData(true);
-    } else {
-      // 신규로 등록을 하는 경우
-      setEditData(false);
-    }
-    showModal();
+    // // 현재 사용자 정보가 있는 경우인지 아닌지 구분
+    // const userData = event.currentTarget.querySelector(".user-level");
+    // console.log(userData);
+    // if (userData) {
+    //   // 수정을 하는 경우
+    //   // setEditData(true);
+    // } else {
+    //   // 신규로 등록을 하는 경우
+    //   setEditData(false);
+    // }
+    // showModal();
     navigator(`/studyplan/${selectDay}`);
   }
 };

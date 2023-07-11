@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 
-import { getPlan, getSubjects } from "./api/planFetch";
+
+import { getPlan, getPlanData, getSubjects } from "./api/planFetch";
 import { getSticker, getAllSticker, getMonth } from "./api/planFetch";
 
 import "./scss/layout.scss";
@@ -100,17 +101,12 @@ function App() {
     }
   };
 
-  // 플랜데이터 가져오기
-  const getPlanFetch = async () => {
-    try {
-      const planJson = await getPlan();
-      setPlanData(planJson);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
 
+
+
+
+ 
  // 스티커 모두 가져오기
  const getAllStickerFetch = async () => {
   try {
@@ -123,7 +119,7 @@ function App() {
 // 스티커 가져오기
 const getStickerFetch = async () => {
   try {
-    const stickerJson = await getSticker();
+    const stickerJson = await getSticker(7);
     setSticker(stickerJson);
   } catch (err) {
     console.log(err);
@@ -142,9 +138,9 @@ const getStickerFetch = async () => {
 // }
 
 
-const profileName = profile[1]?.name || "";
-  const porifleGoal = profile[1]?.objective || "";
-  const profileImg = profile[1]?.mainPic || "";
+// const profileName = profile[1]?.name || "";
+//   const porifleGoal = profile[1]?.objective || "";
+//   const profileImg = profile[1]?.mainPic || "";
 
   console.log(profile);
 
@@ -158,7 +154,7 @@ const profileName = profile[1]?.name || "";
 useEffect(() => {
   getMomoFetch();
   getProfilesFatch();
-  getPlanFetch();
+
 
   getCategoryFatch();
   getAllStickerFetch();

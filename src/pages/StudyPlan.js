@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Input, Space, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
-import { deletePlan } from "../api/planFetch";
+import { deletePlan, getPlanData } from "../api/planFetch";
 
 const StudyPlan = ({
   planData,
@@ -36,8 +36,8 @@ const StudyPlan = ({
 
   const navigate = useNavigate();
 
-  console.log(category);
-  console.log(selectedSubject);
+  // console.log(category);
+  // console.log(selectedSubject);
 
   //새 작성
   const handleClick = () => {
@@ -68,9 +68,35 @@ const StudyPlan = ({
   //   }
   // };
 
-  // 오늘 날짜
-  const today = moment().format("MM월 DD일");
 
+
+
+
+
+ // 오늘 날짜
+ const today = moment(selectday).format("MM월 DD일");
+
+ // 플랜데이터 가져오기
+ const getPlanFetch = async () => {
+   try {
+     const daysArr = selectday.split("-");
+     console.log(daysArr);
+     const planJson = await getPlanData(
+       parseInt(daysArr[1]),
+       parseInt(daysArr[0]),
+       parseInt(daysArr[2]),
+     );
+     setPlanData(planJson);
+   } catch (error) {
+     console.log(error);
+   }
+ };
+ useEffect(() => {
+   getPlanFetch();
+ }, []);
+
+
+ 
   return (
     <div className="study_plan_warp">
       <h1 className="title">STUDY-PLAN</h1>
