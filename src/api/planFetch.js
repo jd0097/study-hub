@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 // 타이머 기능
 // 분 추가 기능 ===================================
 
@@ -16,25 +15,26 @@ export const postSeconds = async _data => {
   }
 };
 
-// //플랜 가져오기
-// export const getPlan = async () => {
-//   try {
-//     const res = await axios.get("/api/todo/allboard");
-//     const result = res.data;
-//     console.log("getPlan 요청완료");
-//     return result;
-//   } catch (err) {
-//     console.log(err);
-    
-//     return [];
-//   }
-// };
-
-<<<<<<< HEAD
-//년, 월, 일 스터디 플랜 가져오기
-export const getPlanData =  async (_month, _year, _day) => {
+//플랜 가져오기
+export const getPlan = async () => {
   try {
-    const res = await axios.get(`/api/todo/bymonth?iuser=2&month=${_month}&year=${_year}&day=${_day}`)
+    const res = await axios.get("/api/todo/allboard");
+    const result = res.data;
+    console.log("getPlan 요청완료");
+    return result;
+  } catch (err) {
+    console.log(err);
+
+    return [];
+  }
+};
+
+//년, 월, 일 스터디 플랜 가져오기
+export const getPlanData = async (_month, _year, _day) => {
+  try {
+    const res = await axios.get(
+      `/api/todo/bymonth?iuser=2&month=${_month}&year=${_year}&day=${_day}`,
+    );
     const result = res.data;
     // console.log("getPlan 요청완료");
     return result;
@@ -43,22 +43,16 @@ export const getPlanData =  async (_month, _year, _day) => {
 
     return [];
   }
- };
- 
+};
 
-
-//   
-=======
->>>>>>> parent of 86b3fc8 (feat : CSS수정)
+//
 // 카테고리 가져오기
 export const getSubjects = async () => {
   try {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
 
-    console.log("getCategory 요청완료");
-
-
+    // console.log("getCategory 요청완료");
 
     return result;
   } catch (err) {
@@ -74,7 +68,6 @@ export const postWrite = async newPlan => {
   try {
     const res = await axios.post("/api/todo", newPlan);
     const result = await res.data;
-    console.log(result);
   } catch (err) {
     console.log(err);
   }
@@ -105,16 +98,7 @@ export const putPlan = async (
 // 플랜 삭제기능
 export const deletePlan = async itodo => {
   try {
-    const res = await axios.delete(
-      `/api/todo?itodo=${itodo}`,
-      // , {
-      //   data: {
-      //     itodo: _itodo,
-      //     delYn: 1,
-      //   },
-      //   headers: { "Content-Type": "application/json" },
-      // }
-    );
+    const res = await axios.delete(`/api/todo?itodo=${itodo}`);
     const result = res.data;
 
     console.log(result);
@@ -124,64 +108,29 @@ export const deletePlan = async itodo => {
   }
 };
 
-
 //스티커 모두 가져오기
 export const getAllSticker = async () => {
   try {
-  const res = await axios.get("/api/sticker");
-  const result = res.data;
-<<<<<<< HEAD
-  // console.log("getAllSticker 요청완료");
-=======
-  console.log("getAllSticker 요청완료");
-  console.log(result);
->>>>>>> parent of 86b3fc8 (feat : CSS수정)
-return result;
-  } catch(err) {
+    const res = await axios.get("/api/sticker");
+    const result = res.data;
+    // console.log("getAllSticker 요청완료");
+    return result;
+  } catch (err) {
     console.log(err);
-    return[];
+    return [];
   }
 };
 
 // 캘린더에 스티커 가져오기
-<<<<<<< HEAD
 export const getSticker = async _month => {
-  try{
-  const res = await axios.get(`/api/timer?iuser=2&month=${_month}`); 
-  const result = res.data;
-  // console.log("getSticker 요청완료");
-=======
-export const getSticker = async () => {
-  try{
-  const res = await axios.get(`/api/timer?iuser=2`); 
-  const result = res.data;
-  console.log("getSticker 요청완료");
-  console.log("result");
->>>>>>> parent of 86b3fc8 (feat : CSS수정)
-return result;
-  } catch(err) {
+  try {
+    const res = await axios.get(`/api/timer?iuser=2&month=${_month}`);
+    const result = res.data;
+    // console.log("getSticker 요청완료");
+    return result;
+  } catch (err) {
     console.log(err);
 
-    return[];
+    return [];
   }
 };
-
-
-<<<<<<< HEAD
-
-=======
-// // 월별 데이터 가져오기
-// export const getMonth = async (month) => {
-//   try {
-//     const res = await axios.get(`/api/todo/bymonth?iuser=2&month=${month}`)
-//     const result = res.data;
-//     console.log("getMonth 요청완료")
-//      console.log("result");
-//     // return result;
-//   } catch (err) {
-//     console.log(err);
-    
-//     return[];
-//   }
-// };
->>>>>>> parent of 86b3fc8 (feat : CSS수정)

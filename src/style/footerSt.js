@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+// import FLogo from "../../public/source/FLogo.png";
 
 export const FooterStyle = styled.div`
   width: 100%;
@@ -51,8 +52,10 @@ export const FooterStyle = styled.div`
       .footer_logo {
         width: 50%;
         height: 100%;
-        background: skyblue;
-        background-image: url(../../public/source/Logo.png);
+        background-image: url("/source/FLogo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
       }
     }
   }

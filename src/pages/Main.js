@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-const Main = ({ memoData }) => {
+const Main = ({ memoData, editImg, editName }) => {
   const navigate = useNavigate();
   return (
     <div className="home_wrap">
       <h1 className="title">HOME</h1>
       <div className="main_intro">
-        <div className=" logo">로고</div>
+        <div className="user_info">
+          <img
+            src={"http://192.168.0.144:5008/img/" + editImg}
+            alt="이미지"
+          ></img>
+          <span className="user_name">
+            {editName}님<br />
+            안녕하세요
+          </span>
+        </div>
         <h2>STUDY HUB에 오신걸 환영합니다.</h2>
       </div>
 
