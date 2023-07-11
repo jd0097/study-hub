@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 // 타이머 기능
 // 분 추가 기능 ===================================
 
@@ -15,27 +16,44 @@ export const postSeconds = async _data => {
   }
 };
 
-//플랜 가져오기
-export const getPlan = async () => {
+// //플랜 가져오기
+// export const getPlan = async () => {
+//   try {
+//     const res = await axios.get("/api/todo/allboard");
+//     const result = res.data;
+//     console.log("getPlan 요청완료");
+//     return result;
+//   } catch (err) {
+//     console.log(err);
+    
+//     return [];
+//   }
+// };
+
+//년, 월, 일 스터디 플랜 가져오기
+export const getPlanData =  async (_month, _year, _day) => {
   try {
-    const res = await axios.get("/api/todo/allboard");
+    const res = await axios.get(`/api/todo/bymonth?iuser=2&month=${_month}&year=${_year}&day=${_day}`)
     const result = res.data;
-    console.log("getPlan 요청완료");
+    // console.log("getPlan 요청완료");
     return result;
   } catch (err) {
     console.log(err);
 
     return [];
   }
-};
+ };
+ 
 
+
+//   
 // 카테고리 가져오기
 export const getSubjects = async () => {
   try {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
 
-    console.log("getCategory 요청완료");
+    // console.log("getCategory 요청완료");
 
 
     return result;
@@ -108,8 +126,7 @@ export const getAllSticker = async () => {
   try {
   const res = await axios.get("/api/sticker");
   const result = res.data;
-  console.log("getAllSticker 요청완료");
-  console.log(result);
+  // console.log("getAllSticker 요청완료");
 return result;
   } catch(err) {
     console.log(err);
@@ -118,12 +135,11 @@ return result;
 };
 
 // 캘린더에 스티커 가져오기
-export const getSticker = async () => {
+export const getSticker = async _month => {
   try{
-  const res = await axios.get(`/api/timer?iuser=2`); 
+  const res = await axios.get(`/api/timer?iuser=2&month=${_month}`); 
   const result = res.data;
-  console.log("getSticker 요청완료");
-  console.log("result");
+  // console.log("getSticker 요청완료");
 return result;
   } catch(err) {
     console.log(err);
@@ -133,17 +149,4 @@ return result;
 };
 
 
-// // 월별 데이터 가져오기
-// export const getMonth = async (month) => {
-//   try {
-//     const res = await axios.get(`/api/todo/bymonth?iuser=2&month=${month}`)
-//     const result = res.data;
-//     console.log("getMonth 요청완료")
-//      console.log("result");
-//     // return result;
-//   } catch (err) {
-//     console.log(err);
-    
-//     return[];
-//   }
-// };
+

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
 
-import { getPlan, getSubjects } from "./api/planFetch";
+
+import { getPlan, getPlanData, getSubjects } from "./api/planFetch";
 import { getSticker, getAllSticker, getMonth } from "./api/planFetch";
 
 import "./scss/layout.scss";
@@ -102,34 +103,48 @@ function App() {
     }
   };
 
-  // 플랜데이터 가져오기
-  const getPlanFetch = async () => {
-    try {
-      const planJson = await getPlan();
-      setPlanData(planJson);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  // 스티커 모두 가져오기
-  const getAllStickerFetch = async () => {
-    try {
-      const allstickerJson = await getAllSticker();
-      setAllSticker(allstickerJson);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // 스티커 가져오기
-  const getStickerFetch = async () => {
-    try {
-      const stickerJson = await getSticker();
-      setSticker(stickerJson);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
+
+
+
+
+ 
+ // 스티커 모두 가져오기
+ const getAllStickerFetch = async () => {
+  try {
+    const allstickerJson = await getAllSticker();
+    setAllSticker(allstickerJson);
+  } catch (err) {
+    console.log(err);
+  }
+};
+// 스티커 가져오기
+const getStickerFetch = async () => {
+  try {
+    const stickerJson = await getSticker(7);
+    setSticker(stickerJson);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+// //월별 데이터
+// const  getMonthFetch = async () => {
+//   try {
+//     const monthData = await getMonth();
+//     setMonth(monthData);
+//   } catch(err) {
+//     console.log(err)
+//   }
+// }
+
+
+// const profileName = profile[1]?.name || "";
+//   const porifleGoal = profile[1]?.objective || "";
+//   const profileImg = profile[1]?.mainPic || "";
+
 
   console.log(profile);
 
@@ -139,23 +154,27 @@ function App() {
     setEditImg(profileImg);
   }, [profileName, porifleGoal, profileImg]);
 
-  useEffect(() => {
-    getMomoFetch();
-    getProfilesFatch();
-    getPlanFetch();
 
-    getCategoryFatch();
-    getAllStickerFetch();
-    getStickerFetch([]);
-    // getMonthFetch();
-  }, []);
+useEffect(() => {
+  getMomoFetch();
+  getProfilesFatch();
 
-  // useEffect(() => {
-  //   const handleMonthChange = (e) => {
-  //     const month =   (e.activeStartDate).split("-");
-  //     setMonth(month);
-  //   };
-  // })
+
+  getCategoryFatch();
+  getAllStickerFetch();
+  getStickerFetch([]);
+  // getMonthFetch();
+  
+}, []);
+
+
+// useEffect(() => {
+//   const handleMonthChange = (e) => {
+//     const month =   (e.activeStartDate).split("-");
+//     setMonth(month);
+//   };
+// })
+
 
   return (
     <div className="wrap">
