@@ -94,6 +94,7 @@ const StudyWrite = ({
                 checked={selectedSubject === index}
                 onChange={handleChange}
                 className="cate_input"
+                
               />
               {item.title}
             </label>

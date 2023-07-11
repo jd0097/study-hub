@@ -127,6 +127,10 @@ const StudyTimer = () => {
               textAlign: "center",
               borderRadius: "unset",
               borderStyle: "unset",
+              width:'200px',
+              height:'50px',
+              fontSize: '30px',
+              
             }}
           />
         </div>

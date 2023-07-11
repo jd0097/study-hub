@@ -189,8 +189,8 @@ const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
 
 
   return (
-    <div className="p-6 mt-5 shadow rounded bg-white">
-      <div>
+    <div className="p-6 mt-5 shadow rounded bg-white" >
+      <div className="calendar_inner">
         <Calendar
           onClickDay={(value, event) => handleClickDay(value, event)}
           onChange={setDay}
