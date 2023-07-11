@@ -30,6 +30,7 @@ export const postSeconds = async _data => {
 //   }
 // };
 
+<<<<<<< HEAD
 //년, 월, 일 스터디 플랜 가져오기
 export const getPlanData =  async (_month, _year, _day) => {
   try {
@@ -47,13 +48,16 @@ export const getPlanData =  async (_month, _year, _day) => {
 
 
 //   
+=======
+>>>>>>> parent of 86b3fc8 (feat : CSS수정)
 // 카테고리 가져오기
 export const getSubjects = async () => {
   try {
     const res = await axios.get("/api/category/allcategory");
     const result = res.data;
 
-    // console.log("getCategory 요청완료");
+    console.log("getCategory 요청완료");
+
 
 
     return result;
@@ -126,7 +130,12 @@ export const getAllSticker = async () => {
   try {
   const res = await axios.get("/api/sticker");
   const result = res.data;
+<<<<<<< HEAD
   // console.log("getAllSticker 요청완료");
+=======
+  console.log("getAllSticker 요청완료");
+  console.log(result);
+>>>>>>> parent of 86b3fc8 (feat : CSS수정)
 return result;
   } catch(err) {
     console.log(err);
@@ -135,11 +144,20 @@ return result;
 };
 
 // 캘린더에 스티커 가져오기
+<<<<<<< HEAD
 export const getSticker = async _month => {
   try{
   const res = await axios.get(`/api/timer?iuser=2&month=${_month}`); 
   const result = res.data;
   // console.log("getSticker 요청완료");
+=======
+export const getSticker = async () => {
+  try{
+  const res = await axios.get(`/api/timer?iuser=2`); 
+  const result = res.data;
+  console.log("getSticker 요청완료");
+  console.log("result");
+>>>>>>> parent of 86b3fc8 (feat : CSS수정)
 return result;
   } catch(err) {
     console.log(err);
@@ -149,4 +167,21 @@ return result;
 };
 
 
+<<<<<<< HEAD
 
+=======
+// // 월별 데이터 가져오기
+// export const getMonth = async (month) => {
+//   try {
+//     const res = await axios.get(`/api/todo/bymonth?iuser=2&month=${month}`)
+//     const result = res.data;
+//     console.log("getMonth 요청완료")
+//      console.log("result");
+//     // return result;
+//   } catch (err) {
+//     console.log(err);
+    
+//     return[];
+//   }
+// };
+>>>>>>> parent of 86b3fc8 (feat : CSS수정)
