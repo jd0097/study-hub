@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
-import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 
 const Main = ({ memoData }) => {
   const navigate = useNavigate();
@@ -31,7 +27,12 @@ const Main = ({ memoData }) => {
       {/* <ul className="recently_list">
             <span>작성된 메모가 없습니다.</span>
           </ul> */}
-
+      <div className="do_plan">
+        <div>
+          <span>오늘의 스터디 플랜을 시작해보세요!</span>
+          <button className="do_plan_btn">오늘의 플랜 작성하기</button>
+        </div>
+      </div>
       <div className="recently">
         <h3>최근 작성된 메모</h3>
         {memoData.length > 0 ? (

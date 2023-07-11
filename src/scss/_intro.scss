@@ -19,8 +19,9 @@
     transform: translate(-50%, -50%);
     width: 800px;
     height: 600px;
-    background: #d9d9d9;
-    border-radius: 15px;
+    background: #fff;
+    border: 15px solid #f3f6fc;
+    border-radius: 30px;
     padding: 30px;
     .intro_box {
       display: flex;
@@ -30,7 +31,22 @@
       .intro_logo {
         width: 100%;
         height: 125px;
-        background: skyblue;
+        background-image: url(../../public/source/Logo.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .intro_text {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        width: 100%;
+        height: 50px;
+        font-size: 25px;
+        font-weight: bold;
       }
       h1 {
         text-align: center;

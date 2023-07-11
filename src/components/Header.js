@@ -19,6 +19,33 @@ const Header = ({ profile, editImg, editName }) => {
   return (
     <header className="header">
       <div className="inner">
+        <div className="nav">
+          <div className="nav_inner">
+            <div className="logo"></div>
+            <ul className="nav_list">
+              <li>
+                <NavLink to="/main" exact activeClassName="active">
+                  MAIN
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/caledar" exact activeClassName="active">
+                  STUDY-CALENDAR
+                </NavLink>
+              </li>
+              {/* <li>
+                <NavLink to="/studyplan" exact activeClassName="active">
+                  STUDY-PLAN
+                </NavLink>
+              </li> */}
+              <li>
+                <NavLink to="/note" exact activeClassName="active">
+                  MEMO
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div className="account">
           <ul className="account_list">
             <div className="account_img_box" onClick={showDeatil}>
@@ -60,6 +87,8 @@ const Header = ({ profile, editImg, editName }) => {
             </div>
           </ul>
         </div>
+
+
         <div className="nav">
           <div className="nav_inner">
             <div className="logo"></div>
@@ -87,6 +116,7 @@ const Header = ({ profile, editImg, editName }) => {
             </ul>
           </div>
         </div>
+
       </div>
     </header>
   );

@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteMemo, deleteAllTodo } from "../api/memoFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashAlt,
+  faPenToSquare,
+  faEraser,
+  faDeleteLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Note = ({
   Modal,
@@ -35,10 +42,10 @@ const Note = ({
 
   // 일부 삭제 기능
   const handleDeleteClick = _imemo => {
-  console.log(_imemo);
-  const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
-  setMemoData(deleteMemoData);
-  deleteMemo(_imemo);
+    console.log(_imemo);
+    const deleteMemoData = memoData.filter(item => item.imemo !== _imemo);
+    setMemoData(deleteMemoData);
+    deleteMemo(_imemo);
   };
 
   // 데이터 수정
@@ -60,8 +67,20 @@ const Note = ({
       </div>
       <div className="note_wrap_inner">
         <div className="button_form">
-          <button onClick={handleRemoveClick}>전체삭제</button>
-          <button onClick={handleClick}>작성하기</button>
+          {memoData.length ? (
+            <>
+              <button onClick={handleRemoveClick}>
+                전체삭제
+                <FontAwesomeIcon icon={faEraser} />
+              </button>
+              <button onClick={handleClick}>
+                작성하기
+                <FontAwesomeIcon icon={faPenToSquare} />
+              </button>
+            </>
+          ) : (
+            ""
+          )}
         </div>
         {memoData.length ? (
           <ul className="note_list">
@@ -77,6 +96,7 @@ const Note = ({
                     <div className="list_func">
                       <button onClick={() => handlesome(item.imemo)}>
                         수정
+                        <FontAwesomeIcon icon={faEraser} />
                       </button>
 
                       <button
@@ -85,6 +105,7 @@ const Note = ({
                         }
                       >
                         삭제
+                        <FontAwesomeIcon icon={faDeleteLeft} />
                       </button>
                     </div>
                   </span>

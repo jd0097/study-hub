@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMemo } from "./api/memoFetch";
 import { getProfiles } from "./api/userFatch";
@@ -56,6 +56,20 @@ function App() {
   const [Modal, isModal] = useState("");
   // const [imgModal, isImgModal] = useState("");
 
+  const profileName = profile[1]?.name || "";
+  const porifleGoal = profile[1]?.objective || "";
+  const profileImg = profile[1]?.mainPic || "";
+
+  const location = useLocation();
+
+  console.log(profile);
+
+  useEffect(() => {
+    setEditName(profileName);
+    setEditGoal(porifleGoal);
+    setEditImg(profileImg);
+  }, [profileName, porifleGoal, profileImg]);
+
   // 카테고리 데이터 가져오기
   const getCategoryFatch = async () => {
     try {
@@ -95,6 +109,7 @@ function App() {
       console.log(error);
     }
   };
+
 
  // 스티커 모두 가져오기
  const getAllStickerFetch = async () => {
@@ -152,6 +167,7 @@ useEffect(() => {
   
 }, []);
 
+
 // useEffect(() => {
 //   const handleMonthChange = (e) => {
 //     const month =   (e.activeStartDate).split("-");
@@ -173,9 +189,13 @@ useEffect(() => {
         ""
       )}
 
-     <Header profile={profile} editImg={editImg} editName={editName} />
+
+      <Header profile={profile} editImg={editImg} editName={editName} />
+
+    
+
       {/* <Intro /> */}
-      <div className="container">
+      <div className="container fade-in">
         <Routes>
           <Route path="/main" element={<Main memoData={memoData} />}></Route>
           <Route
