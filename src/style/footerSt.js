@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const FooterStyle = styled.div`
   width: 100%;
   height: 200px;
-  background: #212121;
+  background: rgb(204, 226, 250);
   padding: 30px 0px;
   .footer_inner {
     display: flex;
@@ -12,7 +12,7 @@ export const FooterStyle = styled.div`
     max-width: 1400px;
     width: 100%;
     height: 100%;
-    color: #c3c3c3;
+    color: #191919;
     font-size: 12px;
     .footer_left {
       width: 50%;

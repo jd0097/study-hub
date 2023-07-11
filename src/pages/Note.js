@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteMemo, deleteAllTodo } from "../api/memoFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashAlt,
+  faPenToSquare,
+  faEraser,
+  faDeleteLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Note = ({
   Modal,
@@ -62,8 +69,14 @@ const Note = ({
         <div className="button_form">
           {memoData.length ? (
             <>
-              <button onClick={handleRemoveClick}>전체삭제</button>
-              <button onClick={handleClick}>작성하기</button>
+              <button onClick={handleRemoveClick}>
+                전체삭제
+                <FontAwesomeIcon icon={faEraser} />
+              </button>
+              <button onClick={handleClick}>
+                작성하기
+                <FontAwesomeIcon icon={faPenToSquare} />
+              </button>
             </>
           ) : (
             ""
@@ -83,6 +96,7 @@ const Note = ({
                     <div className="list_func">
                       <button onClick={() => handlesome(item.imemo)}>
                         수정
+                        <FontAwesomeIcon icon={faEraser} />
                       </button>
 
                       <button
@@ -91,6 +105,7 @@ const Note = ({
                         }
                       >
                         삭제
+                        <FontAwesomeIcon icon={faDeleteLeft} />
                       </button>
                     </div>
                   </span>

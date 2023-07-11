@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
-import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 
 const Main = ({ memoData }) => {
   const navigate = useNavigate();
