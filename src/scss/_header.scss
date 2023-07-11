@@ -8,7 +8,10 @@
     width: 100%;
     max-width: 1400px;
     height: 100%;
-    
+
+
+    .account {
+
       position: relative;
       display: flex;
       justify-content: center;
@@ -33,7 +36,7 @@
           margin-right: 10px;
           width: 8px;
           height: 100%;
-          color: #040404;
+          color: #ffffff;
         }
         .account_img {
           position: relative;
@@ -165,7 +168,7 @@
               // border-top-right-radius: 10px;
             }
             a:hover {
-              background: rgba(220, 220, 220, 0.3);
+              background: rgba(147, 147, 147, 0.3);
             }
             .active {
               margin-top: 10px;

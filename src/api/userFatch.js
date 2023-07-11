@@ -5,7 +5,7 @@ import axios from "axios";
 // 프로필 데이터 불러오기 기능
 const getProfiles = async () => {
   try {
-    const res = await axios.get("/api/user/allList");
+    const res = await axios.get("/api/user/alllist");
     const result = res.data;
     console.log("getProfile 요청완료");
     return result;
@@ -16,11 +16,12 @@ const getProfiles = async () => {
   }
 };
 
-const putProfile = async (editName, editGoal) => {
+const putProfile = async (editName, editGoal, editEmail) => {
   try {
     const res = await axios.put("/api/user/profile/2", {
-      name:editName,
-      objective:editGoal
+      name: editName,
+      objective: editGoal,
+      email: editEmail,
     });
     const result = res.data;
     console.log("put완료?");

@@ -12,6 +12,8 @@ const Mypages = ({
   setEditImg,
   editGoal,
   setEditGoal,
+  editEmail,
+  setEditEmail,
 }) => {
   const path = process.env.PUBLIC_URL;
 
@@ -31,6 +33,8 @@ const Mypages = ({
             setEditGoal={setEditGoal}
             editImg={editImg}
             setEditImg={setEditImg}
+            editEmail={editEmail}
+            setEditEmail={setEditEmail}
           />
         ) : (
           "프로필데이터가 없습니다. 근데 없을리가 없을것."

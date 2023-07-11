@@ -38,6 +38,7 @@ export const FooterStyle = styled.div`
     }
     .footer_right {
       display: flex;
+      justify-content: space-between;
       width: 50%;
       height: 100%;
       .privacy {
@@ -46,6 +47,12 @@ export const FooterStyle = styled.div`
         gap: 5px;
         width: auto;
         height: auto;
+      }
+      .footer_logo {
+        width: 50%;
+        height: 100%;
+        background: skyblue;
+        background-image: url(../../public/source/Logo.png);
       }
     }
   }

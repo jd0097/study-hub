@@ -11,13 +11,9 @@ const Footer = () => {
               <span>상호:(주)스터디허브</span>
             </li>
             <li>
-              <span>사업자등록번호: 000-000-00000</span>
-              <span>통신판매업신고: 제0000-대구중구-000호</span>
-            </li>
-            <li>
               <span>연락처:12-3456-789</span>
-              <span>팩스:000-0000-0000</span>
-              <span>go@go.net</span>
+              <span>팩스:012-3456-789</span>
+              <span>https://github.com/jd0097/study-hub/pull/39</span>
             </li>
             <li>
               <span>주소:대구중구어쩌고쩌저고 그린컴퓨터아카데미 5F</span>
@@ -30,6 +26,9 @@ const Footer = () => {
             <li>이용약관</li>
             <li>개인정보처리방침</li>
           </ul>
+          <div className="footer_logo">
+            
+          </div>
         </div>
       </div>
     </FooterStyle>

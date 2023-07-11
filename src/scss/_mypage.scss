@@ -1,5 +1,5 @@
 .mypage_wrap {
-  height: 400px;
+  height: 600px;
   .mypage_inner {
     position: relative;
     width: 100%;
@@ -12,7 +12,7 @@
     .user_info {
       margin-top: 30px;
       width: 100%;
-      height: auto;
+      height: 500px;
       .user_profile_form {
         display: flex;
         flex-direction: row;
@@ -21,7 +21,6 @@
         margin: 0 auto;
         width: 45%;
         height: 100%;
-        overflow: hidden;
         p {
           font-size: 17px;
         }
@@ -136,6 +135,7 @@
           }
         }
         .input_user_goal {
+          margin-bottom: 30px;
           display: none;
           position: relative;
           width: 300px;
@@ -168,9 +168,44 @@
             background-position: center;
           }
         }
+        .user_email_box {
+          position: relative;
+          width: 300px;
+          height: 40px;
+          border-bottom: 1px solid black;
+          span {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding-left: 10px;
+            font-size: 17px;
+          }
+        }
+
+        .input_user_email {
+          margin-bottom: 15px;
+          display: none;
+          position: relative;
+          width: 300px;
+          height: 40px;
+          background: rgb(255, 243, 176);
+          border-radius: 10px;
+          box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3) inset;
+          .input_email {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background: none;
+          }
+        }
         .edit_profile {
           position: relative;
-          margin-top: 30px;
+          margin-top: 50px;
           width: 240px;
           height: 50px;
           border-radius: 10px;
@@ -205,7 +240,7 @@
         .set_profile {
           display: none;
           position: relative;
-          margin-top: 30px;
+          margin-top: 100px;
           width: 240px;
           height: 50px;
           border-radius: 10px;
