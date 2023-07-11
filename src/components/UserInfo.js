@@ -10,13 +10,17 @@ const UserInfo = ({
   setEditGoal,
   editImg,
   setEditImg,
+  editEmail,
+  setEditEmail,
 }) => {
   const navigate = useNavigate();
 
   const userNameRef = useRef(null);
   const userGoalRef = useRef(null);
+  const userEmailRef = useRef(null);
   const userInputNameRef = useRef(null);
   const userInputGoalRef = useRef(null);
+  const userInputEmailRef = useRef(null);
   const profileChangeBtn = useRef(null);
   const profileSubmitBtn = useRef(null);
 
@@ -26,6 +30,8 @@ const UserInfo = ({
     userInputNameRef.current.style.display = "block";
     userGoalRef.current.style.display = "none";
     userInputGoalRef.current.style.display = "block";
+    userEmailRef.current.style.display = "none";
+    userInputEmailRef.current.style.display = "block";
     profileChangeBtn.current.style.display = "none";
     profileSubmitBtn.current.style.display = "block";
   };
@@ -37,17 +43,21 @@ const UserInfo = ({
       if (item.iuser === 2) {
         item.name = editName;
         item.objective = editGoal;
+        item.email = editEmail;
       }
       return item;
     });
     setProfile(newProfileData);
-    putProfile(editName, editGoal);
+    putProfile(editName, editGoal, editEmail);
     userNameRef.current.style.display = "block";
     userInputNameRef.current.style.display = "none";
     userGoalRef.current.style.display = "block";
     userInputGoalRef.current.style.display = "none";
     profileChangeBtn.current.style.display = "block";
     profileSubmitBtn.current.style.display = "none";
+    userEmailRef.current.style.display = "block";
+    userInputEmailRef.current.style.display = "none";
+
     navigate("/mypages");
   };
 
@@ -83,6 +93,18 @@ const UserInfo = ({
               value={editGoal}
               className="input_goal"
               onChange={e => setEditGoal(e.target.value)}
+            ></input>
+          </div>
+          <p className="my_email">이메일</p>
+          <div className="user_email_box" ref={userEmailRef}>
+            <span>{editEmail}</span>
+          </div>
+          <div className="input_user_email" ref={userInputEmailRef}>
+            <input
+              id="input_email"
+              value={editEmail.split("@")[0]}
+              className="input_email"
+              onChange={e => setEditEmail(e.target.value)}
             ></input>
           </div>
           <button

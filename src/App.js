@@ -27,6 +27,7 @@ function App() {
   const [editImg, setEditImg] = useState("");
   const [editGoal, setEditGoal] = useState("");
   const [editName, setEditName] = useState("");
+  const [editEmail, setEditEmail] = useState("");
 
   // 메모쪽
   const [memoData, setMemoData] = useState([]);
@@ -50,7 +51,6 @@ function App() {
   const [sticker, setSticker] = useState([]);
   const [allSticker, setAllSticker] = useState([]);
   const [month, setMonth] = useState(null);
-  
 
   // 모달창
   const [Modal, isModal] = useState("");
@@ -59,6 +59,7 @@ function App() {
   const profileName = profile[1]?.name || "";
   const porifleGoal = profile[1]?.objective || "";
   const profileImg = profile[1]?.mainPic || "";
+  const profielEmail = profile[1]?.email || "";
 
   const location = useLocation();
 
@@ -68,7 +69,8 @@ function App() {
     setEditName(profileName);
     setEditGoal(porifleGoal);
     setEditImg(profileImg);
-  }, [profileName, porifleGoal, profileImg]);
+    setEditEmail(profielEmail);
+  }, [profileName, porifleGoal, profileImg, profielEmail]);
 
   // 카테고리 데이터 가져오기
   const getCategoryFatch = async () => {
@@ -110,41 +112,24 @@ function App() {
     }
   };
 
-
- // 스티커 모두 가져오기
- const getAllStickerFetch = async () => {
-  try {
-    const allstickerJson = await getAllSticker();
-    setAllSticker(allstickerJson);
-  } catch (err) {
-    console.log(err);
-  }
-};
-// 스티커 가져오기
-const getStickerFetch = async () => {
-  try {
-    const stickerJson = await getSticker();
-    setSticker(stickerJson);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-
-// //월별 데이터
-// const  getMonthFetch = async () => {
-//   try {
-//     const monthData = await getMonth();
-//     setMonth(monthData);
-//   } catch(err) {
-//     console.log(err)
-//   }
-// }
-
-
-const profileName = profile[1]?.name || "";
-  const porifleGoal = profile[1]?.objective || "";
-  const profileImg = profile[1]?.mainPic || "";
+  // 스티커 모두 가져오기
+  const getAllStickerFetch = async () => {
+    try {
+      const allstickerJson = await getAllSticker();
+      setAllSticker(allstickerJson);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // 스티커 가져오기
+  const getStickerFetch = async () => {
+    try {
+      const stickerJson = await getSticker();
+      setSticker(stickerJson);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   console.log(profile);
 
@@ -154,26 +139,23 @@ const profileName = profile[1]?.name || "";
     setEditImg(profileImg);
   }, [profileName, porifleGoal, profileImg]);
 
+  useEffect(() => {
+    getMomoFetch();
+    getProfilesFatch();
+    getPlanFetch();
 
-useEffect(() => {
-  getMomoFetch();
-  getProfilesFatch();
-  getPlanFetch();
+    getCategoryFatch();
+    getAllStickerFetch();
+    getStickerFetch([]);
+    // getMonthFetch();
+  }, []);
 
-  getCategoryFatch();
-  getAllStickerFetch();
-  getStickerFetch([]);
-  // getMonthFetch();
-  
-}, []);
-
-
-// useEffect(() => {
-//   const handleMonthChange = (e) => {
-//     const month =   (e.activeStartDate).split("-");
-//     setMonth(month);
-//   };
-// })
+  // useEffect(() => {
+  //   const handleMonthChange = (e) => {
+  //     const month =   (e.activeStartDate).split("-");
+  //     setMonth(month);
+  //   };
+  // })
 
   return (
     <div className="wrap">
@@ -189,10 +171,7 @@ useEffect(() => {
         ""
       )}
 
-
       <Header profile={profile} editImg={editImg} editName={editName} />
-
-    
 
       {/* <Intro /> */}
       <div className="container fade-in">
@@ -242,6 +221,8 @@ useEffect(() => {
                 setEditGoal={setEditGoal}
                 editName={editName}
                 setEditName={setEditName}
+                editEmail={editEmail}
+                setEditEmail={setEditEmail}
               />
             }
           ></Route>

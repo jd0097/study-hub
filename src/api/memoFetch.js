@@ -18,9 +18,10 @@ import axios from "axios";
 // MEMO 데이터 불러오기 기능
 const getMemo = async () => {
   try {
-    const res = await axios.get("/api/memo/allMemo");
+    const res = await axios.get("/api/memo/allmemo");
     const result = res.data;
     console.log("getMemo 요청완료");
+    console.log(result);
     return result;
   } catch (err) {
     console.log(err);
@@ -45,7 +46,7 @@ const postMemo = async newMemo => {
 // ===================================
 const patchMemo = async (memoLog, editTitle, editctnt, _iuser) => {
   try {
-    const res = await axios.patch(`/api/memo/titleCtnt/${_iuser}`, {
+    const res = await axios.patch(`/api/memo/titlectnt/${_iuser}`, {
       imemo: memoLog,
       title: editTitle,
       ctnt: editctnt,
@@ -63,7 +64,7 @@ const patchMemo = async (memoLog, editTitle, editctnt, _iuser) => {
 // ====================================
 const deleteAllMemo = async _imemo => {
   try {
-    const res = await axios.delete("/api/memo/AllDelMemo", {
+    const res = await axios.delete("/api/memo/allmemo", {
       data: {
         imemo: _imemo,
       },
