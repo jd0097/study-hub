@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
+
 export const StudyPlanDiv = styled.div`
   display: flex;
   justify-content: center;

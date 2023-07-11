@@ -20,19 +20,15 @@ const StudyPlan = ({
   setCategory,
   selectedSubject,
   setSelectedSubject,
-
 }) => {
-  
- // 타이머 보일지 말지
- const { selectday } = useParams();
- const [timerFlag, setTimerFlag] = useState(false);
- useEffect(() => {
-   if (selectday === moment(Date.now()).format("YYYY-MM-DD")) {
-     setTimerFlag(true);
-   }
- }, []);
-
-
+  // 타이머 보일지 말지
+  const { selectday } = useParams();
+  const [timerFlag, setTimerFlag] = useState(false);
+  useEffect(() => {
+    if (selectday === moment(Date.now()).format("YYYY-MM-DD")) {
+      setTimerFlag(true);
+    }
+  }, []);
 
   const navigate = useNavigate();
 
@@ -57,6 +53,7 @@ const StudyPlan = ({
     const deleteTodoData = planData.filter(item => item.itodo !== itodo);
     setPlanData(deleteTodoData);
     deletePlan(itodo);
+    console.log(planData);
   };
 
   // //선택 삭제
@@ -68,35 +65,28 @@ const StudyPlan = ({
   //   }
   // };
 
+  // 오늘 날짜
+  const today = moment(selectday).format("MM월 DD일");
 
+  // 플랜데이터 가져오기
+  const getPlanFetch = async () => {
+    try {
+      const daysArr = selectday.split("-");
+      console.log(daysArr);
+      const planJson = await getPlanData(
+        parseInt(daysArr[1]),
+        parseInt(daysArr[0]),
+        parseInt(daysArr[2]),
+      );
+      setPlanData(planJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getPlanFetch();
+  }, []);
 
-
-
-
- // 오늘 날짜
- const today = moment(selectday).format("MM월 DD일");
-
- // 플랜데이터 가져오기
- const getPlanFetch = async () => {
-   try {
-     const daysArr = selectday.split("-");
-     console.log(daysArr);
-     const planJson = await getPlanData(
-       parseInt(daysArr[1]),
-       parseInt(daysArr[0]),
-       parseInt(daysArr[2]),
-     );
-     setPlanData(planJson);
-   } catch (error) {
-     console.log(error);
-   }
- };
- useEffect(() => {
-   getPlanFetch();
- }, []);
-
-
- 
   return (
     <div className="study_plan_warp">
       <h1 className="title">STUDY-PLAN</h1>
@@ -104,14 +94,13 @@ const StudyPlan = ({
         <div className="timer_date">
           <div className="today">
             {/* 날자 데이터가 들어갑니다. */}
-            <Input 
+            <Input
               value={today}
               style={{
                 textAlign: "center",
                 borderStyle: "unset",
                 borderRadius: "unset",
                 // width:'120px',
-           
               }}
             />
           </div>
@@ -119,7 +108,10 @@ const StudyPlan = ({
           {timerFlag && <StudyTimer />}
         </div>
         <div className="button_form">
-          <Button onClick={handleClick} style={{ borderRadius: "20px" , background:"#fff"}}>
+          <Button
+            onClick={handleClick}
+            style={{ borderRadius: "20px", background: "#fff" }}
+          >
             작성하기
           </Button>
         </div>
@@ -149,7 +141,7 @@ const StudyPlan = ({
                     <div className="list_func">
                       <Button
                         onClick={() => handleSubmit(item.itodo, item.icategory)}
-                        style={{ borderRadius: "25px", background:"#fff" }}
+                        style={{ borderRadius: "25px", background: "#fff" }}
                       >
                         수정
                       </Button>
@@ -157,7 +149,7 @@ const StudyPlan = ({
                         onClick={() =>
                           handleDeleteClick(item.itodo, item.iuser, item.delYn)
                         }
-                        style={{ borderRadius: "20px", background:"#fff" }}
+                        style={{ borderRadius: "20px", background: "#fff" }}
                       >
                         삭제
                       </Button>
