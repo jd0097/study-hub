@@ -63,11 +63,11 @@ export const getSubjects = async () => {
 
 // 플랜 작성기능
 export const postWrite = async newPlan => {
-  console.log("플랜작성 보내줍니다. ========");
-  console.log(newPlan);
+  console.log("플랜작성 보내줍니다. ======== ", newPlan);
   try {
     const res = await axios.post("/api/todo", newPlan);
     const result = await res.data;
+    return result;
   } catch (err) {
     console.log(err);
   }
@@ -103,6 +103,7 @@ export const deletePlan = async itodo => {
 
     console.log(result);
     console.log("삭제했다!!!!");
+    return result;
   } catch (error) {
     console.log(error);
   }
@@ -113,7 +114,7 @@ export const getAllSticker = async () => {
   try {
     const res = await axios.get("/api/sticker");
     const result = res.data;
-    // console.log("getAllSticker 요청완료");
+    console.log("getAllSticker 요청완료 : ", result);
     return result;
   } catch (err) {
     console.log(err);
@@ -126,7 +127,7 @@ export const getSticker = async _month => {
   try {
     const res = await axios.get(`/api/timer?iuser=2&month=${_month}`);
     const result = res.data;
-    // console.log("getSticker 요청완료");
+    console.log("getSticker 요청완료 : ", result);
     return result;
   } catch (err) {
     console.log(err);

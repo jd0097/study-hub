@@ -4,11 +4,11 @@ import Calendar from "react-calendar";
 import "../style/calendarpage.css";
 import { Modal, Button } from "antd";
 import { useNavigate } from "react-router";
+import { getAllSticker, getSticker } from "../api/planFetch";
 
 
-const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
+const CalendarPage = ({ setPlanData }) => {
   const navigator = useNavigate();
-
 
   // 달력 초기 포커스 값
   const [day, setDay] = useState(new Date());
@@ -19,36 +19,53 @@ const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
 
   // public 폴더를 가르킴(카페참조)
   const path = process.env.PUBLIC_URL;
-  // 화면에 출력될 서버 정보
-  const 서버정보 = [
-    { day: "2023-06-28", level: 0 },
-    { day: "2023-06-05", level: 1 },
-    { day: "2023-06-25", level: 2 },
-    { day: "2023-06-11", level: 3 },
-    { day: "2023-06-21", level: 4 },
-    { day: "2023-06-15", level: 5 },
-  ];
-
+ 
 
 
   // 데이터 화면 갱신 용도
   const [serverData, setServerData] = useState([]);
 
 
+   // 스티커
+   const [sticker, setSticker] = useState([]);
+   const [allSticker, setAllSticker] = useState([]);
+
+
+   // 스티커 모두 가져오기
+   const getAllStickerFetch = async () => {
+    try {
+      const allstickerJson = await getAllSticker();
+      setAllSticker(allstickerJson);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // 스티커 가져오기
+
+  const handleClickMonth = (value, event) => {
+    // console.log("handleClickMonth : value ", value);
+    // console.log(
+    //   "handleClickMonth : ",
+    //   moment(value.activeStartDate).format("MM"),
+    // );
+    getStickerFetch(moment(value.activeStartDate).format("MM"));
+  };
+
+  const getStickerFetch = async _month => {
+    try {
+      const stickerJson = await getSticker(parseInt(_month));
+      setSticker(stickerJson);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    // 데이터베이스에서 스티커 정보를 가져와서 서버 데이터 설정
-    // 예시: fetchStickers 함수로 스티커 정보를 가져와서 설정하는 로직
-    const fetchStickers = async () => {
-      try {
-        const response = await fetch("your-api-endpoint");
-        const data = await response.json();
-        setServerData(data);
-      } catch (error) {
-        console.error("Error fetching stickers:", error);
-      }
-    };
-    fetchStickers();
+    console.log("데이터 불러오니?");
+    getAllStickerFetch();
+    getStickerFetch(moment(Date.now()).format("MM"));
   }, []);
+
+
 
 
   // 조건 즉, 서버의 데이터를 읽어와서 날짜{day}를 비교해서
@@ -197,7 +214,12 @@ const CalendarPage = ({ sticker, setSticker, setPlanData, allSticker }) => {
           calendarType="US"
           formatDay={(locale, date) => moment(date).format("D")}
           tileContent={showScheduleJSX}
-        />
+            // 이전 다음 버튼클릭해서 월 정보 넘기기
+            onActiveStartDateChange={(value, event) =>
+              handleClickMonth(value, event)
+            }
+          />
+    
       </div>
       <Modal
         title="Select Your Level"

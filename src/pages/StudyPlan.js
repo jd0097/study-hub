@@ -37,25 +37,25 @@ const StudyPlan = ({
 
   //새 작성
   const handleClick = () => {
-    navigate("/studywrite");
+    navigate(`/studywrite/${selectday}`);
     setPlanLog("");
   };
 
   //데이터 수정
   const handleSubmit = (_itodo, _icate) => {
     setPlanLog(_itodo);
-    navigate("/studywrite");
+    navigate(`/studywrite/${selectday}`);
   };
 
+ 
   //선택 삭제
-  const handleDeleteClick = itodo => {
+  const handleDeleteClick = async itodo => {
     console.log(itodo);
     const deleteTodoData = planData.filter(item => item.itodo !== itodo);
     setPlanData(deleteTodoData);
-    deletePlan(itodo);
     console.log(planData);
+    const result = await deletePlan(itodo);
   };
-
   // //선택 삭제
   // const handleDeleteClick = (_itodo) => {
   //   if (_itodo !== undefined) {
@@ -72,7 +72,7 @@ const StudyPlan = ({
   const getPlanFetch = async () => {
     try {
       const daysArr = selectday.split("-");
-      console.log(daysArr);
+      // console.log(daysArr);
       const planJson = await getPlanData(
         parseInt(daysArr[1]),
         parseInt(daysArr[0]),
@@ -108,12 +108,14 @@ const StudyPlan = ({
           {timerFlag && <StudyTimer />}
         </div>
         <div className="button_form">
-          <Button
-            onClick={handleClick}
-            style={{ borderRadius: "20px", background: "#fff" }}
-          >
-            작성하기
-          </Button>
+        {timerFlag && (
+            <Button
+              onClick={handleClick}
+              style={{ borderRadius: "20px", background: "#fff" }}
+            >
+              작성하기
+            </Button>
+          )}
         </div>
         {planData.length ? (
           <ul className="study_list">

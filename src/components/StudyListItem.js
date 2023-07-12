@@ -6,7 +6,13 @@ import { putPlan } from "../api/planFetch";
 import { StudyPlanDiv } from "../style/subjects";
 import TextArea from "antd/es/input/TextArea";
 
-const StudyListItem = ({ planData, setPlanData, planLog, selectedSubject }) => {
+const StudyListItem = ({
+  selectday,
+  planData,
+  setPlanData,
+  planLog,
+  selectedSubject,
+}) => {
   const navigate = useNavigate();
 
   // const [selectedSubject, setSelectedSubject] = useState();
@@ -14,16 +20,16 @@ const StudyListItem = ({ planData, setPlanData, planLog, selectedSubject }) => {
   const [editCtnt, setEditCtnt] = useState("");
   const [editCate, setEditCate] = useState(null);
 
-  // console.log(selectedSubject);
-  console.log(editTitle);
-  console.log(editCtnt);
-  console.log(planLog);
+  // // console.log(selectedSubject);
+  // console.log(editTitle);
+  // console.log(editCtnt);
+  // console.log(planLog);
 
   const planTitle = planData.find(
     item => (item.itodo === planLog) & (item.iuser === 2),
   ).title;
-  console.log("타이틀======");
-  console.log(planTitle);
+  // console.log("타이틀======");
+  // console.log(planTitle);
 
   // const sudbject = planData.find(
   // item => (item.icat === planLog) & (item.iuser === 2),).PlanSudbject
@@ -56,7 +62,8 @@ const StudyListItem = ({ planData, setPlanData, planLog, selectedSubject }) => {
     });
     setPlanData(newPlanData);
     putPlan(planLog, editTitle, editCtnt, 2);
-    navigate("/studyplan");
+    navigate(`/studyplan/${selectday}`);
+    // navigate("/studyplan");
   };
 
   return (

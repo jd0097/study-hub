@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Input, Space, Row } from "antd";
 import StudyListItem from "../components/StudyListItem";
 import NewStudyList from "../components/NewStudyList";
@@ -23,6 +23,7 @@ const StudyWrite = ({
   savedSubject,
   setSavedSubject,
 }) => {
+  const { selectday } = useParams();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -55,6 +56,7 @@ const StudyWrite = ({
           {/* studyPlan 있다 */}
           {planLog ? (
             <StudyListItem
+            selectday={selectday}
               planData={planData}
               planLog={planLog}
               setPlanData={setPlanData}
@@ -66,6 +68,7 @@ const StudyWrite = ({
           ) : (
             //없다.
             <NewStudyList
+            selectday={selectday}
               planData={planData}
               setPlanData={setPlanData}
               title={title}
