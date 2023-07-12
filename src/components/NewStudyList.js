@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input, Space, Row } from "antd";
 import { postWrite } from "../api/planFetch";
 import { useNavigate, useParams } from "react-router-dom";
@@ -34,6 +34,8 @@ const StudyWrite = ({
       iuser: 2,
     };
 
+    alert(selectedSubject);
+
     console.log("newPlan : ", newPlan);
     // setPlanData([...planData, newPlan]);
     await postWrite(newPlan);
@@ -63,7 +65,6 @@ const StudyWrite = ({
   //     setSelectedSubject(e.target.value);
 
   //   };
-
   const handleChange = e => {
     setSelectedSubject(e.target.value);
   };
@@ -97,7 +98,6 @@ const StudyWrite = ({
                 checked={selectedSubject === index}
                 onChange={handleChange}
                 className="cate_input"
-                
               />
               {item.title}
             </label>

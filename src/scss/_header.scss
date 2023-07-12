@@ -15,14 +15,28 @@
       justify-content: center;
       width: auto;
       height: 75px;
+      .my_goal {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        align-items: center;
+        width: auto;
+        span {
+          display: block;
+          width: 100%;
+          text-align: right;
+          p {
+            font-weight: bold;
+          }
+        }
+      }
       .account_list {
         position: relative;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         gap: 15px;
-        width: 100%;
-        max-width: 1400px;
+        width: auto;
         height: 100%;
         .account_img_box {
           display: flex;

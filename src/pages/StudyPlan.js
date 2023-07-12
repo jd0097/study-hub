@@ -4,6 +4,13 @@ import { Button, Input, Space, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
 import { deletePlan, getPlanData } from "../api/planFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashAlt,
+  faPenToSquare,
+  faEraser,
+  faDeleteLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 const StudyPlan = ({
   planData,
@@ -47,7 +54,6 @@ const StudyPlan = ({
     navigate(`/studywrite/${selectday}`);
   };
 
- 
   //선택 삭제
   const handleDeleteClick = async itodo => {
     console.log(itodo);
@@ -108,12 +114,9 @@ const StudyPlan = ({
           {timerFlag && <StudyTimer />}
         </div>
         <div className="button_form">
-        {timerFlag && (
-            <Button
-              onClick={handleClick}
-              style={{ borderRadius: "20px", background: "#fff" }}
-            >
-              작성하기
+          {timerFlag && (
+            <Button onClick={handleClick}>
+              작성하기 <FontAwesomeIcon icon={faPenToSquare} />
             </Button>
           )}
         </div>
@@ -143,17 +146,17 @@ const StudyPlan = ({
                     <div className="list_func">
                       <Button
                         onClick={() => handleSubmit(item.itodo, item.icategory)}
-                        style={{ borderRadius: "25px", background: "#fff" }}
                       >
                         수정
+                        <FontAwesomeIcon icon={faEraser} />
                       </Button>
                       <Button
                         onClick={() =>
                           handleDeleteClick(item.itodo, item.iuser, item.delYn)
                         }
-                        style={{ borderRadius: "20px", background: "#fff" }}
                       >
                         삭제
+                        <FontAwesomeIcon icon={faDeleteLeft} />
                       </Button>
                     </div>
                   </span>

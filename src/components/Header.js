@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import Mypages from "../pages/Mypages";
 
-const Header = ({ profile, editImg, editName }) => {
+const Header = ({ profile, editImg, editName, editGoal }) => {
   const accountDetail = useRef(null);
   const showDeatil = () => {
     const accountDetailElement = accountDetail.current;
@@ -24,12 +24,18 @@ const Header = ({ profile, editImg, editName }) => {
             <div className="logo"></div>
             <ul className="nav_list">
               <li>
-                <NavLink to="/main"  className={({ isActive }) => (isActive ? "active" : "")}>
+                <NavLink
+                  to="/main"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   MAIN
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/caledar"  className={({ isActive }) => (isActive ? "active" : "")}>
+                <NavLink
+                  to="/caledar"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   STUDY-CALENDAR
                 </NavLink>
               </li>
@@ -39,7 +45,10 @@ const Header = ({ profile, editImg, editName }) => {
                 </NavLink>
               </li> */}
               <li>
-                <NavLink to="/note"  className={({ isActive }) => (isActive ? "active" : "")}>
+                <NavLink
+                  to="/note"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   MEMO
                 </NavLink>
               </li>
@@ -47,6 +56,13 @@ const Header = ({ profile, editImg, editName }) => {
           </div>
         </div>
         <div className="account">
+          <div className="my_goal">
+            <span>
+              MY GOAL
+              <br />
+              <p>{editGoal}</p>
+            </span>
+          </div>
           <ul className="account_list">
             <div className="account_img_box" onClick={showDeatil}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
