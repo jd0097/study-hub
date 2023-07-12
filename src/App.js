@@ -125,7 +125,12 @@ function App() {
         ""
       )}
 
-      <Header profile={profile} editImg={editImg} editName={editName} />
+      <Header
+        profile={profile}
+        editImg={editImg}
+        editName={editName}
+        editGoal={editGoal}
+      />
 
       {/* <Intro /> */}
       <div className="container fade-in">
@@ -134,7 +139,12 @@ function App() {
           <Route
             path="/main"
             element={
-              <Main memoData={memoData} editImg={editImg} editName={editName} />
+              <Main
+                memoData={memoData}
+                editImg={editImg}
+                editName={editName}
+                editGoal={editGoal}
+              />
             }
           ></Route>
           <Route
