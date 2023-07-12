@@ -6,12 +6,11 @@ import { getProfiles } from "./api/userFatch";
 import { getPlan, getPlanData, getSubjects } from "./api/planFetch";
 import { getSticker, getAllSticker, getMonth } from "./api/planFetch";
 
-
 import "./scss/layout.scss";
+import Intro from "./pages/Intro";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CalendarPage from "./pages/CalendarPage";
-import Intro from "./pages/Intro";
 import Main from "./pages/Main";
 import Mypages from "./pages/Mypages";
 import Note from "./pages/Note";
@@ -47,7 +46,7 @@ function App() {
   const [category, setCategory] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [savedSubject, setSavedSubject] = useState(null);
-  
+
   //캘린더
   const [month, setMonth] = useState(null);
 
@@ -99,8 +98,6 @@ function App() {
     }
   };
 
- 
-
   useEffect(() => {
     setEditName(profileName);
     setEditGoal(porifleGoal);
@@ -113,7 +110,6 @@ function App() {
 
     getCategoryFatch();
   }, []);
-
 
   return (
     <div className="wrap">
@@ -134,8 +130,9 @@ function App() {
       {/* <Intro /> */}
       <div className="container fade-in">
         <Routes>
+          <Route path="/" element={<Intro />}></Route>
           <Route
-            path="/"
+            path="/main"
             element={
               <Main memoData={memoData} editImg={editImg} editName={editName} />
             }
@@ -191,11 +188,7 @@ function App() {
           ></Route>
           <Route
             path="/caledar"
-            element={
-              <CalendarPage
-                setPlanData={setPlanData}
-              />
-            }
+            element={<CalendarPage setPlanData={setPlanData} />}
           ></Route>
           <Route
             path="/studyplan/:selectday"
@@ -218,7 +211,7 @@ function App() {
             }
           ></Route>
           <Route
-          path="/studyWrite/:selectday"
+            path="/studyWrite/:selectday"
             element={
               <StudyWrite
                 planData={planData}

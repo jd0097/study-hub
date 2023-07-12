@@ -6,7 +6,6 @@ import { Modal, Button } from "antd";
 import { useNavigate } from "react-router";
 import { getAllSticker, getSticker } from "../api/planFetch";
 
-
 const CalendarPage = ({ setPlanData }) => {
   const navigator = useNavigate();
 
@@ -16,23 +15,18 @@ const CalendarPage = ({ setPlanData }) => {
   // 사용자가 선택한 날짜를 저장하는 용도
   const [userSelectDay, setUserSelectDay] = useState("");
 
-
   // public 폴더를 가르킴(카페참조)
   const path = process.env.PUBLIC_URL;
- 
-
 
   // 데이터 화면 갱신 용도
   const [serverData, setServerData] = useState([]);
 
+  // 스티커
+  const [sticker, setSticker] = useState([]);
+  const [allSticker, setAllSticker] = useState([]);
 
-   // 스티커
-   const [sticker, setSticker] = useState([]);
-   const [allSticker, setAllSticker] = useState([]);
-
-
-   // 스티커 모두 가져오기
-   const getAllStickerFetch = async () => {
+  // 스티커 모두 가져오기
+  const getAllStickerFetch = async () => {
     try {
       const allstickerJson = await getAllSticker();
       setAllSticker(allstickerJson);
@@ -65,9 +59,6 @@ const CalendarPage = ({ setPlanData }) => {
     getStickerFetch(moment(Date.now()).format("MM"));
   }, []);
 
-
-
-
   // 조건 즉, 서버의 데이터를 읽어와서 날짜{day}를 비교해서
   // 같으면 html 을 만들어서 집어넣는다.
   const showScheduleJSX = ({ date, view }) => {
@@ -79,14 +70,13 @@ const CalendarPage = ({ setPlanData }) => {
       }
     });
     if (obj) {
-      // 아이템을 찾은 경우 jsx 생성하여 Return 출력  
+      // 아이템을 찾은 경우 jsx 생성하여 Return 출력
       const tempImg = allSticker[obj.level].pic;
       return (
         <div className="user-level">
           <img src={`/img/${tempImg}`} style={{ width: 50 }} />
 
-
-           {obj.isticker}
+          {obj.isticker}
         </div>
       );
     } else {
@@ -94,14 +84,13 @@ const CalendarPage = ({ setPlanData }) => {
       return (
         <div className="user-level-default">
           <img
-             src={`${path}/images/calendar-icon-0.png`}
+            src={`${path}/images/calendar-icon-0.png`}
             style={{ width: 50 }}
           />
         </div>
       );
     }
   };
-
 
   // 신규인지 아닌지 구분
   const [editData, setEditData] = useState(false);
@@ -111,33 +100,28 @@ const CalendarPage = ({ setPlanData }) => {
     let now = new Date();
     let nextNow = new Date(selectDay);
     if (nextNow.getTime() > now.getTime()) {
-      console.log("날짜를 선택해 주세요~.");
+      alert(
+        "오늘 날짜를 확인해주세요, 현재날짜 기준으로 내일 날짜는 선택이 불가능합니다",
+      );
     } else {
       // console.log("오늘 날자에요.");
 
-
-
-    // // 사용자가 날짜를 클릭하면 보관해 둔다.
-    setUserSelectDay(selectDay);
-    // // 현재 사용자 정보가 있는 경우인지 아닌지 구분
-    // const userData = event.currentTarget.querySelector(".user-level");
-    // console.log(userData);
-    // if (userData) {
-    //   // 수정을 하는 경우
-    //   // setEditData(true);
-    // } else {
-    //   // 신규로 등록을 하는 경우
-    //   setEditData(false);
-    // }
-    // showModal();
-    navigator(`/studyplan/${selectDay}`);
-  }
-};
-
-
-
-
-
+      // // 사용자가 날짜를 클릭하면 보관해 둔다.
+      setUserSelectDay(selectDay);
+      // // 현재 사용자 정보가 있는 경우인지 아닌지 구분
+      // const userData = event.currentTarget.querySelector(".user-level");
+      // console.log(userData);
+      // if (userData) {
+      //   // 수정을 하는 경우
+      //   // setEditData(true);
+      // } else {
+      //   // 신규로 등록을 하는 경우
+      //   setEditData(false);
+      // }
+      // showModal();
+      navigator(`/studyplan/${selectDay}`);
+    }
+  };
 
   // 모달창의 아이콘을 클릭했을 때
   const handleClickIcon = _id => {
@@ -161,12 +145,6 @@ const CalendarPage = ({ setPlanData }) => {
     // 모달 숨기기
     setIsModalOpen(false);
   };
-
-
-
-
-
-
 
   // 사용자 정보 초기화
   const handleDelete = () => {
@@ -197,15 +175,8 @@ const CalendarPage = ({ setPlanData }) => {
     setIsModalOpen(false);
   };
 
-
-
-
-
-
-
-
   return (
-    <div className="p-6 mt-5 shadow rounded bg-white" >
+    <div className="p-6 mt-5 shadow rounded bg-white">
       <div className="calendar_inner">
         <Calendar
           onClickDay={(value, event) => handleClickDay(value, event)}
@@ -214,12 +185,11 @@ const CalendarPage = ({ setPlanData }) => {
           calendarType="US"
           formatDay={(locale, date) => moment(date).format("D")}
           tileContent={showScheduleJSX}
-            // 이전 다음 버튼클릭해서 월 정보 넘기기
-            onActiveStartDateChange={(value, event) =>
-              handleClickMonth(value, event)
-            }
-          />
-    
+          // 이전 다음 버튼클릭해서 월 정보 넘기기
+          onActiveStartDateChange={(value, event) =>
+            handleClickMonth(value, event)
+          }
+        />
       </div>
       <Modal
         title="Select Your Level"
@@ -237,7 +207,6 @@ const CalendarPage = ({ setPlanData }) => {
         ]}
       >
         {/* 스티커 넣기 */}
-
 
         {/* <ul className="calendar-modal-level-list">
           <li>
@@ -280,9 +249,5 @@ const CalendarPage = ({ setPlanData }) => {
     </div>
   );
 };
-
-
-
-
 
 export default CalendarPage;

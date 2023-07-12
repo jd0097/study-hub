@@ -47,8 +47,6 @@
   cursor: pointer;
 }
 
-
-
 .react-calendar__navigation {
   display: flex;
   height: 44px;
@@ -58,8 +56,8 @@
 .react-calendar__navigation button {
   min-width: 44px;
   background: none;
+  font-size: 25px;
   /* background-color: #fff; */
-
 }
 
 .react-calendar__navigation button:disabled {
