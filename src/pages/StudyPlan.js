@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Input, Space, Row } from "antd";
+import { Button, Input, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
 import { deletePlan, getPlanData } from "../api/planFetch";
@@ -15,18 +15,7 @@ import {
 const StudyPlan = ({
   planData,
   setPlanData,
-  planTitle,
-  setPlanTitle,
-  planLog,
   setPlanLog,
-  planIndex,
-  setPlanIndex,
-  profile,
-
-  category,
-  setCategory,
-  selectedSubject,
-  setSelectedSubject,
 }) => {
   // 타이머 보일지 말지
   const { selectday } = useParams();
@@ -50,7 +39,7 @@ const StudyPlan = ({
 
   //데이터 수정
   const handleSubmit = (_itodo, _icate) => {
-    setPlanLog(_itodo);
+    setPlanLog(_itodo, _icate);
     navigate(`/studywrite/${selectday}`);
   };
 
@@ -95,7 +84,9 @@ const StudyPlan = ({
 
   return (
     <div className="study_plan_warp">
-      <h1 className="title">STUDY-PLAN</h1>
+      <div className="title">
+        <span>STUDY-PLAN</span>
+      </div>
       <div className="study_inner">
         <div className="timer_date">
           <div className="today">
@@ -128,7 +119,9 @@ const StudyPlan = ({
                 <li key={index}>
                   <span className="study_list_title">
                     <p>
+
                       {item.icategory === 1
+
                         ? "국어"
                         : item.icategory === 2
                         ? "수학"
@@ -146,6 +139,7 @@ const StudyPlan = ({
                     <div className="list_func">
                       <Button
                         onClick={() => handleSubmit(item.itodo, item.icategory)}
+
                       >
                         수정
                         <FontAwesomeIcon icon={faEraser} />
@@ -154,7 +148,7 @@ const StudyPlan = ({
                         onClick={() =>
                           handleDeleteClick(item.itodo, item.iuser, item.delYn)
                         }
-                      >
+         >
                         삭제
                         <FontAwesomeIcon icon={faDeleteLeft} />
                       </Button>

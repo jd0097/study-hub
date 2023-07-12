@@ -127,7 +127,7 @@ export const getSticker = async _month => {
   try {
     const res = await axios.get(`/api/timer?iuser=2&month=${_month}`);
     const result = res.data;
-    console.log("getSticker 요청완료 : ", result);
+   console.log("getSticker 요청완료 : ", result);
     return result;
   } catch (err) {
     console.log(err);

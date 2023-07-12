@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Modal } from "antd";
 import { postSeconds } from "../api/planFetch";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const StudyTimer = () => {
   const navigator = useNavigate();
