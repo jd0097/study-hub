@@ -50,7 +50,9 @@ const Main = ({ memoData, editImg, editName }) => {
               .filter(item => item.iuser === 2)
               .slice(-3)
               .map((item, index) => (
-                <li key={index}>{item.title}</li>
+                <li key={index}>
+                  <span>{item.title}</span>
+                </li>
               ))}
           </ul>
         ) : (
