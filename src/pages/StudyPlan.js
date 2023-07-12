@@ -89,7 +89,9 @@ const StudyPlan = ({
 
   return (
     <div className="study_plan_warp">
-      <h1 className="title">STUDY-PLAN</h1>
+      <div className="title">
+        <span>STUDY-PLAN</span>
+      </div>
       <div className="study_inner">
         <div className="timer_date">
           <div className="today">
