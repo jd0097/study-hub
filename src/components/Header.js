@@ -24,22 +24,22 @@ const Header = ({ profile, editImg, editName }) => {
             <div className="logo"></div>
             <ul className="nav_list">
               <li>
-                <NavLink to="/" exact activeClassName="active">
+                <NavLink to="/main"  className={({ isActive }) => (isActive ? "active" : "")}>
                   MAIN
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/caledar" exact activeClassName="active">
+                <NavLink to="/caledar"  className={({ isActive }) => (isActive ? "active" : "")}>
                   STUDY-CALENDAR
                 </NavLink>
               </li>
               {/* <li>
-                <NavLink to="/studyplan" exact activeClassName="active">
+                <NavLink to="/studyplan/${selectday}"  className={({ isActive }) => (isActive ? "active" : "")}>
                   STUDY-PLAN
                 </NavLink>
               </li> */}
               <li>
-                <NavLink to="/note" exact activeClassName="active">
+                <NavLink to="/note"  className={({ isActive }) => (isActive ? "active" : "")}>
                   MEMO
                 </NavLink>
               </li>

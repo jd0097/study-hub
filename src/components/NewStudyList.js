@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Button, Input, Space, Row } from "antd";
 import { postWrite } from "../api/planFetch";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { StudyPlanDiv } from "../style/subjects";
 
 const { TextArea } = Input;
 const StudyWrite = ({
+  selectday,
   planData,
   setPlanData,
   title,
@@ -20,11 +21,11 @@ const StudyWrite = ({
 }) => {
   const navigate = useNavigate();
 
-  console.log(category);
+  // console.log(category);
 
-  console.log(selectedSubject);
+  // console.log(selectedSubject);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     const newPlan = {
       ctnt: content,
       title: title,
@@ -33,12 +34,14 @@ const StudyWrite = ({
       iuser: 2,
     };
 
-    setPlanData([...planData, newPlan]);
-    postWrite(newPlan);
-    setTitle("");
-    setContent("");
-    navigate("/studyPlan");
-    window.location.reload();
+    console.log("newPlan : ", newPlan);
+    // setPlanData([...planData, newPlan]);
+    await postWrite(newPlan);
+    // setTitle("");
+    // setContent("");
+    // navigate("/studyPlan");
+    navigate(`/studyplan/${selectday}`);
+    // window.location.reload();
   };
 
   // // 제목
