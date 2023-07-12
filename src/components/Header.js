@@ -24,7 +24,7 @@ const Header = ({ profile, editImg, editName }) => {
             <div className="logo"></div>
             <ul className="nav_list">
               <li>
-                <NavLink to="/main" exact activeClassName="active">
+                <NavLink to="/" exact activeClassName="active">
                   MAIN
                 </NavLink>
               </li>
