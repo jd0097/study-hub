@@ -135,7 +135,7 @@ function App() {
       <div className="container fade-in">
         <Routes>
           <Route
-            path="/main"
+            path="/"
             element={
               <Main memoData={memoData} editImg={editImg} editName={editName} />
             }
