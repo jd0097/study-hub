@@ -128,15 +128,15 @@ const StudyPlan = ({
                 <li key={index}>
                   <span className="study_list_title">
                     <p>
-                      {item.icategory === 0
+                      {item.icategory === 1
                         ? "국어"
-                        : item.icategory === 1
-                        ? "수학"
                         : item.icategory === 2
-                        ? "사회"
+                        ? "수학"
                         : item.icategory === 3
-                        ? "과학"
+                        ? "사회"
                         : item.icategory === 4
+                        ? "과학"
+                        : item.icategory === 5
                         ? "영어"
                         : "선택과목없음"}
                     </p>

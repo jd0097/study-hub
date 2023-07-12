@@ -82,26 +82,29 @@ const StudyWrite = ({
       </Row>
       <Row justify="center" style={{ margin: "30px 0" }}>
         <StudyPlanDiv>
-          {category.slice(0, 5).map((item, index) => (
-            <label
-              key={index}
-              htmlFor={`catagoey-${index}`}
-              className={`cate_list ${
-                selectedSubject === index ? "active" : ""
-              }`}
-            >
-              <input
-                id={`catagoey-${index}`}
-                type="radio"
-                name="cate"
-                value={index}
-                checked={selectedSubject === index}
-                onChange={handleChange}
-                className="cate_input"
-              />
-              {item.title}
-            </label>
-          ))}
+          {category.slice(0, 5).map((item, index) => {
+            index = index + 1;
+            return (
+              <label
+                key={index}
+                htmlFor={`catagoey-${index}`}
+                className={`cate_list ${
+                  selectedSubject === index ? "active" : ""
+                }`}
+              >
+                <input
+                  id={`catagoey-${index}`}
+                  type="radio"
+                  name="cate"
+                  value={index}
+                  checked={selectedSubject === index}
+                  onChange={handleChange}
+                  className="cate_input"
+                />
+                {item.title}
+              </label>
+            );
+          })}
         </StudyPlanDiv>
         {/* <Space wrap>
               {subjects.map((subject, index) => (
