@@ -92,7 +92,7 @@ const StudyListItem = ({
       <Row justify="end" style={{ margin: "30px 0" }}>
         <Button
           onClick={() => handlePutSubmit(planLog)}
-          style={{ borderRadius: "25px" }}
+          style={{ borderRadius: "25px", color:"#000" }}
         >
           수정
         </Button>

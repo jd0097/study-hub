@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
     background: #f7f5ef;
     .button_form {
@@ -53,12 +54,14 @@
           padding-left: 2%;
           border-radius: 100px;
           font-size: 18px;
-          color: #000;
+          color: #f3f3f3;
+          // color: #000;
+          
         
         }
         .study_list_title {
           width: 20%;
-          background: #899cce;
+          background: rgb(114 147 239);
           border-radius: 100px;
           p {
             width: 100%;
@@ -68,7 +71,7 @@
           display: flex;
           justify-content: space-between;
           width: 80%;
-          background: #899cce;
+          background:rgb(114 147 239);
           border-radius: 100px;
           p {
             width: 60%;
@@ -81,6 +84,8 @@
             display: flex;
             gap: 10px;
             padding-right: 20px;
+            color: #000;
+          
             button {
               width: 100px;
               height: 30px;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Input, Space, Row } from "antd";
+import { Button, Input, Row } from "antd";
 import moment from "moment/moment";
 import StudyTimer from "../components/StudyTimer";
 import { deletePlan, getPlanData } from "../api/planFetch";
@@ -8,18 +8,7 @@ import { deletePlan, getPlanData } from "../api/planFetch";
 const StudyPlan = ({
   planData,
   setPlanData,
-  planTitle,
-  setPlanTitle,
-  planLog,
   setPlanLog,
-  planIndex,
-  setPlanIndex,
-  profile,
-
-  category,
-  setCategory,
-  selectedSubject,
-  setSelectedSubject,
 }) => {
   // 타이머 보일지 말지
   const { selectday } = useParams();
@@ -43,7 +32,7 @@ const StudyPlan = ({
 
   //데이터 수정
   const handleSubmit = (_itodo, _icate) => {
-    setPlanLog(_itodo);
+    setPlanLog(_itodo, _icate);
     navigate(`/studywrite/${selectday}`);
   };
 
@@ -127,15 +116,15 @@ const StudyPlan = ({
                 <li key={index}>
                   <span className="study_list_title">
                     <p>
-                      {item.icategory === 0
+                      {item.icategory === 1 
                         ? "국어"
-                        : item.icategory === 1
-                        ? "수학"
                         : item.icategory === 2
-                        ? "사회"
+                        ? "수학"
                         : item.icategory === 3
-                        ? "과학"
+                        ? "사회"
                         : item.icategory === 4
+                        ? "과학"
+                        : item.icategory === 5
                         ? "영어"
                         : "선택과목없음"}
                     </p>
@@ -145,7 +134,7 @@ const StudyPlan = ({
                     <div className="list_func">
                       <Button
                         onClick={() => handleSubmit(item.itodo, item.icategory)}
-                        style={{ borderRadius: "25px", background: "#fff" }}
+                        style={{ borderRadius: "25px", background: "#fff", color:"#000" }}
                       >
                         수정
                       </Button>
@@ -153,7 +142,7 @@ const StudyPlan = ({
                         onClick={() =>
                           handleDeleteClick(item.itodo, item.iuser, item.delYn)
                         }
-                        style={{ borderRadius: "20px", background: "#fff" }}
+                        style={{ borderRadius: "20px", background: "#fff", color:"#000" }}
                       >
                         삭제
                       </Button>

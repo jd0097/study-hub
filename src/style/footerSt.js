@@ -13,7 +13,8 @@ export const FooterStyle = styled.div`
     max-width: 1400px;
     width: 100%;
     height: 100%;
-    color: #191919;
+    color: #5c5858;
+  
     font-size: 12px;
     .footer_left {
       width: 50%;

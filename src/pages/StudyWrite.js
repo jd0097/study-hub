@@ -29,6 +29,7 @@ const StudyWrite = ({
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+
   // // 제목
   // const [title, setTitle] = useState("");
   // 과목
