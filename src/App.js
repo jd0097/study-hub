@@ -19,6 +19,7 @@ import StudyWrite from "./pages/StudyWrite";
 import NotFound from "./pages/NotFound";
 import StudyPlan from "./pages/StudyPlan";
 import MemoModal from "./components/MemoModal";
+import About from "./pages/About";
 import ImgModal from "./components/ImgModal";
 
 function App() {
@@ -244,6 +245,7 @@ function App() {
               />
             }
           ></Route>
+          <Route path="/about" element={<About />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
