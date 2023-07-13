@@ -1,5 +1,6 @@
 import React from "react";
 import { FooterStyle } from "../style/footerSt";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -23,7 +24,9 @@ const Footer = () => {
         </div>
         <div className="footer_right">
           <ul className="privacy">
-            <li>이용약관</li>
+            <li>
+              <Link to="/about">프로젝트 참여자</Link>
+            </li>
             <li>개인정보처리방침</li>
           </ul>
           <div className="footer_logo"></div>
