@@ -102,7 +102,7 @@ const UserInfo = ({
           <div className="input_user_email" ref={userInputEmailRef}>
             <input
               id="input_email"
-              value={editEmail.split("@")[0]}
+              value={editEmail}
               className="input_email"
               onChange={e => setEditEmail(e.target.value)}
             ></input>
