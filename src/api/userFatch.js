@@ -1,11 +1,12 @@
 import axios from "axios";
+import { axiosInstance } from "./memoFetch";
 
 // 유저 데이터 받아오기 기능
 
 // 프로필 데이터 불러오기 기능
 const getProfiles = async () => {
   try {
-    const res = await axios.get("/api/user/alllist");
+    const res = await axiosInstance.get("/api/user/alllist");
     const result = res.data;
     console.log("getProfile 요청완료");
     return result;
@@ -18,7 +19,7 @@ const getProfiles = async () => {
 
 const putProfile = async (editName, editGoal, editEmail) => {
   try {
-    const res = await axios.put("/api/user/profile/2", {
+    const res = await axiosInstance.put("/api/user/profile/2", {
       name: editName,
       objective: editGoal,
       email: editEmail,
