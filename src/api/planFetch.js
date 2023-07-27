@@ -1,4 +1,5 @@
 import axios from "axios";
+import { axiosInstance } from "./memoFetch";
 
 // 타이머 기능
 // 분 추가 기능 ===================================
@@ -7,7 +8,7 @@ export const postSeconds = async _data => {
   console.log("초 단위 시간을 보내줍니다. ========");
   console.log(_data);
   try {
-    const res = await axios.post("/api/timer", _data);
+    const res = await axiosInstance.post("/api/timer", _data);
     const result = res.data;
     console.log(result);
   } catch (error) {
@@ -18,7 +19,7 @@ export const postSeconds = async _data => {
 //플랜 가져오기
 export const getPlan = async () => {
   try {
-    const res = await axios.get("/api/todo/allboard");
+    const res = await axiosInstance.get("/api/todo/allboard");
     const result = res.data;
     console.log("getPlan 요청완료");
     return result;
@@ -32,7 +33,7 @@ export const getPlan = async () => {
 //년, 월, 일 스터디 플랜 가져오기
 export const getPlanData = async (_month, _year, _day) => {
   try {
-    const res = await axios.get(
+    const res = await axiosInstance.get(
       `/api/todo/bymonth?iuser=2&month=${_month}&year=${_year}&day=${_day}`,
     );
     const result = res.data;
@@ -49,7 +50,7 @@ export const getPlanData = async (_month, _year, _day) => {
 // 카테고리 가져오기
 export const getSubjects = async () => {
   try {
-    const res = await axios.get("/api/category/allcategory");
+    const res = await axiosInstance.get("/api/category/allcategory");
     const result = res.data;
 
     // console.log("getCategory 요청완료");
@@ -65,7 +66,7 @@ export const getSubjects = async () => {
 export const postWrite = async newPlan => {
   console.log("플랜작성 보내줍니다. ======== ", newPlan);
   try {
-    const res = await axios.post("/api/todo", newPlan);
+    const res = await axiosInstance.post("/api/todo", newPlan);
     const result = await res.data;
     return result;
   } catch (err) {
@@ -81,7 +82,7 @@ export const putPlan = async (
   selectedSubject,
 ) => {
   try {
-    const res = await axios.put("/api/todo", {
+    const res = await axiosInstance.put("/api/todo", {
       itodo: planLog,
       title: editTitle,
       ctnt: editctnt,
@@ -98,7 +99,7 @@ export const putPlan = async (
 // 플랜 삭제기능
 export const deletePlan = async itodo => {
   try {
-    const res = await axios.delete(`/api/todo?itodo=${itodo}`);
+    const res = await axiosInstance.delete(`/api/todo?itodo=${itodo}`);
     const result = res.data;
 
     console.log(result);
@@ -112,7 +113,7 @@ export const deletePlan = async itodo => {
 //스티커 모두 가져오기
 export const getAllSticker = async () => {
   try {
-    const res = await axios.get("/api/sticker");
+    const res = await axiosInstance.get("/api/sticker");
     const result = res.data;
     console.log("getAllSticker 요청완료 : ", result);
     return result;
@@ -125,9 +126,9 @@ export const getAllSticker = async () => {
 // 캘린더에 스티커 가져오기
 export const getSticker = async _month => {
   try {
-    const res = await axios.get(`/api/timer?iuser=2&month=${_month}`);
+    const res = await axiosInstance.get(`/api/timer?iuser=2&month=${_month}`);
     const result = res.data;
-   console.log("getSticker 요청완료 : ", result);
+    console.log("getSticker 요청완료 : ", result);
     return result;
   } catch (err) {
     console.log(err);
