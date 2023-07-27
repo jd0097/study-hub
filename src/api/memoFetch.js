@@ -1,5 +1,9 @@
 import axios from "axios";
 
+const axiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
+
 //PLAN 데이터 불러오기 기능
 // // USER 데이터 불러오기 기능
 // const getProfiles = async () => {
@@ -18,7 +22,7 @@ import axios from "axios";
 // MEMO 데이터 불러오기 기능
 const getMemo = async () => {
   try {
-    const res = await axios.get("/api/memo/allmemo");
+    const res = await axiosInstance.get("/api/memo/allmemo");
     const result = res.data;
     console.log("getMemo 요청완료");
     console.log(result);
@@ -34,7 +38,7 @@ const getMemo = async () => {
 // ===================================
 const postMemo = async newMemo => {
   try {
-    const res = await axios.post("/api/memo/post", newMemo);
+    const res = await axiosInstance.post("/api/memo/post", newMemo);
     const result = res.data;
     console.log("전송성공?");
   } catch (error) {
@@ -46,7 +50,7 @@ const postMemo = async newMemo => {
 // ===================================
 const patchMemo = async (memoLog, editTitle, editctnt, _iuser) => {
   try {
-    const res = await axios.patch(`/api/memo/titlectnt/${_iuser}`, {
+    const res = await axiosInstance.patch(`/api/memo/titlectnt/${_iuser}`, {
       imemo: memoLog,
       title: editTitle,
       ctnt: editctnt,
@@ -64,7 +68,7 @@ const patchMemo = async (memoLog, editTitle, editctnt, _iuser) => {
 // ====================================
 const deleteAllMemo = async _imemo => {
   try {
-    const res = await axios.delete("/api/memo/allmemo", {
+    const res = await axiosInstance.delete("/api/memo/allmemo", {
       data: {
         imemo: _imemo,
       },
@@ -82,7 +86,7 @@ const deleteAllMemo = async _imemo => {
 
 const deleteMemo = async _imemo => {
   try {
-    const res = await axios.delete("/api/memo", {
+    const res = await axiosInstance.delete("/api/memo", {
       data: {
         imemo: _imemo,
       },
@@ -95,4 +99,12 @@ const deleteMemo = async _imemo => {
   }
 };
 
-export { axios, getMemo, deleteAllMemo, postMemo, patchMemo, deleteMemo };
+export {
+  axios,
+  axiosInstance,
+  getMemo,
+  deleteAllMemo,
+  postMemo,
+  patchMemo,
+  deleteMemo,
+};
