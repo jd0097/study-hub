@@ -4,10 +4,10 @@
 <br/>
 <br/>
 <div align="center">  
-<!--   <h3>
-   :tent:<br/>
+  <h3>
+<!--    :tent:<br/> -->
     Introduce
-  </h3> -->
+  </h3>
 </div> 
 <div align="center"> 
  2차 협업 프로젝트 StudyHub입니다. <br/>
