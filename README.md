@@ -30,9 +30,9 @@
 </div>
 
 <div align="center">
-  - [GitHub](https://github.com/devdong9897/campingsmore) <br/>
-  - [Notion](https://www.notion.so/1-TodoList-Grow-Green-d560a969307441a3a59024c019aba580) <br/>
-  - [Figma] (https://www.figma.com/file/gBaoqSAs24bzZh6w4ad8tp/Untitled?type=design&node-id=0-1&mode=design&t=UrIUrZ3CI4y7xys5-0)
+  - [GitHub](https://github.com/jd0097/study-hub) <br/>
+  - [Notion](https://www.notion.so/1-Todo-React-650d034d741440328e786739a92bd55d) <br/>
+<!--   - [Figma] (https://www.figma.com/file/gBaoqSAs24bzZh6w4ad8tp/Untitled?type=design&node-id=0-1&mode=design&t=UrIUrZ3CI4y7xys5-0) -->
 </div>
 
 <div align="center">
