@@ -15,7 +15,7 @@
 </div>
 
 <div align="center">
- <img https://raw.githubusercontent.com/jd0097/study-hub/main/public/images/video.gif/>
+ <img https://raw.githubusercontent.com/jd0097/study-hub/main/public/images/video.gif />
 </div>
 <!-- ![Wondershare_Filmora_UhF6y4V4gc](https://github.com/LSYbuilds/campingsmore/assets/130975837/1ac4efe4-153e-4a82-bad7-42e068452251) -->
 
