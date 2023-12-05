@@ -25,7 +25,7 @@
 <br/>
 <div align="center">
 <h3>
-  :pencil2:&nbsp;&nbsp;&nbsp;프로젝트 정보&nbsp;&nbsp;&nbsp;:pencil2:
+프로젝트 정보
 </h3>
 </div>
 
