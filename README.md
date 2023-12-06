@@ -1,17 +1,17 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=header&text=1차%20협업%20프로젝트%20Study%20Hub%20입니다.&fontSize=90&fontColor=fff"" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=header&text=1차 협업 프로젝트 Study%20Hub 입니다.&fontSize=90&fontColor=fff"" />
 </div>
 <br/>
 <br/>
 <div align="center">  
   <h3>
-   ## 🖥️ 프로젝트 소개
+  🖥️ 프로젝트 소개
   </h3>
   학생들이 좀 더 합리적으로 공부할 수 있도록 하기 위한 일정관리시스템 <br/>
  <h2>:writing_hand: 2차 협업 프로젝트 StudyHub입니다. <br/></h2>
-  ## 🕰️ 개발 기간
+ 🕰️ 개발 기간
 * 23.06.26일 - 23.07.10일 <br/>
-###  맴버구성
+  맴버구성
  - 프론트엔드
     정다혜 : 캘린더페이지, 캐린더스티커기능, 스터디플랜페이지, 타이머기능, 날짜데이터출력
     이상윤 : 헤더 & 푸터, 메인페이지, 메모작성페이지, 마이페이지
