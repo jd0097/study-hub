@@ -9,7 +9,6 @@
   </h3>
   학생들이 좀 더 합리적으로 공부할 수 있도록 하기 위한 일정관리시스템 <br/>
  <h4>:writing_hand: 2차 협업 프로젝트 StudyHub입니다. <br/></h4>
-  
   <div>
  🕰️ 개발 기간<br/>
 * 23.06.26일 - 23.07.10일 <br/>
@@ -43,12 +42,10 @@
 
 <div align="center">
   <h3>
-### ⚙️ skill
+⚙️ skill
   </h3>
 </div>
 <br/>
-<br/>
-
 <div align="center">
     <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
     <img src="https://img.shields.io/badge/css3-1572B6?style=flat&logo=css3&logoColor=white"/>
@@ -63,11 +60,10 @@
 
 </div>
 <br/>
-<br/>
- 
+
 <div align="center">  
   <h3>
-   ### ⚙️Tools
+ ⚙️Tools
   </h3>
 </div>
 <br/>
