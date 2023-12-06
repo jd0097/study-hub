@@ -9,6 +9,8 @@
   </h3>
   학생들이 좀 더 합리적으로 공부할 수 있도록 하기 위한 일정관리시스템 <br/>
  <h4>:writing_hand: 2차 협업 프로젝트 StudyHub입니다. <br/></h4>
+  
+  <div>
  🕰️ 개발 기간<br/>
 * 23.06.26일 - 23.07.10일 <br/>
   맴버구성<br/>
@@ -18,8 +20,6 @@
  - 백엔드 <br/>
     배성현 성수천 진혁재
 </div> 
-
-
 <div align="center">
  <img src=https://raw.githubusercontent.com/jd0097/study-hub/main/public/images/video.gif />
 </div>
