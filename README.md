@@ -3,9 +3,9 @@
     </div>
 <br/>
 <br/>
-<div style="text-align: left;"> 
+
     <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;">✍️ 2차 협업 프로젝트 StudyHub입니다.</h2> 
-    </div>
+
 
 <div style="text-align: left;"> 
     <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🖥️ 프로젝트 소개 </h3>  
