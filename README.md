@@ -10,11 +10,14 @@
 <div style="text-align: left;"> 
     <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🖥️ 프로젝트 소개 </h3>  
     <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;"> 학생들이 좀 더 합리적으로 공부할 수 있도록 하기 위한 일정관리시스템 </div> 
-    </div>
+</div>
+
 <div style="text-align: left;">
     <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;">🕰️ 개발 기간</h3> 
     <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">23.06.26일 - 23.07.10일 </div> 
+  </div>
   
+  <div style="text-align: left;">
  <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🧑‍🤝‍🧑 맴버구성</h3> 
 <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">프론트엔드</div><br>
 <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">정다혜: 캘린더페이지, 캐린더스티커기능, 스터디플랜페이지, 타이머기능, 날짜데이터출력</div><br>
@@ -22,6 +25,7 @@
 <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">백엔드</div><br>
 <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">배성현 성수천 진혁재</div><br>
     </div>
+    
     <div style="text-align: left;">
     <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🛠️ Tech Stacks </h2> <br> 
     <div  align= "center"> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
@@ -35,9 +39,11 @@
           <img src="https://img.shields.io/badge/Slack-4A154B?style=flat-square&logo=Slack&logoColor=white">
           </div>
     </div>
+    
 <div style="text-align: left;">
     <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 📌 주요 기능</h3> <br> 
 </div>
+
 <div align="center">
  <img src=https://raw.githubusercontent.com/jd0097/study-hub/main/public/images/video.gif />
 </div>
