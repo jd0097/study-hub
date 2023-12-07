@@ -4,18 +4,18 @@
 <br/>
 <br/>
 <div style="text-align: left;"> 
-    <h3style="border-bottom: 1px solid #d8dee4; color: #282d33;">✍️ 2차 협업 프로젝트 StudyHub입니다.</h3> 
+    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;">✍️ 2차 협업 프로젝트 StudyHub입니다.</h2> 
     </div>
 
 <div style="text-align: left;"> 
-    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🖥️ 프로젝트 소개 </h2>  
+    <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🖥️ 프로젝트 소개 </h3>  
     <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;"> 학생들이 좀 더 합리적으로 공부할 수 있도록 하기 위한 일정관리시스템 </div> 
     </div>
-<div style="text-align: left;">  🧑‍🤝‍🧑 맴버구성
+<div style="text-align: left;">
     <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;">🕰️ 개발 기간</h3> 
     <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">23.06.26일 - 23.07.10일 </div> 
   
- <h3style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🧑‍🤝‍🧑 맴버구성</h3> 
+ <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🧑‍🤝‍🧑 맴버구성</h3> 
 <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">프론트엔드</div><br>
 <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">정다혜: 캘린더페이지, 캐린더스티커기능, 스터디플랜페이지, 타이머기능, 날짜데이터출력</div><br>
 <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">이상윤 : 헤더 & 푸터, 메인페이지, 메모작성페이지, 마이페이지</div><br>
