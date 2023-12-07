@@ -2,9 +2,7 @@
 <div align = "center">
     <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e1f5fe,100:b1b9f7&height=180&text=Study%20Hub&animation=fadeIn&fontColor=5b5757&fontSize=60" />
     </div>
-<div> 
-    <h3>✍️ 2차 협업 프로젝트 StudyHub입니다.</h3> 
-</div>
+
 
 <div> 
     <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🖥️ 프로젝트 소개 </h3>  
