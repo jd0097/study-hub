@@ -1,24 +1,43 @@
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e69138,100:D2B48C&height=200&section=header&text=1차 협업 프로젝트 Study%20Hub%20입니다.&fontSize=90&fontColor=fff"" />
+<div align= "center">
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:e1f5fe,100:b1b9f7&height=180&text=Study%20Hub&animation=fadeIn&fontColor=5b5757&fontSize=60" />
+    </div>
+<br/>
+<br/>
+<div style="text-align: left;"> 
+    <h3style="border-bottom: 1px solid #d8dee4; color: #282d33;">✍️ 2차 협업 프로젝트 StudyHub입니다.</h3> 
+    </div>
+
+<div style="text-align: left;"> 
+    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🖥️ 프로젝트 소개 </h2>  
+    <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;"> 학생들이 좀 더 합리적으로 공부할 수 있도록 하기 위한 일정관리시스템 </div> 
+    </div>
+<div style="text-align: left;">  🧑‍🤝‍🧑 맴버구성
+    <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;">🕰️ 개발 기간</h3> 
+    <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">23.06.26일 - 23.07.10일 </div> 
+  
+ <h3style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🧑‍🤝‍🧑 맴버구성</h3> 
+<div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">프론트엔드</div><br>
+<div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">정다혜: 캘린더페이지, 캐린더스티커기능, 스터디플랜페이지, 타이머기능, 날짜데이터출력</div><br>
+<div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">이상윤 : 헤더 & 푸터, 메인페이지, 메모작성페이지, 마이페이지</div><br>
+<div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">백엔드</div><br>
+<div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;">배성현 성수천 진혁재</div><br>
+    </div>
+    <div style="text-align: left;">
+    <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🛠️ Tech Stacks </h2> <br> 
+    <div  align= "center"> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white">
+          <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=Git&logoColor=white">
+          <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white">
+          <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white">
+          <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white">
+          <br/><img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=Sass&logoColor=white">
+          <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white">
+          <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white">
+          <img src="https://img.shields.io/badge/Slack-4A154B?style=flat-square&logo=Slack&logoColor=white">
+          </div>
+    </div>
+<div style="text-align: left;">
+    <h3 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 📌 주요 기능</h3> <br> 
 </div>
-<br/>
-<br/>
-<div align="center">  
-  <h3>
-  🖥️ 프로젝트 소개
-  </h3>
-  학생들이 좀 더 합리적으로 공부할 수 있도록 하기 위한 일정관리시스템 <br/>
- <h4>:writing_hand: 2차 협업 프로젝트 StudyHub입니다. <br/></h4>
-  <div>
- 🕰️ 개발 기간<br/>
-* 23.06.26일 - 23.07.10일 <br/>
-  맴버구성<br/>
- - 프론트엔드<br/>
-    정다혜 : 캘린더페이지, 캐린더스티커기능, 스터디플랜페이지, 타이머기능, 날짜데이터출력<br/>
-    이상윤 : 헤더 & 푸터, 메인페이지, 메모작성페이지, 마이페이지<br/>
- - 백엔드 <br/>
-    배성현 성수천 진혁재
-</div> 
 <div align="center">
  <img src=https://raw.githubusercontent.com/jd0097/study-hub/main/public/images/video.gif />
 </div>
